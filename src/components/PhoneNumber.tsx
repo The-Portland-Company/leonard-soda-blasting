@@ -3,7 +3,6 @@ import {
   Box,
   Container,
   Heading,
-  Text,
   HStack,
 } from '@chakra-ui/react';
 
