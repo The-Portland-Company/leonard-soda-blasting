@@ -2,7 +2,7 @@
 nixPkgs = ["nodejs-18_x"]
 
 [phases.build]
-cmds = ["cd leonard-soda-blasting-react && npm ci && npm run build"]
+cmds = ["cd leonard-soda-blasting-react && npm install && npm run build"]
 
 [start]
 cmd = "cd leonard-soda-blasting-react && npx serve -s build -l 8080"
