@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -10,7 +10,7 @@ import {
   HStack,
   Link,
   useBreakpointValue,
-  Button,
+  IconButton,
 } from '@chakra-ui/react';
 
 interface LayoutProps {
@@ -21,6 +21,37 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const isMobile = useBreakpointValue({ base: true, md: false });
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
+
+  // Close mobile menu when clicking outside or pressing escape
+  useEffect(() => {
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    const handleClickOutside = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      if (mobileMenuOpen && !target.closest('.mobile-menu') && !target.closest('.mobile-menu-button')) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    if (mobileMenuOpen) {
+      document.addEventListener('keydown', handleEscape);
+      document.addEventListener('click', handleClickOutside);
+      // Prevent body scroll when menu is open
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      document.removeEventListener('click', handleClickOutside);
+      document.body.style.overflow = 'unset';
+    };
+  }, [mobileMenuOpen]);
 
   return (
     <Box>
@@ -223,62 +254,357 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               </HStack>
             )}
             {isMobile && (
-              <Button
+              <IconButton
+                className="mobile-menu-button"
+                aria-label="Toggle mobile menu"
                 variant="ghost"
                 color="white"
-                size="sm"
+                size="md"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+                _hover={{ bg: 'whiteAlpha.200' }}
+                _active={{ bg: 'whiteAlpha.300' }}
               >
-                ☰
-              </Button>
+                <Box
+                  w="24px"
+                  h="18px"
+                  position="relative"
+                  display="flex"
+                  flexDirection="column"
+                  justifyContent="space-between"
+                >
+                  <Box
+                    w="100%"
+                    h="2px"
+                    bg="white"
+                    borderRadius="1px"
+                    transform={mobileMenuOpen ? 'rotate(45deg) translate(6px, 6px)' : 'none'}
+                    transition="all 0.3s ease"
+                  />
+                  <Box
+                    w="100%"
+                    h="2px"
+                    bg="white"
+                    borderRadius="1px"
+                    opacity={mobileMenuOpen ? 0 : 1}
+                    transition="all 0.3s ease"
+                  />
+                  <Box
+                    w="100%"
+                    h="2px"
+                    bg="white"
+                    borderRadius="1px"
+                    transform={mobileMenuOpen ? 'rotate(-45deg) translate(6px, -6px)' : 'none'}
+                    transition="all 0.3s ease"
+                  />
+                </Box>
+              </IconButton>
             )}
           </Flex>
         </Container>
         
-        {/* Mobile Menu */}
-        {isMobile && mobileMenuOpen && (
-          <Box bg="rgba(0,0,0,0.95)" color="white" p={4}>
-            <VStack gap={4} align="stretch">
-              <RouterLink to="/" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                Home
-              </RouterLink>
-              <RouterLink to="/about-soda-blasting" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                About Soda Blasting
-              </RouterLink>
-              <RouterLink to="/services" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                Services
-              </RouterLink>
-              <Text fontWeight="bold" color="green.200">Specialized Services:</Text>
-              <VStack gap={2} align="stretch" pl={4}>
-                <RouterLink to="/soda-blasting/commercial-industrial" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                  Commercial & Industrial
+        {/* Mobile Menu Overlay */}
+        {isMobile && (
+          <Box
+            className="mobile-menu"
+            position="fixed"
+            top="0"
+            left="0"
+            right="0"
+            bottom="0"
+            bg="rgba(0,0,0,0.85)"
+            zIndex={999}
+            transform={mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}
+            transition="transform 0.3s ease-in-out"
+            backdropFilter="blur(10px)"
+          >
+            {/* Mobile Menu Content */}
+            <Box
+              bg="blackAlpha.900"
+              w="80%"
+              maxW="300px"
+              h="100vh"
+              pt="80px"
+              px={6}
+              pb={6}
+              transform={mobileMenuOpen ? 'translateX(0)' : 'translateX(-100%)'}
+              transition="transform 0.3s ease-in-out 0.1s"
+              overflowY="auto"
+              borderRight="1px solid"
+              borderColor="whiteAlpha.200"
+            >
+              <VStack gap={0} align="stretch">
+                {/* Main Navigation Items */}
+                <RouterLink 
+                  to="/" 
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Box
+                    py={4}
+                    px={4}
+                    color="white"
+                    fontFamily="Arvo, Georgia, serif"
+                    textTransform="uppercase"
+                    letterSpacing="1px"
+                    fontSize="16px"
+                    fontWeight="bold"
+                    borderBottom="1px solid"
+                    borderColor="whiteAlpha.100"
+                    _hover={{ bg: 'whiteAlpha.100' }}
+                    transition="all 0.2s ease"
+                  >
+                    Home
+                  </Box>
                 </RouterLink>
-                <RouterLink to="/soda-blasting/automotive-soda-blasting" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                  Automotive
+
+                <RouterLink 
+                  to="/about-soda-blasting" 
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Box
+                    py={4}
+                    px={4}
+                    color="white"
+                    fontFamily="Arvo, Georgia, serif"
+                    textTransform="uppercase"
+                    letterSpacing="1px"
+                    fontSize="16px"
+                    fontWeight="bold"
+                    borderBottom="1px solid"
+                    borderColor="whiteAlpha.100"
+                    _hover={{ bg: 'whiteAlpha.100' }}
+                    transition="all 0.2s ease"
+                  >
+                    About Soda Blasting
+                  </Box>
                 </RouterLink>
-                <RouterLink to="/soda-blasting/food-processing-equipment" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                  Food Processing Equipment
+
+                <RouterLink 
+                  to="/services" 
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Box
+                    py={4}
+                    px={4}
+                    color="white"
+                    fontFamily="Arvo, Georgia, serif"
+                    textTransform="uppercase"
+                    letterSpacing="1px"
+                    fontSize="16px"
+                    fontWeight="bold"
+                    borderBottom="1px solid"
+                    borderColor="whiteAlpha.100"
+                    _hover={{ bg: 'whiteAlpha.100' }}
+                    transition="all 0.2s ease"
+                  >
+                    Services
+                  </Box>
                 </RouterLink>
-                <RouterLink to="/soda-blasting/fire-and-water-damage-restoration-soda-blasting" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                  Fire & Water Damage
+
+                {/* Services Submenu */}
+                <Box borderBottom="1px solid" borderColor="whiteAlpha.100">
+                  <Text 
+                    py={3}
+                    px={4}
+                    fontWeight="bold" 
+                    color="#228b22"
+                    fontFamily="Arvo, Georgia, serif"
+                    textTransform="uppercase"
+                    letterSpacing="1px"
+                    fontSize="14px"
+                  >
+                    Specialized Services
+                  </Text>
+                  <VStack gap={0} align="stretch" pl={4}>
+                    <RouterLink 
+                      to="/soda-blasting/commercial-industrial" 
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Box
+                        py={3}
+                        px={4}
+                        color="whiteAlpha.900"
+                        fontFamily="Open Sans, sans-serif"
+                        fontSize="14px"
+                        borderBottom="1px solid"
+                        borderColor="whiteAlpha.50"
+                        _hover={{ bg: 'whiteAlpha.50', color: '#228b22' }}
+                        transition="all 0.2s ease"
+                      >
+                        Commercial & Industrial
+                      </Box>
+                    </RouterLink>
+
+                    <RouterLink 
+                      to="/soda-blasting/automotive-soda-blasting" 
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Box
+                        py={3}
+                        px={4}
+                        color="whiteAlpha.900"
+                        fontFamily="Open Sans, sans-serif"
+                        fontSize="14px"
+                        borderBottom="1px solid"
+                        borderColor="whiteAlpha.50"
+                        _hover={{ bg: 'whiteAlpha.50', color: '#228b22' }}
+                        transition="all 0.2s ease"
+                      >
+                        Automotive
+                      </Box>
+                    </RouterLink>
+
+                    <RouterLink 
+                      to="/soda-blasting/food-processing-equipment" 
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Box
+                        py={3}
+                        px={4}
+                        color="whiteAlpha.900"
+                        fontFamily="Open Sans, sans-serif"
+                        fontSize="14px"
+                        borderBottom="1px solid"
+                        borderColor="whiteAlpha.50"
+                        _hover={{ bg: 'whiteAlpha.50', color: '#228b22' }}
+                        transition="all 0.2s ease"
+                      >
+                        Food Processing Equipment
+                      </Box>
+                    </RouterLink>
+
+                    <RouterLink 
+                      to="/soda-blasting/fire-and-water-damage-restoration-soda-blasting" 
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Box
+                        py={3}
+                        px={4}
+                        color="whiteAlpha.900"
+                        fontFamily="Open Sans, sans-serif"
+                        fontSize="14px"
+                        borderBottom="1px solid"
+                        borderColor="whiteAlpha.50"
+                        _hover={{ bg: 'whiteAlpha.50', color: '#228b22' }}
+                        transition="all 0.2s ease"
+                      >
+                        Fire & Water Damage
+                      </Box>
+                    </RouterLink>
+
+                    <RouterLink 
+                      to="/soda-blasting/airplane-soda-blasting" 
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Box
+                        py={3}
+                        px={4}
+                        color="whiteAlpha.900"
+                        fontFamily="Open Sans, sans-serif"
+                        fontSize="14px"
+                        borderBottom="1px solid"
+                        borderColor="whiteAlpha.50"
+                        _hover={{ bg: 'whiteAlpha.50', color: '#228b22' }}
+                        transition="all 0.2s ease"
+                      >
+                        Aircraft
+                      </Box>
+                    </RouterLink>
+
+                    <RouterLink 
+                      to="/soda-blasting/log-home-soda-blasting" 
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Box
+                        py={3}
+                        px={4}
+                        color="whiteAlpha.900"
+                        fontFamily="Open Sans, sans-serif"
+                        fontSize="14px"
+                        borderBottom="1px solid"
+                        borderColor="whiteAlpha.50"
+                        _hover={{ bg: 'whiteAlpha.50', color: '#228b22' }}
+                        transition="all 0.2s ease"
+                      >
+                        Log Homes
+                      </Box>
+                    </RouterLink>
+
+                    <RouterLink 
+                      to="/soda-blasting/boat-and-marine-soda-blasting" 
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Box
+                        py={3}
+                        px={4}
+                        color="whiteAlpha.900"
+                        fontFamily="Open Sans, sans-serif"
+                        fontSize="14px"
+                        borderBottom="1px solid"
+                        borderColor="whiteAlpha.50"
+                        _hover={{ bg: 'whiteAlpha.50', color: '#228b22' }}
+                        transition="all 0.2s ease"
+                      >
+                        Boat and Marine
+                      </Box>
+                    </RouterLink>
+                  </VStack>
+                </Box>
+
+                <RouterLink 
+                  to="/gallery" 
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Box
+                    py={4}
+                    px={4}
+                    color="white"
+                    fontFamily="Arvo, Georgia, serif"
+                    textTransform="uppercase"
+                    letterSpacing="1px"
+                    fontSize="16px"
+                    fontWeight="bold"
+                    borderBottom="1px solid"
+                    borderColor="whiteAlpha.100"
+                    _hover={{ bg: 'whiteAlpha.100' }}
+                    transition="all 0.2s ease"
+                  >
+                    Project Gallery
+                  </Box>
                 </RouterLink>
-                <RouterLink to="/soda-blasting/airplane-soda-blasting" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                  Aircraft
-                </RouterLink>
-                <RouterLink to="/soda-blasting/log-home-soda-blasting" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                  Log Homes
-                </RouterLink>
-                <RouterLink to="/soda-blasting/boat-and-marine-soda-blasting" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                  Boat and Marine
+
+                <RouterLink 
+                  to="/contact" 
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  <Box
+                    py={4}
+                    px={4}
+                    color="white"
+                    fontFamily="Arvo, Georgia, serif"
+                    textTransform="uppercase"
+                    letterSpacing="1px"
+                    fontSize="16px"
+                    fontWeight="bold"
+                    _hover={{ bg: 'whiteAlpha.100' }}
+                    transition="all 0.2s ease"
+                  >
+                    Contact
+                  </Box>
                 </RouterLink>
               </VStack>
-              <RouterLink to="/gallery" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                Project Gallery
-              </RouterLink>
-              <RouterLink to="/contact" onClick={() => setMobileMenuOpen(false)} style={{ textDecoration: 'none', color: 'white' }}>
-                Contact
-              </RouterLink>
-            </VStack>
+
+              {/* Contact Info */}
+              <Box mt={8} pt={6} borderTop="1px solid" borderColor="whiteAlpha.200">
+                <VStack gap={3} align="flex-start">
+                  <Text color="#228b22" fontWeight="bold" fontSize="sm" textTransform="uppercase">
+                    Contact
+                  </Text>
+                  <Text color="white" fontSize="sm">📞 (503) 894-5973</Text>
+                  <Text color="#228b22" fontSize="sm">greg@leonardsodablasting.com</Text>
+                  <Text color="whiteAlpha.800" fontSize="xs">CCB# 97926</Text>
+                </VStack>
+              </Box>
+            </Box>
           </Box>
         )}
       </Box>
