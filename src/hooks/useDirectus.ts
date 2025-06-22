@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { readItems, readSingleton } from '@directus/sdk';
-import { directus, Page, GlobalSettings, Navigation, fallbackData } from '../lib/directus';
+import { directus, Page, GlobalSettings, Navigation, fallbackData, Schema } from '../lib/directus';
 
 export function useGlobalSettings() {
   const [settings, setSettings] = useState<GlobalSettings>(fallbackData.globalSettings);
@@ -10,8 +10,8 @@ export function useGlobalSettings() {
   useEffect(() => {
     async function fetchSettings() {
       try {
-        const result = await directus.request(readSingleton('global_settings'));
-        setSettings(result);
+        const result = await directus.request(readSingleton('global_settings' as keyof Schema));
+        setSettings(result as GlobalSettings);
       } catch (err) {
         console.warn('Failed to fetch global settings, using fallback:', err);
         setError('Using fallback data');
@@ -35,12 +35,12 @@ export function useNavigation() {
     async function fetchNavigation() {
       try {
         const result = await directus.request(
-          readItems('navigation', {
+          readItems('navigation' as keyof Schema, {
             filter: { status: { _eq: 'published' } },
             sort: ['sort']
-          })
+          } as any)
         );
-        setNavigation(result);
+        setNavigation(result as Navigation[]);
       } catch (err) {
         console.warn('Failed to fetch navigation, using fallback:', err);
         setError('Using fallback data');
@@ -64,17 +64,18 @@ export function usePage(slug: string) {
     async function fetchPage() {
       try {
         const result = await directus.request(
-          readItems('pages', {
+          readItems('pages' as keyof Schema, {
             filter: { 
               slug: { _eq: slug },
               status: { _eq: 'published' }
             },
             limit: 1
-          })
+          } as any)
         );
         
-        if (result.length > 0) {
-          setPage(result[0]);
+        const pages = result as Page[];
+        if (pages.length > 0) {
+          setPage(pages[0]);
         } else {
           setError('Page not found');
         }
@@ -118,12 +119,12 @@ export function usePages(pageType?: string) {
         }
 
         const result = await directus.request(
-          readItems('pages', {
+          readItems('pages' as keyof Schema, {
             filter,
             sort: ['sort', 'title']
-          })
+          } as any)
         );
-        setPages(result);
+        setPages(result as Page[]);
       } catch (err) {
         console.warn('Failed to fetch pages, using empty array:', err);
         setError('Failed to fetch pages');

@@ -670,6 +670,16 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <Text fontSize="xs" color="gray.400" mt={4}>
               © 2024 Leonard Soda Blasting. All rights reserved.
             </Text>
+            <Link 
+              href="http://localhost:8055/admin" 
+              target="_blank"
+              fontSize="xs" 
+              color="gray.500" 
+              _hover={{ color: "#228b22" }}
+              mt={2}
+            >
+              Admin
+            </Link>
           </VStack>
         </Container>
       </Box>

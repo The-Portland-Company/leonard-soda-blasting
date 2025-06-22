@@ -1,19 +1,13 @@
 const { createDirectus, rest, authentication, readUsers, updateUser, createCollection, createField, createItem } = require('@directus/sdk');
 
-const client = createDirectus('http://localhost:8055').with(rest()).with(authentication());
+const client = createDirectus('http://127.0.0.1:8055').with(rest()).with(authentication());
 
 async function setupDirectus() {
   try {
-    // Login with default admin credentials
-    await client.login('admin@example.com', 'M-tVNpEzBFJ2');
+    // Login with correct admin credentials  
+    await client.login('agency@theportlandcompany.com', 'J9u76asecdst!');
     
     console.log('Logged in successfully');
-    
-    // Update admin user
-    await client.request(updateUser('1', {
-      email: 'agency@theportlandcompany.com',
-      password: 'J9u76asecdst!'
-    }));
     
     console.log('Admin user updated');
     
