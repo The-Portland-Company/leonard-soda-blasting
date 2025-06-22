@@ -12,6 +12,7 @@ import {
   useBreakpointValue,
   IconButton,
 } from '@chakra-ui/react';
+import { useGlobalSettings, useNavigation } from '../hooks/useDirectus';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -22,6 +23,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [servicesMenuOpen, setServicesMenuOpen] = useState(false);
   const [mobileServicesExpanded, setMobileServicesExpanded] = useState(false);
+  
+  const { settings } = useGlobalSettings();
+  const { navigation } = useNavigation();
 
   // Close mobile menu when clicking outside or pressing escape
   useEffect(() => {
@@ -70,7 +74,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               textTransform="uppercase"
               letterSpacing="0.5px"
             >
-              Leonard Soda Blasting
+              {settings.site_title}
             </Text>
             {!isMobile && (
               <HStack gap={8}>
@@ -625,8 +629,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <Text color="#228b22" fontWeight="bold" fontSize="sm" textTransform="uppercase">
                     Contact
                   </Text>
-                  <Text color="white" fontSize="sm">📞 (503) 894-5973</Text>
-                  <Text color="#228b22" fontSize="sm">greg@leonardsodablasting.com</Text>
+                  <Text color="white" fontSize="sm">📞 {settings.phone}</Text>
+                  <Text color="#228b22" fontSize="sm">{settings.email}</Text>
                   <Text color="whiteAlpha.800" fontSize="xs">CCB# 97926</Text>
                 </VStack>
               </Box>
@@ -650,14 +654,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               textTransform="uppercase"
               color="#228b22"
             >
-              Leonard Soda Blasting
+              {settings.site_title}
             </Heading>
             <VStack gap={3} fontSize="sm" fontFamily="Open Sans, sans-serif">
               <Text>CCB# 97926</Text>
               <Text>Serving Oregon & Washington</Text>
-              <Text>📞 (503) 894-5973</Text>
-              <Link href="mailto:greg@leonardsodablasting.com" color="#228b22">
-                greg@leonardsodablasting.com
+              <Text>📞 {settings.phone}</Text>
+              <Link href={`mailto:${settings.email}`} color="#228b22">
+                {settings.email}
               </Link>
               <Text fontWeight="bold" color="#228b22">
                 FDA, OSHA, EPA, USDA COMPLIANT

@@ -12,11 +12,15 @@ import {
   AspectRatio,
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
+import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const Home: React.FC = () => {
+  const { page } = usePage('home');
+  const { settings } = useGlobalSettings();
+  
   useEffect(() => {
-    document.title = "Leonard Soda Blasting";
-  }, []);
+    document.title = page?.meta_title || settings.site_title || "Leonard Soda Blasting";
+  }, [page, settings]);
 
   return (
     <Box>

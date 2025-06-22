@@ -5,8 +5,10 @@
   "dependencies": {
     "@chakra-ui/icons": "^2.2.4",
     "@chakra-ui/react": "^3.20.0",
+    "@directus/sdk": "^18.0.3",
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@supabase/supabase-js": "^2.50.0",
     "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^16.3.0",
@@ -15,6 +17,7 @@
     "@types/node": "^16.18.126",
     "@types/react": "^19.1.7",
     "@types/react-dom": "^19.1.6",
+    "directus": "^11.3.5",
     "framer-motion": "^12.16.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
@@ -29,7 +32,11 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:css": "stylelint \"src/**/*.css\"",
-    "lint:css:fix": "stylelint \"src/**/*.css\" --fix"
+    "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
+    "directus": "directus start",
+    "setup-directus": "node setup-directus.js",
+    "dev": "concurrently \"npm run directus\" \"npm start\"",
+    "directus:setup": "npx directus bootstrap"
   },
   "eslintConfig": {
     "extends": [
@@ -50,6 +57,7 @@
     ]
   },
   "devDependencies": {
+    "concurrently": "^9.1.2",
     "stylelint": "^16.20.0",
     "stylelint-config-css-modules": "^4.4.0",
     "stylelint-config-standard": "^38.0.0",
