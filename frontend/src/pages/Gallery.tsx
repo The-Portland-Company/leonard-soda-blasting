@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEOHead from '../components/SEOHead';
 import {
   Box,
   Container,
@@ -110,12 +110,7 @@ const Gallery: React.FC = () => {
   // Update SEO when data loads - but don't override the Helmet title
   useEffect(() => {
     if (page || settings) {
-      const seoData = createPageSEO(
-        page, 
-        settings, 
-        "Gallery - Leonard Soda Blasting",
-        "View our gallery of soda blasting projects showing dramatic before and after transformations. Professional results from automotive to commercial projects."
-      );
+      const seoData = createPageSEO(page, settings);
       // Only update meta tags, not title (Helmet handles title)
       updateSEOTags({ ...seoData, title: undefined });
     }
@@ -128,21 +123,20 @@ const Gallery: React.FC = () => {
     ? galleryItems 
     : galleryItems.filter(item => item.category === selectedCategory);
 
-  // Debug: Force title update immediately when component mounts
-  useEffect(() => {
-    console.log('Gallery component mounted, setting title...');
-    document.title = "Gallery - Leonard Soda Blasting";
-    console.log('Document title is now:', document.title);
-  }, []);
 
   return (
-    <Box>
-      <Helmet>
-        <title>Gallery - Leonard Soda Blasting</title>
-        <meta name="description" content="View our gallery of soda blasting projects showing dramatic before and after transformations. Professional results from automotive to commercial projects." />
-      </Helmet>
+    <Box id="gallery-main">
+      <SEOHead
+        title={page?.title}
+        metaTitle={page?.meta_title}
+        metaDescription={page?.meta_description}
+        defaultTitle="Gallery - Leonard Soda Blasting"
+        defaultDescription="View our gallery of soda blasting projects showing dramatic before and after transformations. Professional results from automotive to commercial projects."
+        defaultKeywords="soda blasting gallery, before and after, project photos, automotive restoration, commercial cleaning, aircraft cleaning"
+      />
       {/* Hero Section */}
       <Box 
+        id="hero-section"
         bgImage="url('/assets/images/about.jpg')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
@@ -150,9 +144,9 @@ const Gallery: React.FC = () => {
         py={20}
         position="relative"
       >
-        <Box position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.600" />
-        <Container maxW="container.xl" position="relative" zIndex={1}>
-          <VStack gap={4} textAlign="center" color="white">
+        <Box id="hero-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.600" />
+        <Container id="hero-container" maxW="container.xl" position="relative" zIndex={1}>
+          <VStack id="hero-content" gap={4} textAlign="center" color="white">
             <Heading 
               size="2xl" 
               fontFamily="Arvo, Georgia, serif"
@@ -170,9 +164,9 @@ const Gallery: React.FC = () => {
       </Box>
 
       {/* Filter Section */}
-      <Box bg="gray.50" py={8}>
-        <Container maxW="container.xl">
-          <VStack gap={6}>
+      <Box id="filter-section" bg="gray.50" py={8}>
+        <Container id="filter-container" maxW="container.xl">
+          <VStack id="filter-content" gap={6}>
             <Heading 
               size="lg" 
               textAlign="center"
@@ -185,6 +179,7 @@ const Gallery: React.FC = () => {
             </Heading>
             
             <HStack 
+              id="filter-buttons"
               gap={4} 
               flexWrap="wrap" 
               justify="center"
@@ -214,9 +209,9 @@ const Gallery: React.FC = () => {
       </Box>
 
       {/* Gallery Grid */}
-      <Box bg="white" py={16}>
-        <Container maxW="container.xl">
-          <VStack gap={12}>
+      <Box id="gallery-grid-section" bg="white" py={16}>
+        <Container id="gallery-grid-container" maxW="container.xl">
+          <VStack id="gallery-grid-content" gap={12}>
             <Text 
               textAlign="center" 
               fontSize="lg" 
@@ -228,6 +223,7 @@ const Gallery: React.FC = () => {
             </Text>
             
             <SimpleGrid 
+              id="gallery-grid"
               columns={{ base: 1, md: 2, lg: 3 }} 
               gap={8} 
               w="100%"
@@ -235,13 +231,14 @@ const Gallery: React.FC = () => {
               {filteredItems.map((item) => (
                 <Box
                   key={item.id}
+                  id={`gallery-item-${item.id}`}
                   bg="white"
                   borderRadius="lg"
                   overflow="hidden"
                   cursor="pointer"
                   onClick={() => setSelectedImage(item)}
                 >
-                  <Box position="relative" overflow="hidden">
+                  <Box id={`gallery-image-${item.id}`} position="relative" overflow="hidden">
                     <Image 
                       src={item.src} 
                       alt={item.alt}
@@ -250,6 +247,7 @@ const Gallery: React.FC = () => {
                       objectFit="cover"
                     />
                     <Box
+                      id={`gallery-overlay-${item.id}`}
                       position="absolute"
                       top={0}
                       left={0}
@@ -274,8 +272,8 @@ const Gallery: React.FC = () => {
                     </Box>
                   </Box>
                   
-                  <Box p={6}>
-                    <VStack gap={3} align="flex-start">
+                  <Box id={`gallery-content-${item.id}`} p={6}>
+                    <VStack id={`gallery-details-${item.id}`} gap={3} align="flex-start">
                       <Heading 
                         size="md" 
                         color="#228b22"
@@ -314,6 +312,7 @@ const Gallery: React.FC = () => {
       {/* Modal for Image Details */}
       {selectedImage && (
         <Box
+          id="gallery-modal"
           position="fixed"
           top={0}
           left={0}
@@ -327,6 +326,7 @@ const Gallery: React.FC = () => {
           onClick={() => setSelectedImage(null)}
         >
           <Box
+            id="modal-content"
             bg="white"
             borderRadius="lg"
             overflow="hidden"
@@ -342,8 +342,8 @@ const Gallery: React.FC = () => {
               maxH="500px"
               objectFit="cover"
             />
-            <Box p={6}>
-              <VStack gap={4} align="flex-start">
+            <Box id="modal-details" p={6}>
+              <VStack id="modal-info" gap={4} align="flex-start">
                 <Heading 
                   size="lg" 
                   color="#228b22"
@@ -360,7 +360,7 @@ const Gallery: React.FC = () => {
                 >
                   {selectedImage.description}
                 </Text>
-                <HStack justify="space-between" w="100%">
+                <HStack id="modal-footer" justify="space-between" w="100%">
                   <Text 
                     fontSize="sm" 
                     color="#228b22"
@@ -391,9 +391,9 @@ const Gallery: React.FC = () => {
       )}
 
       {/* Contact CTA Section */}
-      <Box bg="gray.100" py={16}>
-        <Container maxW="container.xl">
-          <VStack gap={8} textAlign="center">
+      <Box id="contact-cta-section" bg="gray.100" py={16}>
+        <Container id="contact-cta-container" maxW="container.xl">
+          <VStack id="contact-cta-content" gap={8} textAlign="center">
             <Heading 
               size="xl" 
               fontFamily="Arvo, Georgia, serif"
@@ -406,7 +406,7 @@ const Gallery: React.FC = () => {
             <Text fontSize="lg" maxW="2xl" fontFamily="Open Sans, sans-serif">
               Contact Leonard Soda Blasting today to discuss your cleaning project and see how our eco-friendly soda blasting services can deliver exceptional results for your specific needs.
             </Text>
-            <VStack gap={4}>
+            <VStack id="contact-info" gap={4}>
               <Text fontSize="2xl" fontWeight="bold" color="#228b22">
                 📞 (503) 894-5973
               </Text>

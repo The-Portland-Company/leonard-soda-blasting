@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEOHead from '../components/SEOHead';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -179,38 +179,34 @@ const services: Service[] = [
 const Services: React.FC = () => {
   const { page } = usePage('services');
   const { settings } = useGlobalSettings();
-  const { services: dynamicServices } = useServices();
+  // TODO: implement dynamic services when needed
+  // const { services: dynamicServices } = useServices();
 
   // Debug: Force title update immediately when component mounts
-  useEffect(() => {
-    console.log('Services component mounted, setting title...');
-    document.title = "Services - Leonard Soda Blasting";
-    console.log('Document title is now:', document.title);
-  }, []);
 
 
   // Update SEO when data loads - but don't override the Helmet title
   useEffect(() => {
     if (page || settings) {
-      const seoData = createPageSEO(
-        page, 
-        settings, 
-        "Services - Leonard Soda Blasting",
-        "Professional soda blasting services for commercial, automotive, marine, aircraft, and industrial applications."
-      );
+      const seoData = createPageSEO(page, settings);
       // Only update meta tags, not title (Helmet handles title)
       updateSEOTags({ ...seoData, title: undefined });
     }
   }, [page, settings]);
 
   return (
-    <Box>
-      <Helmet>
-        <title>Services - Leonard Soda Blasting</title>
-        <meta name="description" content="Professional soda blasting services for commercial, automotive, marine, aircraft, and industrial applications." />
-      </Helmet>
+    <Box id="services-main">
+      <SEOHead
+        title={page?.title}
+        metaTitle={page?.meta_title}
+        metaDescription={page?.meta_description}
+        defaultTitle="Services - Leonard Soda Blasting"
+        defaultDescription="Professional soda blasting services for commercial, automotive, marine, aircraft, and industrial applications."
+        defaultKeywords="soda blasting services, commercial cleaning, automotive restoration, marine cleaning, aircraft cleaning, industrial cleaning"
+      />
       {/* Hero Section */}
       <Box 
+        id="hero-section"
         bgImage="url('/assets/images/about.jpg')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
@@ -218,9 +214,9 @@ const Services: React.FC = () => {
         py={20}
         position="relative"
       >
-        <Box position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.600" />
-        <Container maxW="container.xl" position="relative" zIndex={1}>
-          <VStack gap={4} textAlign="center" color="white">
+        <Box id="hero-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.600" />
+        <Container id="hero-container" maxW="container.xl" position="relative" zIndex={1}>
+          <VStack id="hero-content" gap={4} textAlign="center" color="white">
             <Heading 
               size="2xl" 
               fontFamily="Arvo, Georgia, serif"
@@ -238,10 +234,10 @@ const Services: React.FC = () => {
       </Box>
 
       {/* Services Overview */}
-      <Box bg="white" py={16}>
-        <Container maxW="container.xl">
-          <VStack gap={12}>
-            <VStack gap={6} textAlign="center">
+      <Box id="services-overview-section" bg="white" py={16}>
+        <Container id="services-overview-container" maxW="container.xl">
+          <VStack id="services-overview-content" gap={12}>
+            <VStack id="services-overview-text" gap={6} textAlign="center">
               <Heading 
                 size="xl" 
                 fontFamily="Arvo, Georgia, serif"
@@ -258,8 +254,8 @@ const Services: React.FC = () => {
               </Text>
             </VStack>
 
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={8} w="100%">
-              <VStack gap={4} textAlign="center">
+            <SimpleGrid id="benefits-grid" columns={{ base: 1, md: 2, lg: 4 }} gap={8} w="100%">
+              <VStack id="benefit-eco-friendly" gap={4} textAlign="center">
                 <Box
                   w={16}
                   h={16}
@@ -279,7 +275,7 @@ const Services: React.FC = () => {
                 </Text>
               </VStack>
 
-              <VStack gap={4} textAlign="center">
+              <VStack id="benefit-non-destructive" gap={4} textAlign="center">
                 <Box
                   w={16}
                   h={16}
@@ -299,7 +295,7 @@ const Services: React.FC = () => {
                 </Text>
               </VStack>
 
-              <VStack gap={4} textAlign="center">
+              <VStack id="benefit-compliant" gap={4} textAlign="center">
                 <Box
                   w={16}
                   h={16}
@@ -319,7 +315,7 @@ const Services: React.FC = () => {
                 </Text>
               </VStack>
 
-              <VStack gap={4} textAlign="center">
+              <VStack id="benefit-efficient" gap={4} textAlign="center">
                 <Box
                   w={16}
                   h={16}
@@ -344,9 +340,9 @@ const Services: React.FC = () => {
       </Box>
 
       {/* Services Grid */}
-      <Box bg="gray.50" py={16}>
-        <Container maxW="container.xl">
-          <VStack gap={12}>
+      <Box id="services-grid-section" bg="gray.50" py={16}>
+        <Container id="services-grid-container" maxW="container.xl">
+          <VStack id="services-grid-content" gap={12}>
             <Heading 
               size="xl" 
               textAlign="center"
@@ -359,6 +355,7 @@ const Services: React.FC = () => {
             </Heading>
             
             <SimpleGrid 
+              id="services-grid"
               columns={{ base: 1, md: 2 }} 
               gap={12} 
               w="100%"
@@ -366,6 +363,7 @@ const Services: React.FC = () => {
               {services.map((service) => (
                 <Box
                   key={service.id}
+                  id={`service-card-${service.id}`}
                   bg="white"
                   borderRadius="lg"
                   overflow="hidden"
@@ -378,8 +376,8 @@ const Services: React.FC = () => {
                     objectFit="cover"
                   />
                   
-                  <Box p={8}>
-                    <VStack gap={6} align="flex-start">
+                  <Box id={`service-content-${service.id}`} p={8}>
+                    <VStack id={`service-details-${service.id}`} gap={6} align="flex-start">
                       <Heading 
                         size="lg" 
                         color="#228b22"
@@ -398,12 +396,12 @@ const Services: React.FC = () => {
                         {service.description}
                       </Text>
 
-                      <SimpleGrid columns={2} gap={6} w="100%">
-                        <VStack gap={3} align="flex-start">
+                      <SimpleGrid id={`service-features-${service.id}`} columns={2} gap={6} w="100%">
+                        <VStack id={`service-features-list-${service.id}`} gap={3} align="flex-start">
                           <Heading size="sm" fontFamily="Arvo, Georgia, serif" color="#228b22">
                             Key Features:
                           </Heading>
-                          <VStack gap={2} align="flex-start">
+                          <VStack id={`service-features-items-${service.id}`} gap={2} align="flex-start">
                             {service.features.slice(0, 3).map((feature, index) => (
                               <HStack key={index} align="center" fontSize="sm" fontFamily="Open Sans, sans-serif">
                                 <Box w={2} h={2} bg="#228b22" borderRadius="full" />
@@ -413,11 +411,11 @@ const Services: React.FC = () => {
                           </VStack>
                         </VStack>
 
-                        <VStack gap={3} align="flex-start">
+                        <VStack id={`service-applications-list-${service.id}`} gap={3} align="flex-start">
                           <Heading size="sm" fontFamily="Arvo, Georgia, serif" color="#228b22">
                             Applications:
                           </Heading>
-                          <VStack gap={2} align="flex-start">
+                          <VStack id={`service-applications-items-${service.id}`} gap={2} align="flex-start">
                             {service.applications.slice(0, 3).map((application, index) => (
                               <HStack key={index} align="center" fontSize="sm" fontFamily="Open Sans, sans-serif">
                                 <Box w={2} h={2} bg="#228b22" borderRadius="full" />
@@ -450,10 +448,10 @@ const Services: React.FC = () => {
       </Box>
 
       {/* Service Areas */}
-      <Box bg="white" py={16}>
-        <Container maxW="container.xl">
-          <VStack gap={12}>
-            <VStack gap={6} textAlign="center">
+      <Box id="service-areas-section" bg="white" py={16}>
+        <Container id="service-areas-container" maxW="container.xl">
+          <VStack id="service-areas-content" gap={12}>
+            <VStack id="service-areas-header" gap={6} textAlign="center">
               <Heading 
                 size="xl" 
                 fontFamily="Arvo, Georgia, serif"
@@ -469,12 +467,12 @@ const Services: React.FC = () => {
               </Text>
             </VStack>
 
-            <SimpleGrid columns={{ base: 1, md: 2 }} gap={12} alignItems="center">
-              <VStack gap={6} align="flex-start">
+            <SimpleGrid id="service-areas-grid" columns={{ base: 1, md: 2 }} gap={12} alignItems="center">
+              <VStack id="oregon-coverage" gap={6} align="flex-start">
                 <Heading size="lg" fontFamily="Arvo, Georgia, serif" color="#228b22">
                   Oregon Coverage:
                 </Heading>
-                <VStack gap={3} align="flex-start" fontSize="lg" fontFamily="Open Sans, sans-serif">
+                <VStack id="oregon-areas" gap={3} align="flex-start" fontSize="lg" fontFamily="Open Sans, sans-serif">
                   <HStack align="center">
                     <Box w={2} h={2} bg="#228b22" borderRadius="full" />
                     <Text>Portland Metro Area</Text>
@@ -498,11 +496,11 @@ const Services: React.FC = () => {
                 </VStack>
               </VStack>
 
-              <VStack gap={6} align="flex-start">
+              <VStack id="washington-coverage" gap={6} align="flex-start">
                 <Heading size="lg" fontFamily="Arvo, Georgia, serif" color="#228b22">
                   Washington Coverage:
                 </Heading>
-                <VStack gap={3} align="flex-start" fontSize="lg" fontFamily="Open Sans, sans-serif">
+                <VStack id="washington-areas" gap={3} align="flex-start" fontSize="lg" fontFamily="Open Sans, sans-serif">
                   <HStack align="center">
                     <Box w={2} h={2} bg="#228b22" borderRadius="full" />
                     <Text>Southwest Washington</Text>
@@ -531,9 +529,9 @@ const Services: React.FC = () => {
       </Box>
 
       {/* Contact CTA Section */}
-      <Box bg="#228b22" color="white" py={16}>
-        <Container maxW="container.xl">
-          <VStack gap={8} textAlign="center">
+      <Box id="contact-cta-section" bg="#228b22" color="white" py={16}>
+        <Container id="contact-cta-container" maxW="container.xl">
+          <VStack id="contact-cta-content" gap={8} textAlign="center">
             <Heading 
               size="xl" 
               fontFamily="Arvo, Georgia, serif"
@@ -546,7 +544,7 @@ const Services: React.FC = () => {
               Contact Leonard Soda Blasting today for a free estimate on your project. We'll discuss your specific needs 
               and provide expert recommendations for the best approach to your cleaning challenge.
             </Text>
-            <VStack gap={4}>
+            <VStack id="contact-info" gap={4}>
               <Text fontSize="2xl" fontWeight="bold">
                 📞 (503) 894-5973
               </Text>
@@ -557,7 +555,7 @@ const Services: React.FC = () => {
                 CCB# 97926 • Licensed & Insured
               </Text>
             </VStack>
-            <HStack gap={4} mt={4}>
+            <HStack id="cta-buttons" gap={4} mt={4}>
               <RouterLink to="/gallery">
                 <Button
                   variant="outline"

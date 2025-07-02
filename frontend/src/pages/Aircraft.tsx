@@ -14,8 +14,12 @@ import {
   Flex
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
+import SEOHead from '../components/SEOHead';
+import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const Aircraft: React.FC = () => {
+  const { page } = usePage('aircraft-soda-blasting');
+  const { settings } = useGlobalSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -50,15 +54,23 @@ const Aircraft: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box id="aircraft-main">
+      <SEOHead
+        title={page?.meta_title}
+        metaDescription={page?.meta_description}
+        defaultTitle={settings?.site_title || "Leonard Soda Blasting"}
+        defaultDescription={settings?.site_description || "Professional soda blasting services"}
+      />
       {/* Hero Section with Slideshow */}
       <Box 
+        id="hero-section"
         position="relative" 
         height="500px" 
         overflow="hidden"
         bg="#333333"
       >
         <Box
+          id="hero-background"
           position="absolute"
           top="0"
           left="0"
@@ -70,6 +82,7 @@ const Aircraft: React.FC = () => {
           backgroundRepeat="no-repeat"
         />
         <Container 
+          id="hero-container"
           position="relative" 
           zIndex={2} 
           height="100%" 
@@ -77,7 +90,7 @@ const Aircraft: React.FC = () => {
           alignItems="center" 
           justifyContent="center"
         >
-          <Box textAlign="center" color="white">
+          <Box id="hero-content" textAlign="center" color="white">
             <Heading
               fontSize="41px"
               fontFamily="Arvo, Georgia, serif"
@@ -86,13 +99,14 @@ const Aircraft: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              Aircraft
+              {page?.hero_title || page?.title || "Aircraft"}
             </Heading>
           </Box>
         </Container>
         
         {/* Manual Navigation */}
         <HStack 
+          id="hero-navigation"
           position="absolute" 
           bottom="20px" 
           left="50%" 
@@ -116,9 +130,9 @@ const Aircraft: React.FC = () => {
       <PhoneNumber />
 
       {/* Main Content Section */}
-      <Box bg="#228b22" py={16}>
-        <Container maxW="760px">
-          <VStack gap={8} textAlign="center">
+      <Box id="main-content-section" bg="#228b22" py={16}>
+        <Container id="main-content-container" maxW="760px">
+          <VStack id="main-content" gap={8} textAlign="center">
             <Heading
               fontSize="41px"
               fontFamily="Arvo, Georgia, serif"
@@ -127,10 +141,10 @@ const Aircraft: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              Aircraft Soda Blasting
+              {page?.hero_title || page?.title || "Aircraft Soda Blasting"}
             </Heading>
             <Text fontSize="24px" color="white" textAlign="left" maxW="760px">
-              Today's aviation requires the latest in technology as well as an awareness of environmental concerns, especially when it comes to cleaning planes and parts. Not only are chemical strippers and sanding slow but they also can often require toxic and expensive cleanup themselves. Soda blasting removes all coatings and simple water can be used to clean up afterwards and since applications do not require prewashing and masking there are no size limits for parts being stripped.
+              {page?.hero_subtitle || "Today's aviation requires the latest in technology as well as an awareness of environmental concerns, especially when it comes to cleaning planes and parts. Not only are chemical strippers and sanding slow but they also can often require toxic and expensive cleanup themselves. Soda blasting removes all coatings and simple water can be used to clean up afterwards and since applications do not require prewashing and masking there are no size limits for parts being stripped."}
             </Text>
           </VStack>
         </Container>
@@ -138,15 +152,16 @@ const Aircraft: React.FC = () => {
 
       {/* Professional Work Section */}
       <Box 
+        id="professional-work-section"
         backgroundImage="url(/assets/images/bg-3.jpg)"
         backgroundAttachment="fixed"
         backgroundSize="cover"
         backgroundPosition="center"
         py={16}
       >
-        <Container maxW="1200px">
-          <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
-            <Box>
+        <Container id="professional-work-container" maxW="1200px">
+          <SimpleGrid id="professional-work-grid" columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
+            <Box id="professional-work-text">
               <Heading
                 fontSize="41px"
                 fontFamily="Arvo, Georgia, serif"
@@ -162,7 +177,7 @@ const Aircraft: React.FC = () => {
                 Leonard soda blasting can meet your needs within the fixed and rotor wing marketplace and let you take advantage of the unique properties of soda blasting. We can speed the process of your major and minor repairs, alterations and modifications to sheet metal and composites. Our reputation for on time delivery and unmatched quality has made us the premier soda blasting service.
               </Text>
             </Box>
-            <Box textAlign="center">
+            <Box id="professional-work-image" textAlign="center">
               <Image 
                 src="/assets/images/dc-10.jpg" 
                 alt="DC-10 Aircraft" 
@@ -176,10 +191,10 @@ const Aircraft: React.FC = () => {
       </Box>
 
       {/* Safe Process Section */}
-      <Box bg="#333333" py={16}>
-        <Container maxW="1200px">
-          <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
-            <Box textAlign="center">
+      <Box id="safe-process-section" bg="#333333" py={16}>
+        <Container id="safe-process-container" maxW="1200px">
+          <SimpleGrid id="safe-process-grid" columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
+            <Box id="safe-process-image" textAlign="center">
               <Image 
                 src="/assets/images/airplane-detail.jpg" 
                 alt="Airplane Detail" 
@@ -188,7 +203,7 @@ const Aircraft: React.FC = () => {
                 className="image-slide-left"
               />
             </Box>
-            <Box>
+            <Box id="safe-process-text">
               <Heading
                 fontSize="41px"
                 fontFamily="Arvo, Georgia, serif"
@@ -209,9 +224,9 @@ const Aircraft: React.FC = () => {
       </Box>
 
       {/* Quote Form Section */}
-      <Box bg="#228b22" py={16}>
-        <Container maxW="730px">
-          <VStack gap={8}>
+      <Box id="quote-form-section" bg="#228b22" py={16}>
+        <Container id="quote-form-container" maxW="730px">
+          <VStack id="quote-form-content" gap={8}>
             <Heading
               fontSize="41px"
               fontFamily="Arvo, Georgia, serif"
@@ -224,9 +239,9 @@ const Aircraft: React.FC = () => {
               Start a Quote Today
             </Heading>
             
-            <Box as="form" onSubmit={handleSubmit} width="100%">
-              <VStack gap={6}>
-                <Flex gap={4} width="100%">
+            <Box id="quote-form" as="form" onSubmit={handleSubmit} width="100%">
+              <VStack id="form-fields" gap={6}>
+                <Flex id="name-fields" gap={4} width="100%">
                   <Input
                     name="firstName"
                     placeholder="First Name"

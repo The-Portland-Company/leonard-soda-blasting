@@ -10,9 +10,19 @@
 
 # production
 /build
+frontend/build
+frontend/node_modules
+backend/node_modules
+backend/uploads
+backend/*.log
 
 # misc
 .DS_Store
+.env
+.env.*
+*.env
+backend/.env
+frontend/.env
 .env.local
 .env.development.local
 .env.test.local

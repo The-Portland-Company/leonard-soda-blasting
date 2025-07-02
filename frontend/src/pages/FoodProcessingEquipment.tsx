@@ -50,7 +50,7 @@ const FoodProcessingEquipment: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box id="food-processing-equipment-main">
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 

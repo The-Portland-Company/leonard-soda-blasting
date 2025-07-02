@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEOHead from '../components/SEOHead';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -31,23 +31,12 @@ const Contact: React.FC = () => {
   const { page } = usePage('contact');
   const { settings } = useGlobalSettings();
 
-  // Debug: Force title update immediately when component mounts
-  useEffect(() => {
-    console.log('Contact component mounted, setting title...');
-    document.title = "Contact - Leonard Soda Blasting";
-    console.log('Document title is now:', document.title);
-  }, []);
 
 
   // Update SEO when data loads - but don't override the Helmet title
   useEffect(() => {
     if (page || settings) {
-      const seoData = createPageSEO(
-        page, 
-        settings, 
-        "Contact - Leonard Soda Blasting",
-        "Contact Leonard Soda Blasting for a free quote on your cleaning and stripping project. Professional eco-friendly soda blasting services."
-      );
+      const seoData = createPageSEO(page, settings);
       // Only update meta tags, not title (Helmet handles title)
       updateSEOTags({ ...seoData, title: undefined });
     }
@@ -65,7 +54,7 @@ const Contact: React.FC = () => {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-  const adminEmail = process.env.REACT_APP_ADMIN_EMAIL || 'agency@theportlandcompany.com';
+  const adminEmail = process.env.REACT_APP_ADMIN_EMAIL;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -98,13 +87,18 @@ const Contact: React.FC = () => {
   };
 
   return (
-    <Box>
-      <Helmet>
-        <title>Contact - Leonard Soda Blasting</title>
-        <meta name="description" content="Contact Leonard Soda Blasting for a free quote on your cleaning and stripping project. Professional eco-friendly soda blasting services." />
-      </Helmet>
+    <Box id="contact-main">
+      <SEOHead
+        title={page?.title}
+        metaTitle={page?.meta_title}
+        metaDescription={page?.meta_description}
+        defaultTitle="Contact - Leonard Soda Blasting"
+        defaultDescription="Contact Leonard Soda Blasting for a free quote on your cleaning and stripping project. Professional eco-friendly soda blasting services."
+        defaultKeywords="contact soda blasting, Oregon Washington, professional cleaning services, licensed contractor"
+      />
       {/* Hero Section */}
       <Box 
+        id="hero-section"
         bgImage="url('/assets/images/about.jpg')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
@@ -112,9 +106,9 @@ const Contact: React.FC = () => {
         py={20}
         position="relative"
       >
-        <Box position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.600" />
-        <Container maxW="container.xl" position="relative" zIndex={1}>
-          <VStack gap={4} textAlign="center" color="white">
+        <Box id="hero-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.600" />
+        <Container id="hero-container" maxW="container.xl" position="relative" zIndex={1}>
+          <VStack id="hero-content" gap={4} textAlign="center" color="white">
             <Heading 
               size="2xl" 
               fontFamily="Arvo, Georgia, serif"
@@ -132,12 +126,12 @@ const Contact: React.FC = () => {
       </Box>
 
       {/* Contact Form and Info Section */}
-      <Box bg="white" py={16}>
-        <Container maxW="container.xl">
-          <SimpleGrid columns={{ base: 1, lg: 2 }} gap={16}>
+      <Box id="contact-form-section" bg="white" py={16}>
+        <Container id="contact-form-container" maxW="container.xl">
+          <SimpleGrid id="contact-grid" columns={{ base: 1, lg: 2 }} gap={16}>
             {/* Contact Form */}
-            <VStack gap={8} align="flex-start">
-              <VStack gap={4} align="flex-start" w="100%">
+            <VStack id="contact-form-column" gap={8} align="flex-start">
+              <VStack id="form-header" gap={4} align="flex-start" w="100%">
                 <Heading 
                   size="xl" 
                   fontFamily="Arvo, Georgia, serif"
@@ -154,6 +148,7 @@ const Contact: React.FC = () => {
 
               {isSubmitted && (
                 <Box
+                  id="success-message"
                   bg="green.50"
                   border="1px solid"
                   borderColor="green.200"
@@ -161,8 +156,8 @@ const Contact: React.FC = () => {
                   p={4}
                   w="100%"
                 >
-                  <VStack gap={2} align="flex-start">
-                    <HStack gap={2}>
+                  <VStack id="success-content" gap={2} align="flex-start">
+                    <HStack id="success-icon" gap={2}>
                       <Text fontSize="xl" color="green.500">✅</Text>
                       <Heading size="md" color="green.700" fontFamily="Arvo, Georgia, serif">
                         Thank you!
@@ -175,10 +170,10 @@ const Contact: React.FC = () => {
                 </Box>
               )}
 
-              <Box as="form" onSubmit={handleSubmit} w="100%">
-                <VStack gap={6}>
-                  <SimpleGrid columns={{ base: 1, md: 2 }} gap={6} w="100%">
-                    <VStack gap={2} align="flex-start">
+              <Box id="contact-form" as="form" onSubmit={handleSubmit} w="100%">
+                <VStack id="form-fields" gap={6}>
+                  <SimpleGrid id="name-email-fields" columns={{ base: 1, md: 2 }} gap={6} w="100%">
+                    <VStack id="name-field" gap={2} align="flex-start">
                       <Text fontFamily="Arvo, Georgia, serif" fontWeight="bold" color="#228b22">
                         Full Name *
                       </Text>
@@ -193,7 +188,7 @@ const Contact: React.FC = () => {
                       />
                     </VStack>
 
-                    <VStack gap={2} align="flex-start">
+                    <VStack id="email-field" gap={2} align="flex-start">
                       <Text fontFamily="Arvo, Georgia, serif" fontWeight="bold" color="#228b22">
                         Email Address *
                       </Text>
@@ -210,8 +205,8 @@ const Contact: React.FC = () => {
                     </VStack>
                   </SimpleGrid>
 
-                  <SimpleGrid columns={{ base: 1, md: 2 }} gap={6} w="100%">
-                    <VStack gap={2} align="flex-start">
+                  <SimpleGrid id="phone-location-fields" columns={{ base: 1, md: 2 }} gap={6} w="100%">
+                    <VStack id="phone-field" gap={2} align="flex-start">
                       <Text fontFamily="Arvo, Georgia, serif" fontWeight="bold" color="#228b22">
                         Phone Number *
                       </Text>
@@ -227,7 +222,7 @@ const Contact: React.FC = () => {
                       />
                     </VStack>
 
-                    <VStack gap={2} align="flex-start">
+                    <VStack id="location-field" gap={2} align="flex-start">
                       <Text fontFamily="Arvo, Georgia, serif" fontWeight="bold" color="#228b22">
                         Project Location
                       </Text>
@@ -242,7 +237,7 @@ const Contact: React.FC = () => {
                     </VStack>
                   </SimpleGrid>
 
-                  <VStack gap={2} align="flex-start" w="100%">
+                  <VStack id="description-field" gap={2} align="flex-start" w="100%">
                     <Text fontFamily="Arvo, Georgia, serif" fontWeight="bold" color="#228b22">
                       Project Description *
                     </Text>
@@ -277,8 +272,8 @@ const Contact: React.FC = () => {
             </VStack>
 
             {/* Contact Information */}
-            <VStack gap={8} align="flex-start">
-              <VStack gap={4} align="flex-start" w="100%">
+            <VStack id="contact-info-column" gap={8} align="flex-start">
+              <VStack id="contact-info-header" gap={4} align="flex-start" w="100%">
                 <Heading 
                   size="xl" 
                   fontFamily="Arvo, Georgia, serif"
@@ -293,7 +288,7 @@ const Contact: React.FC = () => {
                 </Text>
               </VStack>
 
-              <VStack gap={6} align="flex-start" w="100%">
+              <VStack id="contact-info-cards" gap={6} align="flex-start" w="100%">
                 <Box
                   bg="gray.50"
                   p={6}
@@ -435,11 +430,11 @@ const Contact: React.FC = () => {
                 </Box>
               </VStack>
 
-              <Box mt={4}>
+              <Box id="additional-links" mt={4}>
                 <Text fontSize="sm" color="gray.600" fontFamily="Open Sans, sans-serif" mb={4}>
                   Want to learn more about our services?
                 </Text>
-                <HStack gap={4}>
+                <HStack id="service-links" gap={4}>
                   <RouterLink to="/services">
                     <Button
                       variant="outline"
@@ -472,10 +467,10 @@ const Contact: React.FC = () => {
       </Box>
 
       {/* Why Choose Us Section */}
-      <Box bg="gray.50" py={16}>
-        <Container maxW="container.xl">
-          <VStack gap={12}>
-            <VStack gap={6} textAlign="center">
+      <Box id="why-choose-us-section" bg="gray.50" py={16}>
+        <Container id="why-choose-us-container" maxW="container.xl">
+          <VStack id="why-choose-us-content" gap={12}>
+            <VStack id="why-choose-us-header" gap={6} textAlign="center">
               <Heading 
                 size="xl" 
                 fontFamily="Arvo, Georgia, serif"
@@ -490,8 +485,8 @@ const Contact: React.FC = () => {
               </Text>
             </VStack>
 
-            <SimpleGrid columns={{ base: 1, md: 2, lg: 4 }} gap={8} w="100%">
-              <VStack gap={4} textAlign="center">
+            <SimpleGrid id="why-choose-us-grid" columns={{ base: 1, md: 2, lg: 4 }} gap={8} w="100%">
+              <VStack id="experienced-benefit" gap={4} textAlign="center">
                 <Box
                   w={16}
                   h={16}
@@ -511,7 +506,7 @@ const Contact: React.FC = () => {
                 </Text>
               </VStack>
 
-              <VStack gap={4} textAlign="center">
+              <VStack id="licensed-benefit" gap={4} textAlign="center">
                 <Box
                   w={16}
                   h={16}
@@ -531,7 +526,7 @@ const Contact: React.FC = () => {
                 </Text>
               </VStack>
 
-              <VStack gap={4} textAlign="center">
+              <VStack id="mobile-benefit" gap={4} textAlign="center">
                 <Box
                   w={16}
                   h={16}
@@ -551,7 +546,7 @@ const Contact: React.FC = () => {
                 </Text>
               </VStack>
 
-              <VStack gap={4} textAlign="center">
+              <VStack id="quality-benefit" gap={4} textAlign="center">
                 <Box
                   w={16}
                   h={16}
@@ -576,9 +571,9 @@ const Contact: React.FC = () => {
       </Box>
 
       {/* Compliance Section */}
-      <Box bg="#228b22" color="white" py={16}>
-        <Container maxW="container.xl">
-          <VStack gap={8} textAlign="center">
+      <Box id="compliance-section" bg="#228b22" color="white" py={16}>
+        <Container id="compliance-container" maxW="container.xl">
+          <VStack id="compliance-content" gap={8} textAlign="center">
             <Heading 
               size="xl" 
               fontFamily="Arvo, Georgia, serif"
@@ -590,7 +585,7 @@ const Contact: React.FC = () => {
             <Text fontSize="lg" maxW="2xl" fontFamily="Open Sans, sans-serif">
               Our soda blasting process meets or exceeds all industry standards and regulations for safety and environmental protection.
             </Text>
-            <HStack gap={8} flexWrap="wrap" justify="center">
+            <HStack id="compliance-certifications" gap={8} flexWrap="wrap" justify="center">
               <VStack gap={2}>
                 <Text fontSize="2xl" fontWeight="bold">FDA</Text>
                 <Text fontSize="sm">Food & Drug Administration</Text>

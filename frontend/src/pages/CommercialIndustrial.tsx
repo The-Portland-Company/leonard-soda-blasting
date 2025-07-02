@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Box,
   Container,
@@ -22,11 +22,8 @@ const CommercialIndustrial: React.FC = () => {
     project: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const adminEmail = process.env.REACT_APP_ADMIN_EMAIL || 'agency@theportlandcompany.com';
+  const adminEmail = process.env.REACT_APP_ADMIN_EMAIL;
 
-  useEffect(() => {
-    document.title = "Commercial & Industrial | Leonard Soda Blasting";
-  }, []);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -54,7 +51,7 @@ const CommercialIndustrial: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box id="commercial-industrial-main">
       {/* Hero Section with Slider */}
       <Box 
         bgImage="url('https://leonardsodablasting.com/wp-content/uploads/2017/04/crane-before.jpg')"

@@ -51,7 +51,7 @@ const LogHomes: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box id="log-homes-main">
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 

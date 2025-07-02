@@ -13,6 +13,8 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
+import SEOHead from '../components/SEOHead';
+import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 // Using simple arrows instead of icons to avoid dependency issues
 
 interface FormData {
@@ -23,6 +25,8 @@ interface FormData {
 }
 
 const Automotive: React.FC = () => {
+  const { page } = usePage('automotive-soda-blasting');
+  const { settings } = useGlobalSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
@@ -31,7 +35,7 @@ const Automotive: React.FC = () => {
     project: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const adminEmail = process.env.REACT_APP_ADMIN_EMAIL || 'agency@theportlandcompany.com';
+  const adminEmail = process.env.REACT_APP_ADMIN_EMAIL;
 
   const slideshowImages = [
     { src: '/assets/images/bronco-before.jpg', alt: 'Bronco Before Restoration' },
@@ -79,14 +83,18 @@ const Automotive: React.FC = () => {
     setCurrentSlide((prev) => (prev - 1 + slideshowImages.length) % slideshowImages.length);
   };
 
-  useEffect(() => {
-    document.title = "Automotive - Leonard Soda Blasting of Tualatin Oregon";
-  }, []);
 
   return (
-    <Box>
+    <Box id="automotive-main">
+      <SEOHead 
+        title={page?.meta_title}
+        metaDescription={page?.meta_description}
+        defaultTitle={settings?.site_title || "Leonard Soda Blasting"}
+        defaultDescription={settings?.site_description || "Professional soda blasting services"}
+      />
       {/* Restoration Slideshow */}
       <Box 
+        id="hero-section"
         position="relative" 
         w="100%" 
         h="600px" 
@@ -129,10 +137,10 @@ const Automotive: React.FC = () => {
               textTransform="uppercase"
               lineHeight="1"
             >
-              Automotive
+              {page?.hero_title || page?.title || "Automotive"}
             </Heading>
             <Text fontSize="xl" maxW="2xl">
-              Gentle, eco-friendly soda blasting that preserves your vehicle's integrity
+              {page?.hero_subtitle || "Gentle, eco-friendly soda blasting that preserves your vehicle's integrity"}
             </Text>
           </VStack>
         </Container>

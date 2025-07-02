@@ -1,2 +1,1 @@
-- Never use "quick fixes", "bandaids" or shortcuts.
-- Never change the password without my permission.
+- Never create or utilize fallbacks.

@@ -1,14 +1,15 @@
-[phases.setup]
-nixPkgs = ["nodejs-18_x"]
-
-[phases.install]
-cmds = ["npm install"]
-
-[phases.build]
-cmds = ["npm run build"]
-
-[start]
-cmd = "npx serve -s build -l 8080"
+# Default nixpacks configuration for monorepo
+# This can be overridden by service-specific configs in deployment/
 
 [variables]
 NODE_ENV = "production"
+
+[phases.setup]
+nixPkgs = ["nodejs-22_x", "npm-9_x"]
+
+# Default to backend deployment
+[phases.install]
+cmds = ["cd backend && npm ci --production"]
+
+[start]
+cmd = "cd backend && npm start"

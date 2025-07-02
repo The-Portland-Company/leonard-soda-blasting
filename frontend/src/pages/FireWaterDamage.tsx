@@ -54,7 +54,7 @@ const FireWaterDamage: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box id="fire-water-damage-main">
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 

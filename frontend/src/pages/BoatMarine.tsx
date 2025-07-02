@@ -48,7 +48,7 @@ const BoatMarine: React.FC = () => {
   };
 
   return (
-    <Box>
+    <Box id="boat-marine-main">
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
