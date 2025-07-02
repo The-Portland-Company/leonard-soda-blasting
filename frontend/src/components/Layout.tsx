@@ -74,98 +74,174 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               textTransform="uppercase"
               letterSpacing="0.5px"
             >
-              {settings.site_title}
+              {settings?.site_title || 'Loading...'}
             </Text>
             {!isMobile && (
               <HStack gap={8}>
                 {navigation.length > 0 ? (
                   navigation.filter(item => item.status === 'active').map((item) => (
-                    <RouterLink 
-                      key={item.id}
-                      to={item.url || '/'}
-                      target={item.target}
-                      style={{
-                        color: 'white',
-                        fontFamily: 'Arvo, Georgia, serif',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px',
-                        fontSize: '14px',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      {item.label}
-                    </RouterLink>
+                    item.label === 'Services' ? (
+                      <Box key={item.id} position="relative" onMouseLeave={() => setServicesMenuOpen(false)}>
+                        <Text
+                          color="white"
+                          fontFamily="Arvo, Georgia, serif"
+                          textTransform="uppercase"
+                          letterSpacing="1px"
+                          fontSize="14px"
+                          cursor="pointer"
+                          _hover={{ color: '#228b22' }}
+                          onMouseEnter={() => setServicesMenuOpen(true)}
+                        >
+                          Services ▼
+                        </Text>
+                        <Box
+                          position="absolute"
+                          top="100%"
+                          left="0"
+                          bg="blackAlpha.900"
+                          border="1px solid"
+                          borderColor="whiteAlpha.200"
+                          borderRadius="md"
+                          mt={0}
+                          py={2}
+                          minW="250px"
+                          zIndex={1000}
+                          opacity={servicesMenuOpen ? 1 : 0}
+                          visibility={servicesMenuOpen ? 'visible' : 'hidden'}
+                          transform={servicesMenuOpen ? 'translateY(0)' : 'translateY(-10px)'}
+                          transition="all 0.2s ease"
+                          pointerEvents={servicesMenuOpen ? 'auto' : 'none'}
+                          onMouseEnter={() => setServicesMenuOpen(true)}
+                        >
+                          <VStack gap={0} align="stretch">
+                            <RouterLink to="/services">
+                              <Box
+                                px={4}
+                                py={2}
+                                color="white"
+                                fontFamily="Arvo, Georgia, serif"
+                                textTransform="uppercase"
+                                fontSize="14px"
+                                fontWeight="bold"
+                                _hover={{ bg: '#228b22' }}
+                                transition="all 0.2s ease"
+                              >
+                                Services Overview
+                              </Box>
+                            </RouterLink>
+                            <RouterLink to="/soda-blasting/commercial-industrial">
+                              <Box
+                                px={4}
+                                py={2}
+                                color="white"
+                                fontFamily="Open Sans, sans-serif"
+                                fontSize="13px"
+                                _hover={{ bg: '#228b22' }}
+                                transition="all 0.2s ease"
+                              >
+                                Commercial & Industrial
+                              </Box>
+                            </RouterLink>
+                            <RouterLink to="/soda-blasting/automotive-soda-blasting">
+                              <Box
+                                px={4}
+                                py={2}
+                                color="white"
+                                fontFamily="Open Sans, sans-serif"
+                                fontSize="13px"
+                                _hover={{ bg: '#228b22' }}
+                                transition="all 0.2s ease"
+                              >
+                                Automotive
+                              </Box>
+                            </RouterLink>
+                            <RouterLink to="/soda-blasting/food-processing-equipment">
+                              <Box
+                                px={4}
+                                py={2}
+                                color="white"
+                                fontFamily="Open Sans, sans-serif"
+                                fontSize="13px"
+                                _hover={{ bg: '#228b22' }}
+                                transition="all 0.2s ease"
+                              >
+                                Food Processing Equipment
+                              </Box>
+                            </RouterLink>
+                            <RouterLink to="/soda-blasting/fire-and-water-damage-restoration-soda-blasting">
+                              <Box
+                                px={4}
+                                py={2}
+                                color="white"
+                                fontFamily="Open Sans, sans-serif"
+                                fontSize="13px"
+                                _hover={{ bg: '#228b22' }}
+                                transition="all 0.2s ease"
+                              >
+                                Fire & Water Damage
+                              </Box>
+                            </RouterLink>
+                            <RouterLink to="/soda-blasting/airplane-soda-blasting">
+                              <Box
+                                px={4}
+                                py={2}
+                                color="white"
+                                fontFamily="Open Sans, sans-serif"
+                                fontSize="13px"
+                                _hover={{ bg: '#228b22' }}
+                                transition="all 0.2s ease"
+                              >
+                                Aircraft
+                              </Box>
+                            </RouterLink>
+                            <RouterLink to="/soda-blasting/log-home-soda-blasting">
+                              <Box
+                                px={4}
+                                py={2}
+                                color="white"
+                                fontFamily="Open Sans, sans-serif"
+                                fontSize="13px"
+                                _hover={{ bg: '#228b22' }}
+                                transition="all 0.2s ease"
+                              >
+                                Log Homes
+                              </Box>
+                            </RouterLink>
+                            <RouterLink to="/soda-blasting/boat-and-marine-soda-blasting">
+                              <Box
+                                px={4}
+                                py={2}
+                                color="white"
+                                fontFamily="Open Sans, sans-serif"
+                                fontSize="13px"
+                                _hover={{ bg: '#228b22' }}
+                                transition="all 0.2s ease"
+                              >
+                                Boat & Marine
+                              </Box>
+                            </RouterLink>
+                          </VStack>
+                        </Box>
+                      </Box>
+                    ) : (
+                      <RouterLink 
+                        key={item.id}
+                        to={item.url || '/'}
+                        target={item.target}
+                        style={{
+                          color: 'white',
+                          fontFamily: 'Arvo, Georgia, serif',
+                          textTransform: 'uppercase',
+                          letterSpacing: '1px',
+                          fontSize: '14px',
+                          textDecoration: 'none'
+                        }}
+                      >
+                        {item.label}
+                      </RouterLink>
+                    )
                   ))
-                ) : (
-                  // Fallback navigation when Directus is not available
-                  <>
-                    <RouterLink 
-                      to="/"
-                      style={{
-                        color: 'white',
-                        fontFamily: 'Arvo, Georgia, serif',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px',
-                        fontSize: '14px',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      Home
-                    </RouterLink>
-                    <RouterLink 
-                      to="/about-soda-blasting"
-                      style={{
-                        color: 'white',
-                        fontFamily: 'Arvo, Georgia, serif',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px',
-                        fontSize: '14px',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      About
-                    </RouterLink>
-                    <RouterLink 
-                      to="/services"
-                      style={{
-                        color: 'white',
-                        fontFamily: 'Arvo, Georgia, serif',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px',
-                        fontSize: '14px',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      Services
-                    </RouterLink>
-                    <RouterLink 
-                      to="/gallery"
-                      style={{
-                        color: 'white',
-                        fontFamily: 'Arvo, Georgia, serif',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px',
-                        fontSize: '14px',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      Gallery
-                    </RouterLink>
-                    <RouterLink 
-                      to="/contact"
-                      style={{
-                        color: 'white',
-                        fontFamily: 'Arvo, Georgia, serif',
-                        textTransform: 'uppercase',
-                        letterSpacing: '1px',
-                        fontSize: '14px',
-                        textDecoration: 'none'
-                      }}
-                    >
-                      Contact
-                    </RouterLink>
-                  </>
-                )}
+                ) : null}
               </HStack>
             )}
             {isMobile && (
@@ -537,8 +613,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   <Text color="#228b22" fontWeight="bold" fontSize="sm" textTransform="uppercase">
                     Contact
                   </Text>
-                  <Text color="white" fontSize="sm">📞 {settings.phone_number}</Text>
-                  <Text color="#228b22" fontSize="sm">{settings.email}</Text>
+                  <Text color="white" fontSize="sm">📞 {settings?.phone_number}</Text>
+                  <Text color="#228b22" fontSize="sm">{settings?.email}</Text>
                   <Text color="whiteAlpha.800" fontSize="xs">CCB# 97926</Text>
                 </VStack>
               </Box>
@@ -562,14 +638,14 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
               textTransform="uppercase"
               color="#228b22"
             >
-              {settings.site_title}
+              {settings?.site_title || 'Loading...'}
             </Heading>
             <VStack gap={3} fontSize="sm" fontFamily="Open Sans, sans-serif">
               <Text>CCB# 97926</Text>
               <Text>Serving Oregon & Washington</Text>
-              <Text>📞 {settings.phone_number}</Text>
-              <Link href={`mailto:${settings.email}`} color="#228b22">
-                {settings.email}
+              <Text>📞 {settings?.phone_number}</Text>
+              <Link href={`mailto:${settings?.email}`} color="#228b22">
+                {settings?.email}
               </Link>
               <Text fontWeight="bold" color="#228b22">
                 FDA, OSHA, EPA, USDA COMPLIANT
