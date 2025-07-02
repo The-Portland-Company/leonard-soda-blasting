@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { readItems, readSingleton } from '@directus/sdk';
-import { directus, Page, GlobalSettings, Navigation, fallbackData, Schema } from '../lib/directus';
+import { Page, GlobalSettings, Navigation, fallbackData } from '../lib/directus';
 
 export function useGlobalSettings() {
   const [settings, setSettings] = useState<GlobalSettings>(fallbackData.globalSettings);
@@ -10,8 +9,14 @@ export function useGlobalSettings() {
   useEffect(() => {
     async function fetchSettings() {
       try {
-        const result = await directus.request(readSingleton('global_settings' as keyof Schema));
-        setSettings(result as GlobalSettings);
+        const directusUrl = process.env.REACT_APP_DIRECTUS_URL || 'http://localhost:8055';
+        const response = await fetch(`${directusUrl}/items/global_settings`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.data && result.data.length > 0) {
+            setSettings(result.data[0] as GlobalSettings);
+          }
+        }
       } catch (err) {
         console.warn('Failed to fetch global settings, using fallback:', err);
         setError('Using fallback data');
@@ -34,13 +39,12 @@ export function useNavigation() {
   useEffect(() => {
     async function fetchNavigation() {
       try {
-        const result = await directus.request(
-          readItems('navigation' as keyof Schema, {
-            filter: { status: { _eq: 'published' } },
-            sort: ['sort']
-          } as any)
-        );
-        setNavigation(result as Navigation[]);
+        const directusUrl = process.env.REACT_APP_DIRECTUS_URL || 'http://localhost:8055';
+        const response = await fetch(`${directusUrl}/items/navigation?filter[status][_eq]=published&sort=sort`);
+        if (response.ok) {
+          const result = await response.json();
+          setNavigation(result.data as Navigation[]);
+        }
       } catch (err) {
         console.warn('Failed to fetch navigation, using fallback:', err);
         setError('Using fallback data');
@@ -63,21 +67,15 @@ export function usePage(slug: string) {
   useEffect(() => {
     async function fetchPage() {
       try {
-        const result = await directus.request(
-          readItems('pages' as keyof Schema, {
-            filter: { 
-              slug: { _eq: slug },
-              status: { _eq: 'published' }
-            },
-            limit: 1
-          } as any)
-        );
-        
-        const pages = result as Page[];
-        if (pages.length > 0) {
-          setPage(pages[0]);
-        } else {
-          setError('Page not found');
+        const directusUrl = process.env.REACT_APP_DIRECTUS_URL || 'http://localhost:8055';
+        const response = await fetch(`${directusUrl}/items/pages?filter[slug][_eq]=${slug}&filter[status][_eq]=published&limit=1`);
+        if (response.ok) {
+          const result = await response.json();
+          if (result.data && result.data.length > 0) {
+            setPage(result.data[0] as Page);
+          } else {
+            setError('Page not found');
+          }
         }
       } catch (err) {
         console.warn('Failed to fetch page, creating fallback:', err);
@@ -113,18 +111,18 @@ export function usePages(pageType?: string) {
   useEffect(() => {
     async function fetchPages() {
       try {
-        const filter: any = { status: { _eq: 'published' } };
+        const directusUrl = process.env.REACT_APP_DIRECTUS_URL || 'http://localhost:8055';
+        let url = `${directusUrl}/items/pages?filter[status][_eq]=published&sort=sort,title`;
+        
         if (pageType) {
-          filter.page_type = { _eq: pageType };
+          url += `&filter[page_type][_eq]=${pageType}`;
         }
-
-        const result = await directus.request(
-          readItems('pages' as keyof Schema, {
-            filter,
-            sort: ['sort', 'title']
-          } as any)
-        );
-        setPages(result as Page[]);
+        
+        const response = await fetch(url);
+        if (response.ok) {
+          const result = await response.json();
+          setPages(result.data as Page[]);
+        }
       } catch (err) {
         console.warn('Failed to fetch pages, using empty array:', err);
         setError('Failed to fetch pages');

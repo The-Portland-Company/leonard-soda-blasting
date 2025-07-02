@@ -1,4 +1,4 @@
-import { createDirectus, rest, staticToken } from '@directus/sdk';
+import { createDirectus, rest } from '@directus/sdk';
 
 export interface Page {
   id: number;
