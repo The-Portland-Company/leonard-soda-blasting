@@ -11,20 +11,20 @@ import {
   Image,
   VStack,
   AspectRatio,
+  Flex,
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
 import { usePage, useGlobalSettings, useTestimonials } from '../hooks/useDirectus';
-import { updateSEOTags, createPageSEO } from '../utils/seo';
+import { addDebugSuffix } from '../utils/debug';
 
+
+import PageLoader from '../components/PageLoader';
 
 const Home: React.FC = () => {
-  const { page } = usePage('home');
-  const { settings } = useGlobalSettings();
-  const { testimonials } = useTestimonials(); // Get all testimonials
+  const { page, loading: pageLoading, error: pageError } = usePage('home');
+  const { settings, loading: settingsLoading, error: settingsError } = useGlobalSettings();
+  const { testimonials, loading: testimonialsLoading, error: testimonialsError } = useTestimonials(); // Get all testimonials
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
-  
-  // Get services from the Home page services_cards field  
-  const displayServices = page?.services_cards;
   
   // Mark initial load as complete and prevent animation re-runs
   useEffect(() => {
@@ -37,16 +37,9 @@ const Home: React.FC = () => {
     
     return () => clearTimeout(timer);
   }, []);
-  
 
-  // Update SEO when data loads - but don't override the Helmet title
-  useEffect(() => {
-    if (page || settings) {
-      const seoData = createPageSEO(page, settings);
-      // Only update meta tags, not title (Helmet handles title)
-      updateSEOTags({ ...seoData, title: undefined });
-    }
-  }, [page, settings]);
+  // Get services from the Home page services_cards field  
+  const displayServices = page?.services_cards;
 
   // Get content sections
   const heroSection = page?.content_sections?.find(section => section.type === 'hero');
@@ -57,16 +50,24 @@ const Home: React.FC = () => {
   
   const featuredTestimonial = testimonials?.[0];
 
+  if (pageError || settingsError || testimonialsError) {
+    return (
+      <Flex justify="center" align="center" height="100vh">
+        <Text>Error loading page content. Please try again later.</Text>
+      </Flex>
+    );
+  }
+
   return (
-    <Box id="home-main">
-      <SEOHead
-        title={page?.title}
-        metaTitle={page?.meta_title}
-        metaDescription={page?.meta_description}
-        defaultTitle="Leonard Soda Blasting"
-        defaultDescription="Professional eco-friendly soda blasting services for automotive, aircraft, marine, commercial and industrial cleaning."
-        defaultKeywords="soda blasting, eco-friendly cleaning, automotive restoration, paint removal, industrial cleaning"
-      />
+    <PageLoader loadingStates={[pageLoading, settingsLoading, testimonialsLoading]}>
+      <Box id="home-main">
+        <SEOHead
+          title={page?.meta_title}
+          metaDescription={page?.meta_description}
+          defaultTitle="Leonard Soda Blasting"
+          defaultDescription="Professional eco-friendly soda blasting services for automotive, aircraft, marine, commercial and industrial cleaning."
+          defaultKeywords="soda blasting, eco-friendly cleaning, automotive restoration, paint removal, industrial cleaning"
+        />
       {/* Hero Section with Video Background */}
       <Box 
         id="hero-section"
@@ -119,7 +120,7 @@ const Home: React.FC = () => {
         <Box id="main-content-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.300" />
         <Container id="main-content-container" maxW="container.xl" position="relative" zIndex={1}>
           <VStack id="main-content-stack" gap={12}>
-            {(heroSection?.title || page?.hero_title) && (
+            {(heroSection?.title || page?.page_title) && (
               <Heading 
                 size="xl" 
                 textAlign="center" 
@@ -130,7 +131,11 @@ const Home: React.FC = () => {
                 fontSize={{ base: "2xl", md: "3xl" }}
                 mb={8}
               >
-                {heroSection?.title || page?.hero_title}
+                {addDebugSuffix(
+                  heroSection?.title || page?.page_title || page?.title, 
+                  heroSection?.title ? 'heroSection.title' : (page?.page_title ? 'page_title' : 'title'),
+                  !!(heroSection?.title || page?.page_title)
+                )}
               </Heading>
             )}
 
@@ -195,7 +200,7 @@ const Home: React.FC = () => {
                         loading="lazy"
                       />
                     )}
-                    <Heading size="md" color="#228b22" fontFamily="Arvo, Georgia, serif">
+                    <Heading fontSize="1.1rem" color="#228b22" fontFamily="Arvo, Georgia, serif">
                       {service.title}
                     </Heading>
                     <Text 
@@ -371,6 +376,7 @@ const Home: React.FC = () => {
         </Box>
       )}
     </Box>
+    </PageLoader>
   );
 };
 

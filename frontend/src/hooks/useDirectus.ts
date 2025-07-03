@@ -91,14 +91,24 @@ export function usePage(slug: string) {
     async function fetchPage() {
       try {
         setLoading(true);
-        const response = await fetchPublic(`/items/pages?filter[slug][_eq]=${slug}&limit=1`);
+        const response = await fetchPublic(`/items/pages?filter[slug][_eq]=${slug}&limit=1&fields=*,services_cards.image,services_cards.title,services_cards.text,services_cards.service_page`);
         const data = await response.json();
+        console.log(`[DEBUG] usePage(${slug}) response:`, data);
         if (data.data && data.data.length > 0) {
-          setPage(data.data[0]);
+          const pageData = data.data[0];
+          console.log(`[DEBUG] Page data for ${slug}:`, {
+            title: pageData.title,
+            seo_title: pageData.seo_title,
+            page_title: pageData.page_title,
+            meta_title: pageData.meta_title
+          });
+          setPage(pageData);
         } else {
+          console.log(`[DEBUG] No page data found for slug: ${slug}`);
           setPage(null);
         }
       } catch (err) {
+        console.error(`[DEBUG] usePage(${slug}) error:`, err);
         setError(err instanceof Error ? err.message : String(err));
       } finally {
         setLoading(false);
