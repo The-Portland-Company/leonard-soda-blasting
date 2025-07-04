@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import SEOHead from '../components/SEOHead';
 import { Link as RouterLink } from 'react-router-dom';
 import {
@@ -13,8 +13,8 @@ import {
   Button,
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
-import { usePage, useGlobalSettings, useServices } from '../hooks/useDirectus';
-import { updateSEOTags, createPageSEO } from '../utils/seo';
+import PageLoader from '../components/PageLoader';
+// import { useServices } from '../hooks/useDirectus'; // TODO: implement when needed
 
 interface Service {
   id: string;
@@ -177,29 +177,12 @@ const services: Service[] = [
 ];
 
 const Services: React.FC = () => {
-  const { page } = usePage('services');
-  const { settings } = useGlobalSettings();
-  // TODO: implement dynamic services when needed
-  // const { services: dynamicServices } = useServices();
-
-  // Debug: Force title update immediately when component mounts
-
-
-  // Update SEO when data loads - but don't override the Helmet title
-  useEffect(() => {
-    if (page || settings) {
-      const seoData = createPageSEO(page, settings);
-      // Only update meta tags, not title (Helmet handles title)
-      updateSEOTags({ ...seoData, title: undefined });
-    }
-  }, [page, settings]);
-
   return (
-    <Box id="services-main">
+    <PageLoader loadingStates={[]}>
+      <Box id="services-main">
       <SEOHead
-        title={page?.title}
-        metaTitle={page?.meta_title}
-        metaDescription={page?.meta_description}
+        title="Services - Leonard Soda Blasting"
+        metaDescription="Professional soda blasting services for commercial, automotive, marine, aircraft, and industrial applications."
         defaultTitle="Services - Leonard Soda Blasting"
         defaultDescription="Professional soda blasting services for commercial, automotive, marine, aircraft, and industrial applications."
         defaultKeywords="soda blasting services, commercial cleaning, automotive restoration, marine cleaning, aircraft cleaning, industrial cleaning"
@@ -586,6 +569,7 @@ const Services: React.FC = () => {
       
       <PhoneNumber />
     </Box>
+    </PageLoader>
   );
 };
 
