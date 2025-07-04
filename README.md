@@ -55,8 +55,13 @@ leonard-soda-blasting/
    ```
 
    This runs both:
-   - Frontend: http://localhost:3000
+   - Frontend: http://localhost:3000 (with HMR)
    - Backend: http://localhost:8055
+   
+   **Development Notes:**
+   - Always use `npm run dev` on port 3000 for frontend development
+   - Hot Module Replacement (HMR) is enabled for fast development
+   - Never use alternative servers or build processes during development
 
 ### Individual Services
 
@@ -142,6 +147,17 @@ REACT_APP_DIRECTUS_URL=http://localhost:8055
 - **Image Gallery:** Dynamic image galleries from CMS
 - **Contact Forms:** Integrated contact functionality
 - **Service Pages:** Dynamic service pages with CMS content
+
+## Focus Services
+
+These service pages require special attention and should follow the same component patterns as About, Gallery, and Contact pages:
+
+- **Food Processing Equipment** - FDA-compliant cleaning for commercial kitchens
+- **Fire & Water Damage** - Professional restoration services
+- **Log Homes** - Gentle wood-safe cleaning and restoration
+- **Boat & Marine** - Marine vessel cleaning with eco-friendly methods
+
+These pages use proper SEOHead components with specific titles and descriptions, matching the pattern used by working pages.
 
 ## Contributing
 

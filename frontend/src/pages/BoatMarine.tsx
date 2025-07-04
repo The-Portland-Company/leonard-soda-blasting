@@ -12,8 +12,13 @@ import {
   Flex
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
+import PageLoader from '../components/PageLoader';
+import SEOHead from '../components/SEOHead';
+import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const BoatMarine: React.FC = () => {
+  const { page, loading: pageLoading } = usePage('boat-marine');
+  const { settings, loading: settingsLoading } = useGlobalSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -48,7 +53,15 @@ const BoatMarine: React.FC = () => {
   };
 
   return (
-    <Box id="boat-marine-main">
+    <PageLoader loadingStates={[pageLoading, settingsLoading]}>
+      <Box id="boat-marine-main">
+        <SEOHead 
+          title={page?.meta_title}
+          metaDescription={page?.meta_description}
+          defaultTitle="Boat & Marine Cleaning - Leonard Soda Blasting"
+          defaultDescription="Professional marine vessel cleaning with eco-friendly soda blasting. Safe for hulls, decks, and marine equipment."
+          defaultKeywords="boat cleaning, marine vessel, hull cleaning, yacht maintenance, marine restoration"
+        />
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
@@ -84,7 +97,7 @@ const BoatMarine: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              Boat and Marine
+              {page?.hero_title || page?.page_title || page?.title || "Boat and Marine"}
             </Heading>
           </Box>
         </Container>
@@ -280,6 +293,7 @@ const BoatMarine: React.FC = () => {
         </Container>
       </Box>
     </Box>
+    </PageLoader>
   );
 };
 

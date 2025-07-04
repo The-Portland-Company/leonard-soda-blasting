@@ -14,8 +14,13 @@ import {
   Flex
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
+import PageLoader from '../components/PageLoader';
+import SEOHead from '../components/SEOHead';
+import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const LogHomes: React.FC = () => {
+  const { page, loading: pageLoading } = usePage('log-homes');
+  const { settings, loading: settingsLoading } = useGlobalSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -51,7 +56,15 @@ const LogHomes: React.FC = () => {
   };
 
   return (
-    <Box id="log-homes-main">
+    <PageLoader loadingStates={[pageLoading, settingsLoading]}>
+      <Box id="log-homes-main">
+        <SEOHead 
+          title={page?.meta_title}
+          metaDescription={page?.meta_description}
+          defaultTitle="Log Home Cleaning - Leonard Soda Blasting"
+          defaultDescription="Gentle log home cleaning and restoration. Safe wood-friendly soda blasting for log cabins, decks, and timber structures."
+          defaultKeywords="log home cleaning, log cabin restoration, deck cleaning, wood restoration, timber cleaning"
+        />
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
@@ -87,7 +100,7 @@ const LogHomes: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              Log Homes
+              {page?.hero_title || page?.page_title || page?.title || "Log Homes"}
             </Heading>
           </Box>
         </Container>
@@ -290,6 +303,7 @@ const LogHomes: React.FC = () => {
         </Container>
       </Box>
     </Box>
+    </PageLoader>
   );
 };
 

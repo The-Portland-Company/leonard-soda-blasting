@@ -14,8 +14,13 @@ import {
   Flex
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
+import PageLoader from '../components/PageLoader';
+import SEOHead from '../components/SEOHead';
+import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const FireWaterDamage: React.FC = () => {
+  const { page, loading: pageLoading } = usePage('fire-water-damage');
+  const { settings, loading: settingsLoading } = useGlobalSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
     firstName: '',
@@ -54,7 +59,15 @@ const FireWaterDamage: React.FC = () => {
   };
 
   return (
-    <Box id="fire-water-damage-main">
+    <PageLoader loadingStates={[pageLoading, settingsLoading]}>
+      <Box id="fire-water-damage-main">
+        <SEOHead 
+          title={page?.meta_title}
+          metaDescription={page?.meta_description}
+          defaultTitle="Fire & Water Damage Restoration - Leonard Soda Blasting"
+          defaultDescription="Professional fire and water damage restoration using eco-friendly soda blasting. Remove smoke, soot, and contaminants safely."
+          defaultKeywords="fire damage restoration, water damage, smoke removal, soot cleaning, damage restoration"
+        />
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
@@ -90,7 +103,7 @@ const FireWaterDamage: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              Fire & Water Damage
+              {page?.hero_title || page?.page_title || page?.title || "Fire & Water Damage"}
             </Heading>
           </Box>
         </Container>
@@ -332,6 +345,7 @@ const FireWaterDamage: React.FC = () => {
         </Container>
       </Box>
     </Box>
+    </PageLoader>
   );
 };
 
