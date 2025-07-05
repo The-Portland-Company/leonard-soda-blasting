@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
 import PageLoader from '../components/PageLoader';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const LogHomes: React.FC = () => {
@@ -58,13 +58,7 @@ const LogHomes: React.FC = () => {
   return (
     <PageLoader loadingStates={[pageLoading, settingsLoading]}>
       <Box id="log-homes-main">
-        <SEOHead 
-          title={page?.meta_title}
-          metaDescription={page?.meta_description}
-          defaultTitle="Log Home Cleaning - Leonard Soda Blasting"
-          defaultDescription="Gentle log home cleaning and restoration. Safe wood-friendly soda blasting for log cabins, decks, and timber structures."
-          defaultKeywords="log home cleaning, log cabin restoration, deck cleaning, wood restoration, timber cleaning"
-        />
+        <PageTitle pageSlug="log-homes" />
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
@@ -100,7 +94,7 @@ const LogHomes: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              {page?.hero_title || page?.page_title || page?.title || "Log Homes"}
+              {page?.hero_title || page?.title}
             </Heading>
           </Box>
         </Container>

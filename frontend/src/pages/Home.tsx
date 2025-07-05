@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -15,7 +15,6 @@ import {
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
 import { usePage, useGlobalSettings, useTestimonials } from '../hooks/useDirectus';
-import { addDebugSuffix } from '../utils/debug';
 
 
 import PageLoader from '../components/PageLoader';
@@ -61,13 +60,7 @@ const Home: React.FC = () => {
   return (
     <PageLoader loadingStates={[pageLoading, settingsLoading, testimonialsLoading]}>
       <Box id="home-main">
-        <SEOHead
-          title={page?.meta_title}
-          metaDescription={page?.meta_description}
-          defaultTitle="Leonard Soda Blasting"
-          defaultDescription="Professional eco-friendly soda blasting services for automotive, aircraft, marine, commercial and industrial cleaning."
-          defaultKeywords="soda blasting, eco-friendly cleaning, automotive restoration, paint removal, industrial cleaning"
-        />
+        <PageTitle pageSlug="home" />
       {/* Hero Section with Video Background */}
       <Box 
         id="hero-section"
@@ -120,7 +113,7 @@ const Home: React.FC = () => {
         <Box id="main-content-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.300" />
         <Container id="main-content-container" maxW="container.xl" position="relative" zIndex={1}>
           <VStack id="main-content-stack" gap={12}>
-            {(heroSection?.title || page?.page_title) && (
+            {(heroSection?.title || page?.title) && (
               <Heading 
                 size="xl" 
                 textAlign="center" 
@@ -131,11 +124,7 @@ const Home: React.FC = () => {
                 fontSize={{ base: "2xl", md: "3xl" }}
                 mb={8}
               >
-                {addDebugSuffix(
-                  heroSection?.title || page?.page_title || page?.title, 
-                  heroSection?.title ? 'heroSection.title' : (page?.page_title ? 'page_title' : 'title'),
-                  !!(heroSection?.title || page?.page_title)
-                )}
+                {heroSection?.title || page?.title}
               </Heading>
             )}
 

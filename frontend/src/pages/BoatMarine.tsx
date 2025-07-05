@@ -13,7 +13,7 @@ import {
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
 import PageLoader from '../components/PageLoader';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const BoatMarine: React.FC = () => {
@@ -55,13 +55,7 @@ const BoatMarine: React.FC = () => {
   return (
     <PageLoader loadingStates={[pageLoading, settingsLoading]}>
       <Box id="boat-marine-main">
-        <SEOHead 
-          title={page?.meta_title}
-          metaDescription={page?.meta_description}
-          defaultTitle="Boat & Marine Cleaning - Leonard Soda Blasting"
-          defaultDescription="Professional marine vessel cleaning with eco-friendly soda blasting. Safe for hulls, decks, and marine equipment."
-          defaultKeywords="boat cleaning, marine vessel, hull cleaning, yacht maintenance, marine restoration"
-        />
+        <PageTitle pageSlug="boat-marine" />
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
@@ -97,7 +91,7 @@ const BoatMarine: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              {page?.hero_title || page?.page_title || page?.title || "Boat and Marine"}
+              {page?.hero_title || page?.title}
             </Heading>
           </Box>
         </Container>

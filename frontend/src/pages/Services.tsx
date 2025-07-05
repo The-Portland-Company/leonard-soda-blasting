@@ -1,5 +1,5 @@
 import React from 'react';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
 import PageLoader from '../components/PageLoader';
-// import { useServices } from '../hooks/useDirectus'; // TODO: implement when needed
+import { usePage } from '../hooks/useDirectus';
 
 interface Service {
   id: string;
@@ -177,16 +177,12 @@ const services: Service[] = [
 ];
 
 const Services: React.FC = () => {
+  const { page, loading } = usePage('services');
+
   return (
-    <PageLoader loadingStates={[]}>
+    <PageLoader loadingStates={[loading]}>
       <Box id="services-main">
-      <SEOHead
-        title="Services - Leonard Soda Blasting"
-        metaDescription="Professional soda blasting services for commercial, automotive, marine, aircraft, and industrial applications."
-        defaultTitle="Services - Leonard Soda Blasting"
-        defaultDescription="Professional soda blasting services for commercial, automotive, marine, aircraft, and industrial applications."
-        defaultKeywords="soda blasting services, commercial cleaning, automotive restoration, marine cleaning, aircraft cleaning, industrial cleaning"
-      />
+      <PageTitle pageSlug="services" />
       {/* Hero Section */}
       <Box 
         id="hero-section"
@@ -207,11 +203,13 @@ const Services: React.FC = () => {
               textTransform="uppercase"
               fontSize={{ base: "3xl", md: "4xl" }}
             >
-              Our Services
+              {page?.hero_title || page?.title}
             </Heading>
-            <Text fontSize="xl" maxW="2xl" fontFamily="Open Sans, sans-serif">
-              Professional soda blasting services across multiple industries and applications
-            </Text>
+            {page?.hero_subtitle && (
+              <Text fontSize="xl" maxW="2xl" fontFamily="Open Sans, sans-serif">
+                {page.hero_subtitle}
+              </Text>
+            )}
           </VStack>
         </Container>
       </Box>

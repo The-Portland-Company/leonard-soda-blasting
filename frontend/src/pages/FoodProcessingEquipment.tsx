@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
 import PageLoader from '../components/PageLoader';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const FoodProcessingEquipment: React.FC = () => {
@@ -57,13 +57,7 @@ const FoodProcessingEquipment: React.FC = () => {
   return (
     <PageLoader loadingStates={[pageLoading, settingsLoading]}>
       <Box id="food-processing-equipment-main">
-        <SEOHead 
-          title={page?.meta_title}
-          metaDescription={page?.meta_description}
-          defaultTitle="Food Processing Equipment - Leonard Soda Blasting"
-          defaultDescription="FDA-compliant soda blasting for food processing equipment. Safe, effective cleaning for commercial kitchens and food facilities."
-          defaultKeywords="food processing cleaning, FDA compliant, commercial kitchen, food safety, soda blasting"
-        />
+        <PageTitle pageSlug="food-processing-equipment" />
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
@@ -99,7 +93,7 @@ const FoodProcessingEquipment: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              {page?.hero_title || page?.page_title || page?.title || "Food Processing Equipment"}
+              {page?.hero_title || page?.title}
             </Heading>
           </Box>
         </Container>

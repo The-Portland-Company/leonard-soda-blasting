@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
 import PageLoader from '../components/PageLoader';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const FireWaterDamage: React.FC = () => {
@@ -61,13 +61,7 @@ const FireWaterDamage: React.FC = () => {
   return (
     <PageLoader loadingStates={[pageLoading, settingsLoading]}>
       <Box id="fire-water-damage-main">
-        <SEOHead 
-          title={page?.meta_title}
-          metaDescription={page?.meta_description}
-          defaultTitle="Fire & Water Damage Restoration - Leonard Soda Blasting"
-          defaultDescription="Professional fire and water damage restoration using eco-friendly soda blasting. Remove smoke, soot, and contaminants safely."
-          defaultKeywords="fire damage restoration, water damage, smoke removal, soot cleaning, damage restoration"
-        />
+        <PageTitle pageSlug="fire-water-damage" />
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
@@ -103,7 +97,7 @@ const FireWaterDamage: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              {page?.hero_title || page?.page_title || page?.title || "Fire & Water Damage"}
+              {page?.hero_title || page?.title}
             </Heading>
           </Box>
         </Container>

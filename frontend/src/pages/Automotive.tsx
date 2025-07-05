@@ -13,7 +13,7 @@ import {
   Flex,
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 // Using simple arrows instead of icons to avoid dependency issues
 
@@ -86,12 +86,7 @@ const Automotive: React.FC = () => {
 
   return (
     <Box id="automotive-main">
-      <SEOHead 
-        title={page?.meta_title}
-        metaDescription={page?.meta_description}
-        defaultTitle={settings?.site_title || "Leonard Soda Blasting"}
-        defaultDescription={settings?.site_description || "Professional soda blasting services"}
-      />
+      <PageTitle pageSlug="automotive-soda-blasting" />
       {/* Restoration Slideshow */}
       <Box 
         id="hero-section"

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import {
   Box,
   Container,
@@ -78,14 +78,7 @@ const AboutSodaBlasting: React.FC = () => {
 
   return (
     <Box id="about-soda-blasting-main">
-      <SEOHead
-        title={page?.title}
-        metaTitle={page?.meta_title}
-        metaDescription={page?.meta_description}
-        defaultTitle="About Soda Blasting - Leonard Soda Blasting"
-        defaultDescription="Learn about soda blasting, an eco-friendly surface cleaning method using sodium bicarbonate."
-        defaultKeywords="about soda blasting, sodium bicarbonate cleaning, eco-friendly blasting, non-destructive cleaning method"
-      />
+      <PageTitle pageSlug="about-soda-blasting" />
       {/* Hero Section */}
       <Box 
         id="hero-section"
@@ -107,7 +100,7 @@ const AboutSodaBlasting: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              About Soda Blasting
+              {page?.hero_title || page?.title}
             </Heading>
           </VStack>
         </Container>

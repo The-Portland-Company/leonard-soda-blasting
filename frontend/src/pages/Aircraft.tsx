@@ -14,7 +14,7 @@ import {
   Flex
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const Aircraft: React.FC = () => {
@@ -55,12 +55,7 @@ const Aircraft: React.FC = () => {
 
   return (
     <Box id="aircraft-main">
-      <SEOHead
-        title={page?.meta_title}
-        metaDescription={page?.meta_description}
-        defaultTitle={settings?.site_title || "Leonard Soda Blasting"}
-        defaultDescription={settings?.site_description || "Professional soda blasting services"}
-      />
+      <PageTitle pageSlug="aircraft-soda-blasting" />
       {/* Hero Section with Slideshow */}
       <Box 
         id="hero-section"

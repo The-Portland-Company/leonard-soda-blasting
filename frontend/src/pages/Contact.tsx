@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
@@ -88,14 +88,7 @@ const Contact: React.FC = () => {
 
   return (
     <Box id="contact-main">
-      <SEOHead
-        title={page?.title}
-        metaTitle={page?.meta_title}
-        metaDescription={page?.meta_description}
-        defaultTitle="Contact - Leonard Soda Blasting"
-        defaultDescription="Contact Leonard Soda Blasting for a free quote on your cleaning and stripping project. Professional eco-friendly soda blasting services."
-        defaultKeywords="contact soda blasting, Oregon Washington, professional cleaning services, licensed contractor"
-      />
+      <PageTitle pageSlug="contact" />
       {/* Hero Section */}
       <Box 
         id="hero-section"
@@ -116,11 +109,13 @@ const Contact: React.FC = () => {
               textTransform="uppercase"
               fontSize={{ base: "3xl", md: "4xl" }}
             >
-              Contact Us
+              {page?.hero_title || page?.title}
             </Heading>
-            <Text fontSize="xl" maxW="2xl" fontFamily="Open Sans, sans-serif">
-              Get a free estimate for your soda blasting project
-            </Text>
+            {page?.hero_subtitle && (
+              <Text fontSize="xl" maxW="2xl" fontFamily="Open Sans, sans-serif">
+                {page.hero_subtitle}
+              </Text>
+            )}
           </VStack>
         </Container>
       </Box>

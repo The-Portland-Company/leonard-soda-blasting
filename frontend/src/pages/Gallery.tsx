@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import SEOHead from '../components/SEOHead';
+import PageTitle from '../components/PageTitle';
 import {
   Box,
   Container,
@@ -126,14 +126,7 @@ const Gallery: React.FC = () => {
 
   return (
     <Box id="gallery-main">
-      <SEOHead
-        title={page?.title}
-        metaTitle={page?.meta_title}
-        metaDescription={page?.meta_description}
-        defaultTitle="Gallery - Leonard Soda Blasting"
-        defaultDescription="View our gallery of soda blasting projects showing dramatic before and after transformations. Professional results from automotive to commercial projects."
-        defaultKeywords="soda blasting gallery, before and after, project photos, automotive restoration, commercial cleaning, aircraft cleaning"
-      />
+      <PageTitle pageSlug="gallery" />
       {/* Hero Section */}
       <Box 
         id="hero-section"
@@ -154,11 +147,13 @@ const Gallery: React.FC = () => {
               textTransform="uppercase"
               fontSize={{ base: "3xl", md: "4xl" }}
             >
-              Project Gallery
+              {page?.hero_title || page?.title}
             </Heading>
-            <Text fontSize="xl" maxW="2xl" fontFamily="Open Sans, sans-serif">
-              See our soda blasting work across various industries and applications
-            </Text>
+            {page?.hero_subtitle && (
+              <Text fontSize="xl" maxW="2xl" fontFamily="Open Sans, sans-serif">
+                {page.hero_subtitle}
+              </Text>
+            )}
           </VStack>
         </Container>
       </Box>
