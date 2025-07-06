@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["nodejs-18_x"]
+
+[phases.install]
+cmds = ["cp -r leonard-soda-blasting-react/* . && npm install"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npx serve -s build -l 8080"
+
+[variables]
+NODE_ENV = "production"
