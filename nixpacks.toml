@@ -2,13 +2,13 @@
 nixPkgs = ["nodejs-18_x"]
 
 [phases.install]
-cmds = ["cp -r frontend/. . && npm install --legacy-peer-deps --force"]
+cmds = ["npm install --legacy-peer-deps --force --prefix frontend"]
 
 [phases.build]
-cmds = ["npm run build"]
+cmds = ["npm run build --prefix frontend"]
 
 [start]
-cmd = "npx serve -s build -p $PORT"
+cmd = "npx serve -s frontend/build -p $PORT"
 
 [variables]
 NODE_ENV = "production"
