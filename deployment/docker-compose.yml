@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: ../
+      dockerfile: deployment/Dockerfile.frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_DIRECTUS_URL=http://backend:8055
+    depends_on:
+      - backend
+
+  backend:
+    build:
+      context: ../
+      dockerfile: deployment/Dockerfile.backend
+    ports:
+      - "8055:8055"
+    environment:
+      - NODE_ENV=production
+      - PORT=8055
+    env_file:
+      - ../backend/.env
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=directus
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
