@@ -1,0 +1,20 @@
+{
+  "name": "leonard-soda-blasting-backend",
+  "version": "1.0.0",
+  "description": "Directus CMS backend for Leonard Soda Blasting",
+  "main": "directus.config.js",
+  "scripts": {
+    "start": "directus start",
+    "bootstrap": "directus bootstrap",
+    "init": "directus init"
+  },
+  "dependencies": {
+    "directus": "^10.13.0",
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.1"
+  },
+  "engines": {
+    "node": "18.x",
+    "npm": "10.x"
+  }
+}
