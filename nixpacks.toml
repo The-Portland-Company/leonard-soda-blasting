@@ -5,7 +5,7 @@
 NODE_ENV = "production"
 
 [phases.setup]
-nixPkgs = ["nodejs_20", "npm_8"]
+nixPkgs = ["nodejs-20_x", "npm_8"]
 
 # Default to backend deployment
 [phases.install]
