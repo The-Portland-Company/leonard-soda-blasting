@@ -3,7 +3,7 @@ NODE_ENV = "production"
 CORS_ORIGIN="http://localhost:3000"
 
 [phases.setup]
-nixPkgs = ["nodejs_22", "npm_9"]
+nixPkgs = ["nodejs_20", "npm_8"]
 
 [phases.install] 
 cmds = ["cd backend && npm install --production"]
