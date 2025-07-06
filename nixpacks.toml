@@ -13,3 +13,5 @@ cmds = ["cd backend && npm ci --production"]
 
 [start]
 cmd = "cd backend && npm start"
+
+# Added a comment to force Nixpacks regeneration
