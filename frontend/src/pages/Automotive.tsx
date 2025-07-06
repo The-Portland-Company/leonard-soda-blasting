@@ -26,7 +26,7 @@ interface FormData {
 
 const Automotive: React.FC = () => {
   const { page } = usePage('automotive-soda-blasting');
-  const { settings } = useGlobalSettings();
+  // const { settings } = useGlobalSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
