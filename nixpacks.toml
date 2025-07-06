@@ -8,7 +8,7 @@ cmds = ["cp -r frontend/* . && npm install --legacy-peer-deps --force"]
 cmds = ["npm run build"]
 
 [start]
-cmd = "npx serve -s build -l 8080"
+cmd = "npx serve -s build -p $PORT"
 
 [variables]
 NODE_ENV = "production"
