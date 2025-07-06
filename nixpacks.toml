@@ -2,7 +2,7 @@
 nixPkgs = ["nodejs-18_x"]
 
 [phases.install]
-cmds = ["cp -r leonard-soda-blasting-react/* . && npm install"]
+cmds = ["cp -r frontend/* . && npm install"]
 
 [phases.build]
 cmds = ["npm run build"]
