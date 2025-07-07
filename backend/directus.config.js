@@ -12,7 +12,7 @@ module.exports = {
       database: process.env.DB_DATABASE,
       user: process.env.DB_USER,
       password: process.env.DB_PASSWORD,
-      ssl: { rejectUnauthorized: false }
+      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false
     }
   },
 
@@ -38,8 +38,10 @@ module.exports = {
 
   cors: {
     enabled: true,
-    origin: true,
-    credentials: true
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With']
   },
 
   storage: {
@@ -48,6 +50,12 @@ module.exports = {
         driver: 'local',
         root: './uploads'
       }
+    }
+  },
+
+  access: {
+    assets: {
+      public: true
     }
   }
 };

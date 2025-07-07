@@ -4,12 +4,12 @@
   "description": "Directus CMS backend for Leonard Soda Blasting",
   "main": "directus.config.js",
   "scripts": {
-    "start": "directus start",
+    "start": "NODE_TLS_REJECT_UNAUTHORIZED=0 directus start",
     "bootstrap": "directus bootstrap",
     "init": "directus init"
   },
   "dependencies": {
-    "directus": "^10.13.0",
+    "directus": "^11.9.2",
     "dotenv": "^16.4.5",
     "pg": "^8.13.1"
   },

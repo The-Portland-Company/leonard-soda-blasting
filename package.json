@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
     "dev:frontend": "cd frontend && npm run dev",
-    "dev:backend": "cd backend && npm run dev",
+    "dev:backend": "cd backend && npm start",
     "build": "npm run build:frontend",
     "build:frontend": "cd frontend && CI=false ESLINT_NO_DEV_ERRORS=true npm run build",
     "start": "npx serve -s frontend/build -l 3000",
