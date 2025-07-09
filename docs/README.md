@@ -8,7 +8,7 @@ Full-stack application for Leonard Soda Blasting services, built with React fron
 leonard-soda-blasting/
 ├── frontend/          # React.js frontend application
 ├── backend/           # Directus CMS backend
-├── deployment/        # Railway, Docker, and deployment configurations
+├── deployment/        # Railway deployment configurations
 ├── scripts/           # Setup and maintenance scripts
 ├── docs/             # Documentation and setup guides
 ├── src/              # Legacy source files (being phased out)
@@ -113,12 +113,9 @@ This project is optimized for Railway deployment using nixpacks:
    - Railway will use root `nixpacks.toml`
    - Frontend uses dynamic `$PORT` environment variable
 
-### Docker
+### Railway Deployment
 
-```bash
-# Build and run with Docker Compose
-docker-compose -f deployment/docker-compose.yml up --build
-```
+Deploy using nixpacks configuration files for each service.
 
 This will start:
 - Frontend on port 3574

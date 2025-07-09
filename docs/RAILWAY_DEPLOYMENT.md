@@ -68,7 +68,6 @@ deployment/
 ├── frontend.nixpacks.toml    # Frontend build configuration
 ├── backend.nixpacks.toml     # Backend build configuration
 ├── railway.json              # Railway project settings
-└── docker-compose.yml        # Alternative Docker setup
 ```
 
 ## Configuration Details
