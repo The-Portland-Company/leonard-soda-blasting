@@ -59,6 +59,7 @@ const LogHomes: React.FC = () => {
     <PageLoader loadingStates={[pageLoading, settingsLoading]}>
       <Box id="log-homes-main">
         <PageTitle pageSlug="log-homes" />
+        
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 

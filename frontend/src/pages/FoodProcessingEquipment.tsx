@@ -19,7 +19,7 @@ import PageTitle from '../components/PageTitle';
 import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const FoodProcessingEquipment: React.FC = () => {
-  const { page, loading: pageLoading } = usePage('food-processing-equipment');
+  const { page, loading: pageLoading } = usePage('soda-blasting/food-processing-equipment');
   const { settings, loading: settingsLoading } = useGlobalSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
@@ -57,7 +57,8 @@ const FoodProcessingEquipment: React.FC = () => {
   return (
     <PageLoader loadingStates={[pageLoading, settingsLoading]}>
       <Box id="food-processing-equipment-main">
-        <PageTitle pageSlug="food-processing-equipment" />
+        <PageTitle pageSlug="soda-blasting/food-processing-equipment" />
+        
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 

@@ -28,14 +28,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3574 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint:css": "stylelint \"src/**/*.css\"",
     "lint:css:fix": "stylelint \"src/**/*.css\" --fix",
-    "serve": "serve -s build -p 3000",
-    "dev": "react-scripts start"
+    "serve": "serve -s build -p 3574",
+    "dev": "PORT=3574 react-scripts start"
   },
   "eslintConfig": {
     "extends": [

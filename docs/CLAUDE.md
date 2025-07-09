@@ -1,2 +1,2 @@
-- Never use "quick fixes", "bandaids" or shortcuts.
-- Never change the password without my permission.
+- Never create or utilize fallbacks.
+- When deploying, always examine deployment logs afterward via Railway CLI before saying you completed the job.

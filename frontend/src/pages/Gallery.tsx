@@ -127,6 +127,7 @@ const Gallery: React.FC = () => {
   return (
     <Box id="gallery-main">
       <PageTitle pageSlug="gallery" />
+      
       {/* Hero Section */}
       <Box 
         id="hero-section"

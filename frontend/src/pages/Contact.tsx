@@ -89,6 +89,7 @@ const Contact: React.FC = () => {
   return (
     <Box id="contact-main">
       <PageTitle pageSlug="contact" />
+      
       {/* Hero Section */}
       <Box 
         id="hero-section"

@@ -20,70 +20,24 @@ function App() {
   return (
     <HelmetProvider>
       <Router future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <ScrollToTop />
-        <Routes>
-        <Route path="/" element={
-          <Layout>
-            <Home />
-          </Layout>
-        } />
-        <Route path="/about-soda-blasting" element={
-          <Layout>
-            <AboutSodaBlasting />
-          </Layout>
-        } />
-        <Route path="/gallery" element={
-          <Layout>
-            <Gallery />
-          </Layout>
-        } />
-        <Route path="/services" element={
-          <Layout>
-            <Services />
-          </Layout>
-        } />
-        <Route path="/contact" element={
-          <Layout>
-            <Contact />
-          </Layout>
-        } />
-        <Route path="/soda-blasting/automotive-soda-blasting" element={
-          <Layout>
-            <Automotive />
-          </Layout>
-        } />
-        <Route path="/soda-blasting/food-processing-equipment" element={
-          <Layout>
-            <FoodProcessingEquipment />
-          </Layout>
-        } />
-        <Route path="/soda-blasting/fire-and-water-damage-restoration-soda-blasting" element={
-          <Layout>
-            <FireWaterDamage />
-          </Layout>
-        } />
-        <Route path="/soda-blasting/airplane-soda-blasting" element={
-          <Layout>
-            <Aircraft />
-          </Layout>
-        } />
-        <Route path="/soda-blasting/log-home-soda-blasting" element={
-          <Layout>
-            <LogHomes />
-          </Layout>
-        } />
-        <Route path="/soda-blasting/boat-and-marine-soda-blasting" element={
-          <Layout>
-            <BoatMarine />
-          </Layout>
-        } />
-        <Route path="/soda-blasting/commercial-industrial" element={
-          <Layout>
-            <CommercialIndustrial />
-          </Layout>
-        } />
-      </Routes>
-    </Router>
+        <Layout>
+          <ScrollToTop />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-soda-blasting" element={<AboutSodaBlasting />} />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/soda-blasting/automotive-soda-blasting" element={<Automotive />} />
+            <Route path="/soda-blasting/food-processing-equipment" element={<FoodProcessingEquipment />} />
+            <Route path="/soda-blasting/fire-and-water-damage-restoration-soda-blasting" element={<FireWaterDamage />} />
+            <Route path="/soda-blasting/airplane-soda-blasting" element={<Aircraft />} />
+            <Route path="/soda-blasting/log-home-soda-blasting" element={<LogHomes />} />
+            <Route path="/soda-blasting/boat-and-marine-soda-blasting" element={<BoatMarine />} />
+            <Route path="/soda-blasting/commercial-industrial" element={<CommercialIndustrial />} />
+          </Routes>
+        </Layout>
+      </Router>
     </HelmetProvider>
   );
 }

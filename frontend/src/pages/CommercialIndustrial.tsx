@@ -13,6 +13,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import PhoneNumber from '../components/PhoneNumber';
+import PageTitle from '../components/PageTitle';
 
 const CommercialIndustrial: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -52,6 +53,8 @@ const CommercialIndustrial: React.FC = () => {
 
   return (
     <Box id="commercial-industrial-main">
+      <PageTitle pageSlug="commercial-industrial-soda-blasting" />
+      
       {/* Hero Section with Slider */}
       <Box 
         bgImage="url('https://leonardsodablasting.com/wp-content/uploads/2017/04/crane-before.jpg')"

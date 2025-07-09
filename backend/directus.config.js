@@ -1,8 +1,8 @@
 require('dotenv').config();
 
 module.exports = {
-  port: process.env.DIRECTUS_PORT || 8055,
-  public_url: process.env.DIRECTUS_PUBLIC_URL || 'http://localhost:8055',
+  port: process.env.DIRECTUS_PORT || 8574,
+  public_url: process.env.DIRECTUS_PUBLIC_URL || 'http://localhost:8574',
   
   database: {
     client: 'pg',
@@ -38,7 +38,7 @@ module.exports = {
 
   cors: {
     enabled: true,
-    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+    origin: ['http://localhost:3574', 'http://127.0.0.1:3574'],
     credentials: true,
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization', 'Accept', 'X-Requested-With']
@@ -53,9 +53,18 @@ module.exports = {
     }
   },
 
-  access: {
+  assets: {
+    cache: false,
+    transform: {
+      enabled: false
+    }
+  },
+
+  // Public registration and access settings
+  public: {
+    registration: false,
     assets: {
-      public: true
+      enabled: true
     }
   }
 };

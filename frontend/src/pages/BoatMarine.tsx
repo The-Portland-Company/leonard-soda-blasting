@@ -56,6 +56,7 @@ const BoatMarine: React.FC = () => {
     <PageLoader loadingStates={[pageLoading, settingsLoading]}>
       <Box id="boat-marine-main">
         <PageTitle pageSlug="boat-marine" />
+        
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 
@@ -132,7 +133,7 @@ const BoatMarine: React.FC = () => {
               lineHeight="1"
               textTransform="uppercase"
             >
-              Boat & Marine Soda Blasting
+              {page?.hero_title || page?.title}
             </Heading>
             <Text fontSize="24px" color="white" textAlign="left" maxW="760px">
               Caring for a boat is a constant process and even the best maintenance routine needs an occasional boost. When your vessel is ready for repairs, cleaning or repainting, look to Leonard's Soda Blasting to get the job done on time and within budget.

@@ -87,6 +87,7 @@ const Automotive: React.FC = () => {
   return (
     <Box id="automotive-main">
       <PageTitle pageSlug="automotive-soda-blasting" />
+      
       {/* Restoration Slideshow */}
       <Box 
         id="hero-section"

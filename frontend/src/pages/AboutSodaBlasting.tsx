@@ -79,6 +79,7 @@ const AboutSodaBlasting: React.FC = () => {
   return (
     <Box id="about-soda-blasting-main">
       <PageTitle pageSlug="about-soda-blasting" />
+      
       {/* Hero Section */}
       <Box 
         id="hero-section"

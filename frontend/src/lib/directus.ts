@@ -87,7 +87,7 @@ export interface Schema {
   testimonials: Testimonial[];
 }
 
-const directusUrl = process.env.REACT_APP_DIRECTUS_URL!;
+const directusUrl = process.env.REACT_APP_DIRECTUS_URL || 'http://localhost:8574';
 
 // Create Directus client
 export const directus = createDirectus<Schema>(directusUrl)

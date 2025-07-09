@@ -58,9 +58,10 @@ const Home: React.FC = () => {
   }
 
   return (
-    <PageLoader loadingStates={[pageLoading, settingsLoading, testimonialsLoading]}>
-      <Box id="home-main">
-        <PageTitle pageSlug="home" />
+    <>
+      <PageTitle pageSlug="home" />
+      <PageLoader loadingStates={[pageLoading, settingsLoading, testimonialsLoading]}>
+        <Box id="home-main">
       {/* Hero Section with Video Background */}
       <Box 
         id="hero-section"
@@ -164,7 +165,7 @@ const Home: React.FC = () => {
                 >
                 {displayServices.map((service, index) => {
                   const imageSrc = service.image 
-                    ? `http://localhost:8055/assets/${service.image}` 
+                    ? `http://localhost:8574/assets/${service.image}` 
                     : null;
                   
                   return (
@@ -364,8 +365,9 @@ const Home: React.FC = () => {
           </Container>
         </Box>
       )}
-    </Box>
-    </PageLoader>
+        </Box>
+      </PageLoader>
+    </>
   );
 };
 

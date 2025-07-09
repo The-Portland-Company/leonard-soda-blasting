@@ -1,2 +1,1 @@
-- Never create or utilize fallbacks.
-- When deploying, always examine deployment logs afterward via Railway CLI before saying you completed the job.
+- Never hard code page titles, meta titles, page content, menu items, etc...

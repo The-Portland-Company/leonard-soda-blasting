@@ -11,7 +11,7 @@ RUN npm ci --only=production
 # Copy backend source code
 COPY backend/ .
 
-EXPOSE 8055
+EXPOSE 8574
 
 # Start Directus
 CMD ["npm", "start"]

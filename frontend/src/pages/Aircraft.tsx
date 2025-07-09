@@ -56,6 +56,7 @@ const Aircraft: React.FC = () => {
   return (
     <Box id="aircraft-main">
       <PageTitle pageSlug="aircraft-soda-blasting" />
+      
       {/* Hero Section with Slideshow */}
       <Box 
         id="hero-section"

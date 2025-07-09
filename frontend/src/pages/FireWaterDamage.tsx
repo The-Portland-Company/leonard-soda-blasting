@@ -19,7 +19,7 @@ import PageTitle from '../components/PageTitle';
 import { usePage, useGlobalSettings } from '../hooks/useDirectus';
 
 const FireWaterDamage: React.FC = () => {
-  const { page, loading: pageLoading } = usePage('fire-water-damage');
+  const { page, loading: pageLoading } = usePage('soda-blasting/fire-and-water-damage-restoration-soda-blasting');
   const { settings, loading: settingsLoading } = useGlobalSettings();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
@@ -61,7 +61,8 @@ const FireWaterDamage: React.FC = () => {
   return (
     <PageLoader loadingStates={[pageLoading, settingsLoading]}>
       <Box id="fire-water-damage-main">
-        <PageTitle pageSlug="fire-water-damage" />
+        <PageTitle pageSlug="soda-blasting/fire-and-water-damage-restoration-soda-blasting" />
+        
       {/* Hero Section with Slideshow */}
       <Box 
         position="relative" 

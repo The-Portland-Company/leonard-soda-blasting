@@ -183,6 +183,7 @@ const Services: React.FC = () => {
     <PageLoader loadingStates={[loading]}>
       <Box id="services-main">
       <PageTitle pageSlug="services" />
+      
       {/* Hero Section */}
       <Box 
         id="hero-section"

@@ -4,10 +4,7 @@ const client = createDirectus('http://127.0.0.1:8055').with(rest()).with(authent
 
 async function completeSetup() {
   try {
-    await client.login({
-      email: 'agency@theportlandcompany.com',
-      password: 'J9u76asecdst!'
-    });
+    await client.login('agency@theportlandcompany.com', 'J9u76asecdst!');
     console.log('✅ Logged in successfully');
     
     // Check existing collections
