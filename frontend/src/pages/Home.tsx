@@ -114,7 +114,7 @@ const Home: React.FC = () => {
         <Box id="main-content-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.300" />
         <Container id="main-content-container" maxW="container.xl" position="relative" zIndex={1}>
           <VStack id="main-content-stack" gap={12}>
-            {(heroSection?.title || page?.title) && (
+            {(page?.hero_title || heroSection?.title || page?.title) && (
               <Heading 
                 size="xl" 
                 textAlign="center" 
@@ -125,36 +125,13 @@ const Home: React.FC = () => {
                 fontSize={{ base: "2xl", md: "3xl" }}
                 mb={8}
               >
-                {heroSection?.title || page?.title}
+                {page?.hero_title || heroSection?.title || page?.title}
               </Heading>
             )}
 
             {/* Services Grid */}
             <VStack gap={8} w="100%">
-              {servicesSection?.title && (
-                <Heading 
-                  size="xl" 
-                  textAlign="center" 
-                  color="white"
-                  fontFamily="Arvo, Georgia, serif"
-                  fontWeight="bold"
-                  textTransform="uppercase"
-                  fontSize={{ base: "xl", md: "2xl" }}
-                >
-                  {servicesSection.title}
-                </Heading>
-              )}
-              {servicesSection?.content && (
-                <Text 
-                  textAlign="center" 
-                  color="white"
-                  fontFamily="Open Sans, sans-serif"
-                  fontSize="lg"
-                  maxW="2xl"
-                >
-                  {servicesSection.content}
-                </Text>
-              )}
+              
               {displayServices && displayServices.length > 0 && (
                 <SimpleGrid 
                   id="services-grid" 
