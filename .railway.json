@@ -7,6 +7,11 @@
       "name": "directus",
       "rootDir": "backend",
       "envVarGroups": ["production"]
+    },
+    {
+      "name": "frontend",
+      "rootDir": "frontend-nextjs",
+      "envVarGroups": ["production"]
     }
   ]
 }
