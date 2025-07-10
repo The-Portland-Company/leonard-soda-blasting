@@ -86,9 +86,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
           zIndex={1}
         />
       </Box>
-
       <PhoneNumber phoneNumber={settings?.phone_number} />
-
       {/* Main Content Section */}
       <Box 
         id="main-content-section"
@@ -134,51 +132,51 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                     : null;
                   
                   return (
-                  <VStack 
-                    key={`${service.title}-${index}`}
-                    id={`service-card-${index}`}
-                    bg="white" 
-                    p={6} 
-                    borderRadius="lg" 
-                    gap={4} 
-                    textAlign="center"
-                  >
-                    {imageSrc && (
-                      <Image 
-                        src={imageSrc}
-                        alt={service.title}
-                        borderRadius="md"
-                        w="100%"
-                        h="auto"
-                        aspectRatio={4/3}
-                        objectFit="cover"
-                        loading="lazy"
-                      />
-                    )}
-                    <Heading fontSize="1.1rem" color="#228b22" fontFamily="Arvo, Georgia, serif">
-                      {service.title}
-                    </Heading>
-                    <Text 
-                      fontSize="sm"
-                      fontFamily="Open Sans, sans-serif"
-                      style={{
-                        display: '-webkit-box',
-                        WebkitLineClamp: 3,
-                        WebkitBoxOrient: 'vertical',
-                        overflow: 'hidden',
-                        textOverflow: 'ellipsis'
-                      }}
+                    <VStack 
+                      key={`${service.title}-${index}`}
+                      id={`service-card-${index}`}
+                      bg="white" 
+                      p={6} 
+                      borderRadius="lg" 
+                      gap={4} 
+                      textAlign="center"
                     >
-                      {service.text}
-                    </Text>
-                    {service.service_page && (
-                      <Link href={`/pages/${service.service_page}`}>
-                        <Text color="#228b22" fontWeight="bold" fontFamily="Arvo, Georgia, serif">
-                          More Info →
-                        </Text>
-                      </Link>
-                    )}
-                  </VStack>
+                      {imageSrc && (
+                        <Image 
+                          src={imageSrc}
+                          alt={service.title}
+                          borderRadius="md"
+                          w="100%"
+                          h="auto"
+                          aspectRatio={4/3}
+                          objectFit="cover"
+                          loading="lazy"
+                        />
+                      )}
+                      <Heading fontSize="1.1rem" color="#228b22" fontFamily="Arvo, Georgia, serif">
+                        {service.title}
+                      </Heading>
+                      <Text 
+                        fontSize="sm"
+                        fontFamily="Open Sans, sans-serif"
+                        style={{
+                          display: '-webkit-box',
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: 'vertical',
+                          overflow: 'hidden',
+                          textOverflow: 'ellipsis'
+                        }}
+                      >
+                        {service.text}
+                      </Text>
+                      {service.service_page && (
+                        <Link href={`/pages/${service.service_page}`} legacyBehavior>
+                          <Text color="#228b22" fontWeight="bold" fontFamily="Arvo, Georgia, serif">
+                            More Info →
+                          </Text>
+                        </Link>
+                      )}
+                    </VStack>
                   );
                 })}
                 </SimpleGrid>
@@ -187,7 +185,6 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
           </VStack>
         </Container>
       </Box>
-
       {/* How does soda blasting work section */}
       {aboutSection && (
         <Box id="about-section" bg="#228b22" color="white" py={16}>
@@ -232,7 +229,6 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
           </Container>
         </Box>
       )}
-
       {/* Latest Work section */}
       {latestWorkSection && (
         <Box id="latest-work-section" bg="gray.700" color="white" py={16}>
@@ -270,7 +266,6 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
           </Container>
         </Box>
       )}
-
       {/* Testimonial section */}
       {(featuredTestimonial || testimonialSection) && (
         <Box 

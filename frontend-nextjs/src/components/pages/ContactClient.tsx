@@ -104,7 +104,6 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
           </VStack>
         </Container>
       </Box>
-
       {/* Contact Form and Info Section */}
       <Box bg="white" py={16}>
         <Container maxW="container.xl">
@@ -414,7 +413,7 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
                   Want to learn more about our services?
                 </Text>
                 <HStack gap={4}>
-                  <Link href="/services">
+                  <Link href="/services" legacyBehavior>
                     <Button
                       variant="outline"
                       borderColor="#228b22"
@@ -426,7 +425,7 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
                       Our Services
                     </Button>
                   </Link>
-                  <Link href="/gallery">
+                  <Link href="/gallery" legacyBehavior>
                     <Button
                       variant="outline"
                       borderColor="#228b22"
@@ -444,7 +443,6 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
           </SimpleGrid>
         </Container>
       </Box>
-
       {/* Why Choose Us Section */}
       <Box bg="gray.50" py={16}>
         <Container maxW="container.xl">
@@ -548,7 +546,6 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
           </VStack>
         </Container>
       </Box>
-
       {/* Compliance Section */}
       <Box bg="#228b22" color="white" py={16}>
         <Container maxW="container.xl">
@@ -585,10 +582,9 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
           </VStack>
         </Container>
       </Box>
-      
       <PhoneNumber />
     </Box>
-  )
+  );
 }
 
 export default ContactClient

@@ -109,11 +109,10 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
                 Commercial Soda Blasting
               </Heading>
               <Text 
-                fontSize="xl" 
-                color="white" 
-                fontFamily="Open Sans, sans-serif"
-                lineHeight="1.6"
-              >
+                        fontSize="xl" 
+                        color="white" 
+                        lineHeight="1.6"
+                      >
                 The commercial/industrial sandblaster category covers a broad range of markets and services, 
                 including media blasting of warehouses, wastewater treatment facilities, parking garages, 
                 machinery and equipment.
@@ -252,7 +251,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
                 as="h2"
                 color="#228b22"
               >
-                Professional Work Done on Schedule
+                Professional Work
               </Heading>
               <Text 
                 fontSize="lg" 
@@ -406,7 +405,6 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
                       bg="#228b22"
                       color="white"
                       size="lg"
-                      fontFamily="Arvo, Georgia, serif"
                       textTransform="uppercase"
                       fontWeight="bold"
                       letterSpacing="1px"

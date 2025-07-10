@@ -79,7 +79,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Container id="header-container" maxW="container.xl">
           <Flex id="header-content" justify="space-between" align="center">
             <Skeleton isLoaded={!settingsLoading} height="24px" width="200px">
-                <Link href="/" passHref>
+                <Link href="/" >
                     <Text
                       fontSize="16px"
                       fontWeight="bold"
@@ -132,9 +132,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                               onMouseEnter={() => setServicesMenuOpen(true)}
                             >
                               <VStack id="services-dropdown-content" gap={0} align="stretch">
-                                <Link href="/services" passHref>
+                                <Link href="/services" >
                                   <Box
-                                    as="a"
                                     id="services-overview-link"
                                     px={4}
                                     py={2}
@@ -150,9 +149,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                   </Box>
                                 </Link>
                                 {serviceNavItems.map(service => (
-                                    <Link href={service.href} key={service.href} passHref>
+                                    <Link href={service.href} key={service.href} >
                                         <Box
-                                            as="a"
                                             px={4}
                                             py={2}
                                             color="white"
@@ -169,13 +167,8 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             </Box>
                           </Box>
                         ) : item.url ? (
-                            <Link
-                              key={item.id}
-                              href={item.url}
-                              passHref
-                            >
-                              <ChakraLink
-                                 target={item.target}
+                            <Link key={item.id} href={item.url} target={item.target} >
+                              <Text
                                  color='white'
                                  fontFamily='Arvo, Georgia, serif'
                                  textTransform='uppercase'
@@ -185,7 +178,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                                  _hover={{ textDecoration: 'none', color: '#228b22' }}
                               >
                                 {item.label}
-                              </ChakraLink>
+                              </Text>
                             </Link>
                         ) : null
                       ))
@@ -280,10 +273,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             >
               <VStack id="mobile-navigation" gap={0} align="stretch">
                 {/* Main Navigation Items */}
-                <Link
-                  href="/"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <Link href="/" onClick={() => setMobileMenuOpen(false)} >
                   <Box
                     id="mobile-home-link"
                     py={4}
@@ -306,7 +296,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <Link
                   href="/about-soda-blasting"
                   onClick={() => setMobileMenuOpen(false)}
-                >
+                  >
                   <Box
                     id="mobile-about-link"
                     py={4}
@@ -366,10 +356,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   >
                     <VStack id="mobile-services-links" gap={0} align="stretch">
                       {/* Services Overview Link */}
-                      <Link
-                        href="/services"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
+                      <Link href="/services" onClick={() => setMobileMenuOpen(false)} >
                         <Box
                           id="mobile-services-overview-link"
                           py={3}
@@ -395,7 +382,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             href={service.href}
                             key={service.href}
                             onClick={() => setMobileMenuOpen(false)}
-                          >
+                            >
                             <Box
                               py={3}
                               px={8}
@@ -415,10 +402,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   </Box>
                 </Box>
 
-                <Link
-                  href="/gallery"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <Link href="/gallery" onClick={() => setMobileMenuOpen(false)} >
                   <Box
                     id="mobile-gallery-link"
                     py={4}
@@ -438,10 +422,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                   </Box>
                 </Link>
 
-                <Link
-                  href="/contact"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
+                <Link href="/contact" onClick={() => setMobileMenuOpen(false)} >
                   <Box
                     id="mobile-contact-link"
                     py={4}
@@ -475,12 +456,10 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
           </Box>
         )}
       </Box>
-
       {/* Page Content */}
       <Box as="main">
         {children}
       </Box>
-
       {/* Footer */}
       <Box id="footer" bg="gray.900" color="white" py={12}>
         <Container id="footer-container" maxW="container.xl">
