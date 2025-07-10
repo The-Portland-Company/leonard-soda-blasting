@@ -13,8 +13,8 @@
     {
       "name": "frontend",
       "rootDir": "frontend-nextjs",
-      "buildCommand": "CI=false ESLINT_NO_DEV_ERRORS=true npm run build",
-      "startCommand": "npx serve -s frontend/build -l 3574"
+      "buildCommand": "cd frontend-nextjs && npm install --legacy-peer-deps --force && npm run build",
+      "startCommand": "npx serve -s frontend-nextjs/build -l 3574"
     }
   ]
 }
