@@ -6,12 +6,9 @@
     {
       "name": "directus",
       "rootDir": "backend",
-      "envVarGroups": ["production"]
-    },
-    {
-      "name": "frontend",
-      "rootDir": "frontend-nextjs",
-      "envVarGroups": ["production"]
+      "envVarGroups": ["production"],
+      "startCommand": "npx directus start",
+      "buildCommand": "npm install"
     }
   ]
 }
