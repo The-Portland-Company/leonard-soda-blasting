@@ -1,0 +1,51 @@
+
+> frontend-nextjs@0.1.0 dev
+> next dev -p 3575
+
+   ▲ Next.js 15.3.5
+   - Local:        http://localhost:3575
+   - Network:      http://192.168.1.223:3575
+   - Environments: .env.local
+
+ ✓ Starting...
+ ✓ Ready in 13.9s
+ ○ Compiling /contact ...
+ ✓ Compiled /contact in 4.5s (2886 modules)
+ HEAD /contact 200 in 5271ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /contact. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ✓ Compiled /gallery in 459ms (2898 modules)
+ HEAD /gallery 200 in 834ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /gallery. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ ✓ Compiled /_not-found in 218ms (2902 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /services. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ HEAD /services 404 in 351ms
+ ✓ Compiled / in 484ms (2894 modules)
+Failed to fetch testimonials: 403
+Failed to fetch page home: 500
+Failed to fetch page home: 500
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 34035ms
+ ✓ Compiled /about-soda-blasting in 332ms (2906 modules)
+ ✓ Compiled /gallery in 157ms (1544 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /gallery. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /gallery 200 in 192ms
+ ✓ Compiled /contact in 455ms (1551 modules)
+ ⚠ Unsupported metadata viewport is configured in metadata export in /contact. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /contact 200 in 485ms
+Failed to fetch testimonials: 403
+ ⚠ Unsupported metadata viewport is configured in metadata export in /about-soda-blasting. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /about-soda-blasting 200 in 15992ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /about-soda-blasting. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET /about-soda-blasting 200 in 4941ms
+ ⚠ Unsupported metadata viewport is configured in metadata export in /. Please move it to viewport export instead.
+Read more: https://nextjs.org/docs/app/api-reference/functions/generate-viewport
+ GET / 200 in 3609ms
+[?25h

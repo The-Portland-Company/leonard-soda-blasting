@@ -1,0 +1,33 @@
+{
+  "name": "frontend-nextjs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3575",
+    "build": "next build",
+    "start": "next start -p 3575",
+    "lint": "next lint",
+    "dev-logs": "next dev -p 3575 2>&1 | tee .nextjs_output.log"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^3.22.0",
+    "@directus/sdk": "^20.0.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "framer-motion": "^12.23.1",
+    "next": "15.3.5",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-icons": "^5.5.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.5",
+    "typescript": "^5"
+  }
+}
