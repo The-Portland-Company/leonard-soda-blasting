@@ -9,6 +9,12 @@
       "envVarGroups": ["production"],
       "startCommand": "npx directus start",
       "buildCommand": "npm install"
+    },
+    {
+      "name": "frontend",
+      "rootDir": "frontend-nextjs",
+      "buildCommand": "CI=false ESLINT_NO_DEV_ERRORS=true npm run build",
+      "startCommand": "npx serve -s frontend/build -l 3574"
     }
   ]
 }
