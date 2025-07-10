@@ -1,0 +1,14 @@
+[phases.setup]
+nixPkgs = ["nodejs_22"]
+
+[phases.install]
+cmds = ["npm install --legacy-peer-deps --force --prefix frontend-nextjs"]
+
+[phases.build]
+cmds = ["npm run build --prefix frontend-nextjs"]
+
+[start]
+cmd = "cd frontend-nextjs && npx serve -s build -p $PORT"
+
+[variables]
+NODE_ENV = "production"
