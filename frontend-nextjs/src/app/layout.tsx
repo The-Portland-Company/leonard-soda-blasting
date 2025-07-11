@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import { Providers } from './providers';
 import Header from '@/components/Header';
-import PhoneNumber from '@/components/PhoneNumber';
 import { getGlobalSettings, getNavigation } from '@/lib/directus-server';
 import { Arvo } from 'next/font/google';
 import { Box, Container, VStack, Text, Link, Button } from '@chakra-ui/react';

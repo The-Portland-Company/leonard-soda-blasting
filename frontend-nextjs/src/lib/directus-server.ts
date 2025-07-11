@@ -1,5 +1,5 @@
 import { createDirectus, rest, readItems, readSingleton } from '@directus/sdk';
-import { Schema, Page, Testimonial } from './directus'; // Assuming Schema is defined in your client-side directus lib
+import { Schema } from './directus'; // Assuming Schema is defined in your client-side directus lib
 
 const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL;
 

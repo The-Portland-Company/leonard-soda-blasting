@@ -25,9 +25,15 @@ interface FormData {
   timeline: string
 }
 
+interface PageWithHero {
+  hero_title?: string;
+  title?: string;
+  hero_subtitle?: string;
+}
+
 interface ContactClientProps {
-  page: unknown
-  settings: unknown
+  page: PageWithHero | null;
+  settings: unknown;
 }
 
 const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
@@ -94,11 +100,11 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
               textTransform="uppercase"
               fontSize={{ base: "3xl", md: "4xl" }}
             >
-              {(page as any)?.hero_title || (page as any)?.title || 'Contact'}
+              {page?.hero_title || page?.title || 'Contact'}
             </Heading>
-            {(page as any)?.hero_subtitle && (
+            {page?.hero_subtitle && (
               <Text fontSize="xl" maxW="2xl" fontFamily="Open Sans, sans-serif">
-                {(page as any).hero_subtitle}
+                {page.hero_subtitle}
               </Text>
             )}
           </VStack>

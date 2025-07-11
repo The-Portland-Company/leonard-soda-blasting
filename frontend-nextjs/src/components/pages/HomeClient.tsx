@@ -42,7 +42,6 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
 
   // Get content sections
   const heroSection = page?.content_sections?.find(section => section.type === 'hero');
-  const servicesSection = page?.content_sections?.find(section => section.type === 'services_grid');
   const aboutSection = page?.content_sections?.find(section => section.type === 'about_process');
   const latestWorkSection = page?.content_sections?.find(section => section.type === 'latest_work');
   const testimonialSection = page?.content_sections?.find(section => section.type === 'testimonial');

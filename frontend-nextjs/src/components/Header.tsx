@@ -9,7 +9,6 @@ import {
   Text,
   VStack,
   HStack,
-  Link as ChakraLink,
   useBreakpointValue,
   IconButton,
 } from '@chakra-ui/react';

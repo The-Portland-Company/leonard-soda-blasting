@@ -22,6 +22,17 @@ interface GalleryItem {
   description: string
 }
 
+interface PageWithHero {
+  hero_title?: string;
+  title?: string;
+  hero_subtitle?: string;
+}
+
+interface GalleryClientProps {
+  page: PageWithHero | null;
+  settings: unknown;
+}
+
 const galleryItems: GalleryItem[] = [
   {
     id: '1',
@@ -100,11 +111,6 @@ const categories = [
   { key: 'restoration', label: 'Restoration' }
 ]
 
-interface GalleryClientProps {
-  page: unknown
-  settings: unknown
-}
-
 const GalleryClient: React.FC<GalleryClientProps> = ({ page }) => {
   const [selectedCategory, setSelectedCategory] = useState('all')
   const [selectedImage, setSelectedImage] = useState<GalleryItem | null>(null)
@@ -134,11 +140,11 @@ const GalleryClient: React.FC<GalleryClientProps> = ({ page }) => {
               textTransform="uppercase"
               fontSize={{ base: "3xl", md: "4xl" }}
             >
-              {(page as any)?.hero_title || (page as any)?.title || 'Gallery'}
+              {page?.hero_title || page?.title || 'Gallery'}
             </Heading>
-            {(page as any)?.hero_subtitle && (
+            {page?.hero_subtitle && (
               <Text fontSize="xl" maxW="2xl" fontFamily="Open Sans, sans-serif">
-                {(page as any).hero_subtitle}
+                {page.hero_subtitle}
               </Text>
             )}
           </VStack>
