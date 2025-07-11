@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
+import NextImage from 'next/image';
 import {
   Box,
   Container,
@@ -89,15 +90,28 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
       {/* Main Content Section */}
       <Box 
         id="main-content-section"
-        bgImage="url('/assets/images/bg-3.jpg')"
-        backgroundAttachment={{ base: "scroll", md: "fixed" }}
-        backgroundPosition="center"
-        backgroundRepeat="no-repeat"
-        backgroundSize="cover"
         py={16}
         position="relative"
       >
-        <Box id="main-content-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.300" />
+        <NextImage
+          src="/assets/images/bg-3.jpg"
+          alt="Background"
+          fill
+          style={{
+            objectFit: 'cover',
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            zIndex: -1,
+            backgroundAttachment: 'fixed',
+          }}
+          quality={100}
+          priority
+          fetchPriority="high"
+        />
+        <Box id="main-content-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.300" zIndex={0} />
         <Container id="main-content-container" maxW="container.xl" position="relative" zIndex={1}>
           <VStack id="main-content-stack" gap={12}>
             {(page?.hero_title || heroSection?.title || page?.title) && (
@@ -149,8 +163,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                           h="auto"
                           aspectRatio={4/3}
                           objectFit="cover"
-                          loading="lazy"
-                        />
+                          />
                       )}
                       <Heading fontSize="1.1rem" color="#228b22" fontFamily="Arvo, Georgia, serif">
                         {service.title}
