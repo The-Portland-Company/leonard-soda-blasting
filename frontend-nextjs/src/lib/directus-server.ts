@@ -1,5 +1,5 @@
 import { createDirectus, rest, readItems, readSingleton } from '@directus/sdk';
-import { Schema } from './directus'; // Assuming Schema is defined in your client-side directus lib
+import { Schema, GlobalSettings, Navigation, Page, Testimonial } from './directus';
 
 const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL;
 
@@ -10,7 +10,7 @@ if (!directusUrl) {
 
 const directus = createDirectus<Schema>(directusUrl).with(rest());
 
-export const getGlobalSettings = async () => {
+export const getGlobalSettings = async (): Promise<GlobalSettings | null> => {
   try {
     console.log('Fetching global settings from:', directusUrl);
     const settings = await directus.request(readSingleton('settings'));
@@ -22,7 +22,7 @@ export const getGlobalSettings = async () => {
   }
 };
 
-export const getNavigation = async () => {
+export const getNavigation = async (): Promise<Navigation[]> => {
   try {
     console.log('Fetching navigation from:', directusUrl);
     const navigation = await directus.request(readItems('navigation'));
@@ -34,7 +34,7 @@ export const getNavigation = async () => {
   }
 };
 
-export const getPage = async (slug: string) => {
+export const getPage = async (slug: string): Promise<Page | null> => {
   try {
     console.log(`Fetching page with slug ${slug} from:`, directusUrl);
     const pages = await directus.request(readItems('pages', {
@@ -50,7 +50,7 @@ export const getPage = async (slug: string) => {
   }
 };
 
-export const getTestimonials = async () => {
+export const getTestimonials = async (): Promise<Testimonial[]> => {
   try {
     console.log('Fetching testimonials from:', directusUrl);
     const testimonials = await directus.request(readItems('testimonials'));

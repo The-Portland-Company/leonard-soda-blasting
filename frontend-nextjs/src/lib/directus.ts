@@ -82,7 +82,7 @@ export interface Testimonial {
 
 export interface Schema {
   pages: Page[];
-  settings: GlobalSettings[];
+  settings: GlobalSettings;
   navigation: Navigation[];
   services: Service[];
   testimonials: Testimonial[];
