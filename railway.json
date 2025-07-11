@@ -2,7 +2,7 @@
   "build": {
     "nixpacks": {
       "version": "latest",
-      "configPath": "./nixpacks.toml"
+      "configPath": "./deployment/railway/frontend.nixpacks.toml"
     }
   },
   "environment": "production",
