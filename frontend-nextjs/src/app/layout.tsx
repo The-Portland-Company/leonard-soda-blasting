@@ -37,11 +37,11 @@ export default async function RootLayout({
           {/* Footer */}
           <Box as="footer" bg="gray.900" color="white" py={4} textAlign="center">
             <Container maxW="container.xl">
-              <VStack spacing={2}>
+              <VStack gap={2}>
                 <Text fontSize="sm">
                   © {new Date().getFullYear()} Leonard Soda Blasting. All rights reserved.
                 </Text>
-                <Link href={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/admin`} isExternal>
+                <Link href={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/admin`} target="_blank" rel="noopener noreferrer">
                   <Button size="sm" colorScheme="green">
                     Admin Login
                   </Button>
