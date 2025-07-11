@@ -48,7 +48,7 @@ module.exports = {
     locations: {
       local: {
         driver: 'local',
-        root: './uploads'
+        root: process.env.RAILWAY_VOLUME_MOUNT_PATH || './uploads'
       }
     }
   },

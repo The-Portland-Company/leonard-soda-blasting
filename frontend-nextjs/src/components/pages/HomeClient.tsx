@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import NextImage from 'next/image';
+import { getFileUrl } from '@/lib/directus';
 import {
   Box,
   Container,
@@ -141,7 +142,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                 >
                 {displayServices.map((service, index) => {
                   const imageSrc = service.image 
-                    ? `${process.env.NEXT_PUBLIC_DIRECTUS_URL}/assets/${service.image}` 
+                    ? getFileUrl(service.image) 
                     : null;
                   
                   return (
