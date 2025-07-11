@@ -35,17 +35,14 @@ npm start
 ### 2. Access Directus Admin
 
 1. Navigate to: `http://localhost:8055/admin`
-2. Login with:
-   - Email: `admin@example.com`
-   - Password: `M-tVNpEzBFJ2`
+2. Login with your configured admin credentials
 
 ### 3. Update Admin User
 
 Once logged in:
 1. Go to User Management
 2. Edit the admin user
-3. Change email to: `agency@theportlandcompany.com`
-4. Change password to: `J9u76asecdst!`
+3. Update email and password as needed
 
 ### 4. Create Data Models
 
@@ -134,23 +131,23 @@ The following environment variables are configured in `.env`:
 
 ```
 # Supabase Configuration
-SUPABASE_URL=https://wqqouhawtmibmvcdkypw.supabase.co
-SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndxcW91aGF3dG1pYm12Y2RreXB3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNjcyNzYsImV4cCI6MjA2Nzg0MzI3Nn0._aP2Jbt-gtUclisdeM1oNkXoEiJr2MHFh8R4sMA4o48
-SUPABASE_SERVICE_ROLE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndxcW91aGF3dG1pYm12Y2RreXB3Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc1MjI2NzI3NiwiZXhwIjoyMDY3ODQzMjc2fQ.mydTyyKrTc59WfR_n9V80IlYgBttgRqsL2-36SGv1qs
+SUPABASE_URL=your_supabase_url
+SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_ROLE_KEY=your_supabase_service_role_key
 
 # Directus Configuration
-KEY=255d861b-5ea1-5996-9aa3-922530ec40b1
-SECRET=6116487b-cbb7-52d2-ac3b-4e71a8e4fe8e
+KEY=your_directus_key
+SECRET=your_directus_secret
 PUBLIC_URL=http://localhost:8574
 PORT=8574
 
 # Database Configuration
 DB_CLIENT=pg
-DB_HOST=db.wqqouhawtmibmvcdkypw.supabase.co
+DB_HOST=your_db_host
 DB_PORT=5432
 DB_DATABASE=postgres
 DB_USER=postgres
-DB_PASSWORD=33RW68f3nYLtQUyr
+DB_PASSWORD=your_db_password
 
 # React App Configuration
 REACT_APP_DIRECTUS_URL=http://localhost:8055
