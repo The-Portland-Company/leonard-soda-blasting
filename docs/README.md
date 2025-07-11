@@ -11,12 +11,12 @@ Full-stack application for Leonard Soda Blasting services, built with React fron
 ```
 DB_HOST=aws-0-us-east-2.pooler.supabase.com
 DB_PORT=6543
-DB_USER=postgres.wqqouhawtmibmvcdkypw
-DB_PASSWORD=33RW68f3nYLtQUyr
-DATABASE_URL=postgresql://postgres.wqqouhawtmibmvcdkypw:33RW68f3nYLtQUyr@aws-0-us-east-2.pooler.supabase.com:6543/postgres
+DB_USER=postgres.[PROJECT-ID]
+DB_PASSWORD=[YOUR-PASSWORD]
+DATABASE_URL=postgresql://postgres.[PROJECT-ID]:[PASSWORD]@aws-0-us-east-2.pooler.supabase.com:6543/postgres
 ```
 
-**DO NOT** use the direct database connection (`db.wqqouhawtmibmvcdkypw.supabase.co:5432`) on Railway - it will fail due to IPv4 limitations.
+**DO NOT** use the direct database connection (`db.[PROJECT-ID].supabase.co:5432`) on Railway - it will fail due to IPv4 limitations.
 
 ## Project Structure
 
