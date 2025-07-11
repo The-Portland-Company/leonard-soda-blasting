@@ -1,5 +1,19 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## ⚠️ VERY IMPORTANT: Railway Deployment Database Configuration
+
+**CRITICAL:** When deploying the backend to Railway, you MUST use Supabase's **Transaction Pooler** instead of direct database connections due to Railway's IPv6/IPv4 compatibility issues.
+
+### Required Database Configuration for Railway:
+
+```
+DB_HOST=aws-0-us-east-2.pooler.supabase.com
+DB_PORT=6543
+DB_USER=postgres.wqqouhawtmibmvcdkypw
+```
+
+**DO NOT** use the direct database connection (`db.wqqouhawtmibmvcdkypw.supabase.co:5432`) on Railway - it will fail due to IPv4 limitations.
+
 ## Getting Started
 
 First, run the development server:

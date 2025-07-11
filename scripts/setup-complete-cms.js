@@ -13,12 +13,12 @@ class DirectusSetup {
 
   async connectToDatabase() {
     this.client = new Client({
-      host: 'db.atwkxobvycujkkeqzelp.supabase.co',
-      port: 5432,
-      database: 'postgres',
-      user: 'postgres',
+      host: process.env.DB_HOST,
+      port: process.env.DB_PORT || 5432,
+      database: process.env.DB_DATABASE || 'postgres',
+      user: process.env.DB_USER || 'postgres',
       password: process.env.DB_PASSWORD,
-      ssl: { rejectUnauthorized: false }
+      ssl: process.env.DB_SSL === 'true' ? { rejectUnauthorized: false } : false
     });
     
     await this.client.connect();
