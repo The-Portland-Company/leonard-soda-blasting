@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import Link from 'next/link'
 import {
   Box,
   Container,
@@ -414,37 +413,6 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
                 </Box>
               </VStack>
 
-              <Box mt={4}>
-                <Text fontSize="sm" color="gray.600" fontFamily="Open Sans, sans-serif" mb={4}>
-                  Want to learn more about our services?
-                </Text>
-                <HStack gap={4}>
-                  <Link href="/services" legacyBehavior>
-                    <Button
-                      variant="outline"
-                      borderColor="#228b22"
-                      color="#228b22"
-                      size="md"
-                      fontFamily="Arvo, Georgia, serif"
-                      textTransform="uppercase"
-                    >
-                      Our Services
-                    </Button>
-                  </Link>
-                  <Link href="/gallery" legacyBehavior>
-                    <Button
-                      variant="outline"
-                      borderColor="#228b22"
-                      color="#228b22"
-                      size="md"
-                      fontFamily="Arvo, Georgia, serif"
-                      textTransform="uppercase"
-                    >
-                      View Gallery
-                    </Button>
-                  </Link>
-                </HStack>
-              </Box>
             </VStack>
           </SimpleGrid>
         </Container>

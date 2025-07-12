@@ -46,12 +46,14 @@ export default async function RootLayout({
           type="font/woff2" 
           crossOrigin="anonymous"
         />
-        {/* Preload CSS file with high priority */}
-        <link 
-          rel="preload" 
-          href="/_next/static/css/6d8fd683660c2b1a.css" 
-          as="style"
-        />
+        {/* Preload CSS file with high priority - only in production */}
+        {process.env.NODE_ENV === 'production' && (
+          <link 
+            rel="preload" 
+            href="/_next/static/css/6d8fd683660c2b1a.css" 
+            as="style"
+          />
+        )}
         {/* Inline critical font CSS to prevent render blocking */}
         <style dangerouslySetInnerHTML={{
           __html: `
@@ -86,24 +88,6 @@ export default async function RootLayout({
             .__variable_5e4f48{
               --font-arvo:"Arvo","Arvo Fallback"
             }
-          `
-        }} />
-        {/* Fallback for non-preload supporting browsers - will be loaded after critical path */}
-        <noscript>
-          <link 
-            rel="stylesheet" 
-            href="/_next/static/css/6d8fd683660c2b1a.css"
-          />
-        </noscript>
-        {/* Script to load CSS asynchronously after page load for caching benefits */}
-        <script dangerouslySetInnerHTML={{
-          __html: `
-            window.addEventListener('load', function() {
-              var link = document.createElement('link');
-              link.rel = 'stylesheet';
-              link.href = '/_next/static/css/6d8fd683660c2b1a.css';
-              document.head.appendChild(link);
-            });
           `
         }} />
       </head>

@@ -229,7 +229,8 @@ const GalleryClient: React.FC<GalleryClientProps> = ({ page }) => {
                       src={item.src} 
                       alt={item.alt}
                       w="100%"
-                      h="250px"
+                      h="auto"
+                      aspectRatio={4/3}
                       objectFit="cover"
                     />
                     <Box

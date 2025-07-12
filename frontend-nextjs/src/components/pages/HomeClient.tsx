@@ -60,7 +60,7 @@ const getServiceUrl = (servicePageId: number): string => {
 };
 
 // Provide default descriptions for services
-const getServiceDescription = (service: any): string => {
+const getServiceDescription = (service: { title: string; text?: string }): string => {
   // Default descriptions based on service title
   const defaultDescriptions: { [key: string]: string } = {
     'Log Homes': 'Gentle restoration of log homes and cabins. Our eco-friendly soda blasting safely removes old stains, paints, and weathering without damaging the natural wood grain.',

@@ -61,7 +61,7 @@ const AircraftClient: React.FC<AircraftProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/aircraft-hero.jpg')"
+        bgImage="url('/assets/images/aircraft.jpg')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -118,7 +118,7 @@ const AircraftClient: React.FC<AircraftProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/aircraft-service.jpg"
+                src="/assets/images/dc-10.jpg"
                 alt="Aircraft Soda Blasting"
                 borderRadius="lg"
               />
@@ -250,7 +250,7 @@ const AircraftClient: React.FC<AircraftProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/aircraft-restoration.jpg"
+                src="/assets/images/airplane-detail.jpg"
                 alt="Aircraft Restoration Services"
                 borderRadius="lg"
               />
