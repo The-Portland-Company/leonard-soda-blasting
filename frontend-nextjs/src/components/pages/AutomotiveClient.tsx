@@ -62,7 +62,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
       {/* Hero Section */}
       <Box 
         bgImage="url('/assets/images/automotive-hero.jpg')"
-        backgroundPosition="center"
+        backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         py={20}

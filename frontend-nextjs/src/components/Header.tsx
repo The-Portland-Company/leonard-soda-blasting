@@ -70,7 +70,7 @@ const Header: React.FC<HeaderProps> = ({ navigation, siteTitle }) => {
                     </Text>
                     <Box position="absolute" top="100%" left="0" bg="blackAlpha.900" border="1px solid" borderColor="whiteAlpha.200" borderRadius="md" mt={0} py={2} minW="250px" zIndex={1000} opacity={servicesMenuOpen ? 1 : 0} visibility={servicesMenuOpen ? 'visible' : 'hidden'} transform={servicesMenuOpen ? 'translateY(0)' : 'translateY(-10px)'} transition="all 0.2s ease" pointerEvents={servicesMenuOpen ? 'auto' : 'none'} onMouseEnter={() => setServicesMenuOpen(true)}>
                       <VStack gap={0} align="stretch">
-                        <Link href="/services" >
+                        <Link href="/soda-blasting/commercial-industrial" >
                           <Box px={4} py={2} color="white" fontFamily="Arvo, Georgia, serif" textTransform="uppercase" fontSize="14px" fontWeight="bold" _hover={{ bg: '#228b22' }} transition="all 0.2s ease">
                             Services Overview
                           </Box>
@@ -118,7 +118,7 @@ const Header: React.FC<HeaderProps> = ({ navigation, siteTitle }) => {
                     </Box>
                     <Box maxHeight={mobileServicesExpanded ? "500px" : "0px"} overflow="hidden" transition="max-height 0.4s ease-in-out">
                       <VStack gap={0} align="stretch">
-                        <Link href="/services" onClick={() => setMobileMenuOpen(false)} >
+                        <Link href="/soda-blasting/commercial-industrial" onClick={() => setMobileMenuOpen(false)} >
                           <Box py={3} px={8} color="#228b22" fontFamily="Arvo, Georgia, serif" textTransform="uppercase" letterSpacing="1px" fontSize="14px" fontWeight="bold" borderBottom="1px solid" borderColor="whiteAlpha.50" _hover={{ bg: 'whiteAlpha.50', color: 'white' }} transition="all 0.2s ease">
                             Services Overview
                           </Box>

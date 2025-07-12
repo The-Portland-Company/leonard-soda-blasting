@@ -24,6 +24,60 @@ interface HomeClientProps {
   testimonials: Testimonial[] | null;
 }
 
+// Map service titles to IDs
+const getServiceIdByTitle = (title: string): number => {
+  const titleMapping: { [key: string]: number } = {
+    'Automotive': 1,
+    'Aircraft': 2,
+    'Marine & Boat': 3,
+    'Commercial & Industrial': 4,
+    'Food Processing Equipment': 5,
+    'Fire & Water Damage': 6,
+    'Log Homes': 7
+  };
+  
+  return titleMapping[title] || 4; // Default to Commercial & Industrial
+};
+
+// Map service page IDs to actual URLs
+const getServiceUrl = (servicePageId: number): string => {
+  const serviceMapping: { [key: number]: string } = {
+    1: '/soda-blasting/automotive-soda-blasting',
+    2: '/soda-blasting/airplane-soda-blasting',
+    3: '/soda-blasting/boat-and-marine-soda-blasting',
+    4: '/soda-blasting/commercial-industrial',
+    5: '/soda-blasting/food-processing-equipment',
+    6: '/soda-blasting/fire-and-water-damage-restoration-soda-blasting',
+    7: '/soda-blasting/log-home-soda-blasting',
+    8: '/soda-blasting/airplane-soda-blasting',  // Aircraft
+    9: '/soda-blasting/boat-and-marine-soda-blasting',  // Marine & Boat
+    10: '/soda-blasting/fire-and-water-damage-restoration-soda-blasting',  // Fire & Water Damage
+    11: '/soda-blasting/food-processing-equipment',  // Food Processing Equipment
+    12: '/soda-blasting/log-home-soda-blasting'  // Log Homes
+  };
+  
+  return serviceMapping[servicePageId] || '/contact';
+};
+
+// Provide default descriptions for services
+const getServiceDescription = (service: any): string => {
+  // Default descriptions based on service title
+  const defaultDescriptions: { [key: string]: string } = {
+    'Log Homes': 'Gentle restoration of log homes and cabins. Our eco-friendly soda blasting safely removes old stains, paints, and weathering without damaging the natural wood grain.',
+    'Aircraft': 'Professional aircraft cleaning and surface preparation. Safe, non-abrasive process perfect for aviation maintenance and restoration.',
+    'Marine & Boat': 'Complete boat and marine vessel cleaning. Remove barnacles, paint, and corrosion while preserving the underlying surface.',
+    'Fire & Water Damage': 'Emergency restoration services for fire and water damaged structures. Fast, effective cleanup and surface preparation.',
+    'Food Processing Equipment': 'FDA-compliant cleaning of food processing machinery. Safe, thorough cleaning that meets all food safety standards.'
+  };
+  
+  // Check if service has meaningful text (not placeholder text)
+  if (service.text && !service.text.includes('text...') && service.text.trim().length > 10) {
+    return service.text;
+  }
+  
+  return defaultDescriptions[service.title] || '';
+};
+
 const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials }) => {
   const [initialLoadComplete, setInitialLoadComplete] = useState(false);
   
@@ -166,9 +220,11 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                           objectFit="cover"
                           />
                       )}
-                      <Heading fontSize="1.1rem" color="#228b22" fontFamily="Arvo, Georgia, serif">
-                        {service.title}
-                      </Heading>
+                      <Link href={getServiceUrl(service.service_page || getServiceIdByTitle(service.title))}>
+                        <Heading fontSize="1.1rem" color="#228b22" fontFamily="Arvo, Georgia, serif" _hover={{ textDecoration: "underline" }}>
+                          {service.title}
+                        </Heading>
+                      </Link>
                       <Text 
                         fontSize="sm"
                         fontFamily="Open Sans, sans-serif"
@@ -180,15 +236,8 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                           textOverflow: 'ellipsis'
                         }}
                       >
-                        {service.text}
+                        {getServiceDescription(service)}
                       </Text>
-                      {service.service_page && (
-                        <Link href={`/pages/${service.service_page}`} legacyBehavior>
-                          <Text color="#228b22" fontWeight="bold" fontFamily="Arvo, Georgia, serif">
-                            More Info →
-                          </Text>
-                        </Link>
-                      )}
                     </VStack>
                   );
                 })}

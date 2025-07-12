@@ -62,7 +62,7 @@ const AircraftClient: React.FC<AircraftProps> = ({ page }) => {
       {/* Hero Section */}
       <Box 
         bgImage="url('/assets/images/aircraft-hero.jpg')"
-        backgroundPosition="center"
+        backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         py={20}

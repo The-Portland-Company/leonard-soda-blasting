@@ -61,8 +61,8 @@ const FireWaterDamageClient: React.FC<FireWaterDamageProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/fire-damage-hero.jpg')"
-        backgroundPosition="center"
+        bgImage="url('/assets/images/fire-damage.jpg')"
+        backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         py={20}
@@ -118,7 +118,7 @@ const FireWaterDamageClient: React.FC<FireWaterDamageProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/fire-water-restoration.jpg"
+                src="/assets/images/fire-damage.jpg"
                 alt="Fire and Water Damage Restoration"
                 borderRadius="lg"
               />
@@ -250,7 +250,7 @@ const FireWaterDamageClient: React.FC<FireWaterDamageProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/damage-restoration-services.jpg"
+                src="/assets/images/after-fire.jpg"
                 alt="Damage Restoration Services"
                 borderRadius="lg"
               />
@@ -273,7 +273,7 @@ const FireWaterDamageClient: React.FC<FireWaterDamageProps> = ({ page }) => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/emergency-services.jpg"
+                src="/assets/images/fire-damage.jpg"
                 alt="Emergency Services"
                 borderRadius="lg"
               />

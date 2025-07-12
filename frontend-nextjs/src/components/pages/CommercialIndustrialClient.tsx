@@ -63,7 +63,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
       {/* Hero Section with Slider */}
       <Box 
         bgImage="url('https://leonardsodablasting.com/wp-content/uploads/2017/04/crane-before.jpg')"
-        backgroundPosition="center"
+        backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         py={20}

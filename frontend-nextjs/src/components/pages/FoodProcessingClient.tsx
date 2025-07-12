@@ -61,8 +61,8 @@ const FoodProcessingClient: React.FC<FoodProcessingProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/food-processing-hero.jpg')"
-        backgroundPosition="center"
+        bgImage="url('/assets/images/food-processing-equipment.jpg')"
+        backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         py={20}
@@ -250,7 +250,7 @@ const FoodProcessingClient: React.FC<FoodProcessingProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/food-equipment-cleaning.jpg"
+                src="/assets/images/food-processing-before-1024x760.jpg"
                 alt="Food Equipment Applications"
                 borderRadius="lg"
               />

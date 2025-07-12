@@ -61,8 +61,8 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/boat-marine-hero.jpg')"
-        backgroundPosition="center"
+        bgImage="url('/assets/images/boat-1.jpg')"
+        backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
         py={20}
@@ -118,7 +118,7 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/boat-marine-restoration.jpg"
+                src="/assets/images/boat-after.jpg"
                 alt="Boat and Marine Restoration"
                 borderRadius="lg"
               />
@@ -250,7 +250,7 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/marine-services.jpg"
+                src="/assets/images/boat-before.jpg"
                 alt="Marine Services"
                 borderRadius="lg"
               />
@@ -273,7 +273,7 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/marine-process.jpg"
+                src="/assets/images/boat-1.jpg"
                 alt="Marine Restoration Process"
                 borderRadius="lg"
               />
