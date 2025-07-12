@@ -1,9 +1,9 @@
 import type { Metadata } from 'next';
 import { Providers } from './providers';
 import Header from '@/components/Header';
+import Footer from '@/components/Footer';
 import { getGlobalSettings, getNavigation } from '@/lib/directus-server';
 import { Arvo } from 'next/font/google';
-import { Box, Container, VStack, Text, Link, Button } from '@chakra-ui/react';
 
 const arvo = Arvo({
   weight: ['400', '700'],
@@ -95,21 +95,7 @@ export default async function RootLayout({
         <Providers>
           <Header navigation={navigation} siteTitle={settings?.site_title} />
           {children}
-          {/* Footer */}
-          <Box as="footer" bg="gray.900" color="white" py={4} textAlign="center">
-            <Container maxW="container.xl">
-              <VStack gap={2}>
-                <Text fontSize="sm">
-                  © {new Date().getFullYear()} Leonard Soda Blasting. All rights reserved.
-                </Text>
-                <Link href={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/admin`} target="_blank" rel="noopener noreferrer">
-                  <Button size="sm" colorScheme="green">
-                    Admin Login
-                  </Button>
-                </Link>
-              </VStack>
-            </Container>
-          </Box>
+          <Footer settings={settings} />
         </Providers>
       </body>
     </html>

@@ -41,6 +41,9 @@ export interface GlobalSettings {
   email?: string;
   address?: string;
   business_hours?: string;
+  ccb_number?: string;
+  service_areas?: string;
+  compliance_certifications?: string;
   social_facebook?: string;
   social_instagram?: string;
   social_linkedin?: string;

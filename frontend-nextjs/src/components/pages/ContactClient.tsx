@@ -48,7 +48,11 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
 
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
-  const adminEmail = 'greg@leonardsodablasting.com'
+  
+  // Use different email for local development vs production
+  const adminEmail = process.env.NODE_ENV === 'development' 
+    ? 'agency@theportlandcompany.com' 
+    : 'greg@leonardsodablasting.com'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -59,8 +63,50 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
 
     setIsSubmitting(true)
     
-    setTimeout(() => {
-      setIsSubmitting(false)
+    try {
+      // Prepare form data for submission
+      const emailData = {
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        projectType: formData.projectType,
+        projectDescription: formData.projectDescription,
+        location: formData.location,
+        timeline: formData.timeline
+      }
+
+      // Check if Supabase is configured for production
+      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
+      const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+      
+      if (supabaseUrl && supabaseUrl !== 'http://127.0.0.1:54321' && supabaseAnonKey) {
+        // Production Supabase setup
+        const functionUrl = `${supabaseUrl}/functions/v1/send-contact-email`
+        
+        const response = await fetch(functionUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${supabaseAnonKey}`
+          },
+          body: JSON.stringify(emailData)
+        })
+
+        const result = await response.json()
+
+        if (!response.ok) {
+          throw new Error(result.error || 'Failed to send email')
+        }
+
+        console.log('Email sent successfully via Supabase:', result)
+      } else {
+        // Demo mode - simulate successful submission for development
+        await new Promise(resolve => setTimeout(resolve, 2000))
+        console.log('Demo mode: Email would be sent to:', adminEmail)
+        console.log('Form data:', emailData)
+        console.log('To enable real email sending, set up Supabase production environment variables')
+      }
+      
       setIsSubmitted(true)
       setFormData({
         name: '',
@@ -71,7 +117,12 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
         location: '',
         timeline: ''
       })
-    }, 2000)
+    } catch (error) {
+      console.error('Email submission failed:', error)
+      alert(`Failed to send message: ${error.message}. Please try again or contact us directly.`)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleInputChange = (field: keyof FormData, value: string) => {
@@ -332,7 +383,7 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
                           Email
                         </Heading>
                         <Text fontSize="lg" fontFamily="Open Sans, sans-serif" fontWeight="bold">
-                          greg@leonardsodablasting.com
+                          {adminEmail}
                         </Text>
                         <Text fontSize="sm" color="gray.600" fontFamily="Open Sans, sans-serif">
                           We respond within 24 hours
