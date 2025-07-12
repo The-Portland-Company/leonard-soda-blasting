@@ -96,7 +96,23 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
   }, []);
 
   // Get services from the Home page services_cards field  
-  const displayServices = page?.services_cards;
+  const services = page?.services_cards;
+  
+  // Reorder services to put Log Homes in the center
+  const displayServices = services ? (() => {
+    const logHomesIndex = services.findIndex(service => service.title === 'Log Homes');
+    if (logHomesIndex === -1) return services; // If Log Homes not found, return original order
+    
+    // Create new array with Log Homes moved to middle position
+    const reorderedServices = [...services];
+    const logHomesService = reorderedServices.splice(logHomesIndex, 1)[0];
+    
+    // Insert Log Homes at the center position (index 1 for 3-column grid)
+    const centerIndex = Math.min(1, Math.floor(reorderedServices.length / 2));
+    reorderedServices.splice(centerIndex, 0, logHomesService);
+    
+    return reorderedServices;
+  })() : null;
 
   
   // Get content sections
@@ -195,6 +211,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                   columns={{ base: 1, md: 3 }} 
                   gap={8} 
                   w="100%"
+                  justifyItems="center"
                   key={`services-${displayServices.length}-${initialLoadComplete}`}
                 >
                 {displayServices.map((service, index) => {

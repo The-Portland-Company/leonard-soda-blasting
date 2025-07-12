@@ -34,12 +34,12 @@ export default function Footer({ settings }: FooterProps) {
           </Text>
           
           {/* Phone Number */}
-          <Link href={`tel:${phoneNumber}`} _hover={{ color: "green.300" }}>
+          <Link href={`tel:${phoneNumber}`} color="white">
             <Text>{phoneNumber}</Text>
           </Link>
           
           {/* Email */}
-          <Link href={`mailto:${email}`} _hover={{ color: "green.300" }}>
+          <Link href={`mailto:${email}`} color="white">
             <Text>{email}</Text>
           </Link>
           
