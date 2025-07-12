@@ -1,4 +1,5 @@
 - Never hard code page titles, meta titles, page content, menu items, etc...
+- Never execute npm run. Always ask the user to do that.
 
 # ⚠️ VERY IMPORTANT: Railway Deployment Database Configuration
 

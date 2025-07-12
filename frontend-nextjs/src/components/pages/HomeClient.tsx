@@ -71,7 +71,9 @@ const getServiceDescription = (service: { title: string; text?: string }): strin
   };
   
   // Check if service has meaningful text (not placeholder text)
-  if (service.text && !service.text.includes('text...') && service.text.trim().length > 10) {
+  // Only treat text as placeholder if it's exactly in the format "[Service Name] text..." 
+  const placeholderPattern = new RegExp(`^${service.title}\\s+text\\.\\.\\.?$`, 'i');
+  if (service.text && !placeholderPattern.test(service.text.trim()) && service.text.trim().length > 10) {
     return service.text;
   }
   
@@ -96,12 +98,13 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
   // Get services from the Home page services_cards field  
   const displayServices = page?.services_cards;
 
+  
   // Get content sections
   const heroSection = page?.content_sections?.find(section => section.type === 'hero');
   const aboutSection = page?.content_sections?.find(section => section.type === 'about_process');
   const latestWorkSection = page?.content_sections?.find(section => section.type === 'latest_work');
   const testimonialSection = page?.content_sections?.find(section => section.type === 'testimonial');
-  
+
   const featuredTestimonial = testimonials?.[0];
 
   return (

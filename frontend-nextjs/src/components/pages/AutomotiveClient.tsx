@@ -61,7 +61,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/automotive-hero.jpg')"
+        bgImage="url('https://leonardsodablasting.com/wp-content/uploads/2017/04/bronco-primed.jpg')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -118,8 +118,132 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/automotive-service.jpg"
+                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/auto-pg-img-2.jpg"
                 alt="Automotive Soda Blasting"
+                borderRadius="lg"
+              />
+            </Box>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Safe and Effective Section */}
+      <Box py={16}>
+        <Container maxW="container.xl">
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
+            <Box textAlign="center">
+              <Image 
+                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/chalk-marks.jpg"
+                alt="Safe and Effective"
+                borderRadius="lg"
+              />
+            </Box>
+            <VStack gap={6} align="flex-start">
+              <Heading 
+                as="h2"
+                color="#228b22"
+              >
+                Safe and Effective
+              </Heading>
+              <Text 
+                fontSize="xl" 
+                color="gray.700" 
+                fontFamily="Open Sans, sans-serif"
+                lineHeight="1.6"
+              >
+                Soda restores to a factory finish as you can see from these factory chalk marks visible after the soda blasting process.
+              </Text>
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Completely Professional Section */}
+      <Box bg="#228b22" py={16}>
+        <Container maxW="container.xl">
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
+            <VStack gap={6} align="flex-start">
+              <Heading 
+                as="h2"
+                color="white"
+              >
+                Completely Professional from Beginning to End
+              </Heading>
+              <Text 
+                fontSize="xl" 
+                color="white" 
+                fontFamily="Open Sans, sans-serif"
+                lineHeight="1.6"
+              >
+                We have a 16’×36′ blast shop located in Sherwood, Oregon for even your largest vehicles. We can also trailer projects if necessary. Priming is available.
+              </Text>
+            </VStack>
+            <Box textAlign="center">
+              <Image 
+                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/auto-pg-img-2.jpg"
+                alt="Completely Professional"
+                borderRadius="lg"
+              />
+            </Box>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Safe and Effective Section */}
+      <Box py={16}>
+        <Container maxW="container.xl">
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
+            <Box textAlign="center">
+              <Image 
+                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/chalk-marks.jpg"
+                alt="Safe and Effective"
+                borderRadius="lg"
+              />
+            </Box>
+            <VStack gap={6} align="flex-start">
+              <Heading 
+                as="h2"
+                color="#228b22"
+              >
+                Safe and Effective
+              </Heading>
+              <Text 
+                fontSize="xl" 
+                color="gray.700" 
+                fontFamily="Open Sans, sans-serif"
+                lineHeight="1.6"
+              >
+                Soda restores to a factory finish as you can see from these factory chalk marks visible after the soda blasting process.
+              </Text>
+            </VStack>
+          </SimpleGrid>
+        </Container>
+      </Box>
+
+      {/* Completely Professional Section */}
+      <Box bg="#228b22" py={16}>
+        <Container maxW="container.xl">
+          <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
+            <VStack gap={6} align="flex-start">
+              <Heading 
+                as="h2"
+                color="white"
+              >
+                Completely Professional from Beginning to End
+              </Heading>
+              <Text 
+                fontSize="xl" 
+                color="white" 
+                fontFamily="Open Sans, sans-serif"
+                lineHeight="1.6"
+              >
+                We have a 16’×36′ blast shop located in Sherwood, Oregon for even your largest vehicles. We can also trailer projects if necessary. Priming is available.
+              </Text>
+            </VStack>
+            <Box textAlign="center">
+              <Image 
+                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/auto-pg-img-2.jpg"
+                alt="Completely Professional"
                 borderRadius="lg"
               />
             </Box>
