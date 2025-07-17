@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Page } from '@/lib/directus';
 import {
   Box,
@@ -10,7 +11,6 @@ import {
   VStack,
   HStack,
   SimpleGrid,
-  Image,
   Button,
   Input,
   Textarea,
@@ -118,11 +118,16 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               </Text>
             </VStack>
             <Box textAlign="center">
-              <Image 
-                src="/assets/images/auto-pg-img-2.jpg"
-                alt="Automotive Soda Blasting"
-                borderRadius="lg"
-              />
+              <Box borderRadius="lg" overflow="hidden">
+                <Image 
+                  src="/assets/images/auto-pg-img-2.jpg"
+                  alt="Automotive Soda Blasting"
+                  width={600}
+                  height={400}
+                  style={{ objectFit: 'cover' }}
+                  priority
+                />
+              </Box>
             </Box>
           </SimpleGrid>
         </Container>
@@ -136,7 +141,6 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               <Image 
                 src="/assets/images/chalk-marks.jpg"
                 alt="Safe and Effective"
-                borderRadius="lg"
               />
             </Box>
             <VStack gap={6} align="flex-start">
@@ -183,7 +187,6 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               <Image 
                 src="/assets/images/auto-pg-img-2.jpg"
                 alt="Completely Professional"
-                borderRadius="lg"
               />
             </Box>
           </SimpleGrid>
@@ -198,7 +201,6 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               <Image 
                 src="/assets/images/chalk-marks.jpg"
                 alt="Safe and Effective"
-                borderRadius="lg"
               />
             </Box>
             <VStack gap={6} align="flex-start">
@@ -245,7 +247,6 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               <Image 
                 src="/assets/images/auto-pg-img-2.jpg"
                 alt="Completely Professional"
-                borderRadius="lg"
               />
             </Box>
           </SimpleGrid>

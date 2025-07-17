@@ -10,6 +10,8 @@
     "lint:fix": "next lint --fix",
     "typecheck": "tsc --noEmit",
     "pre-commit": "lint-staged",
+    "convert-images": "node scripts/convert-to-webp.js",
+    "prebuild": "npm run convert-images",
     "dev-logs": "next dev -p 3575 2>&1 | tee .nextjs_output.log"
   },
   "dependencies": {
@@ -33,6 +35,7 @@
     "eslint-config-next": "15.3.5",
     "husky": "^9.1.7",
     "lint-staged": "^15.2.11",
+    "sharp": "^0.34.3",
     "typescript": "^5"
   },
   "lint-staged": {
