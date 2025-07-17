@@ -1,11 +1,3 @@
-function getRequiredEnvVar(name: string): string {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`Missing required environment variable: ${name}`);
-  }
-  return value;
-}
-
 function getOptionalEnvVar(name: string, defaultValue: string): string {
   return process.env[name] || defaultValue;
 }
