@@ -63,7 +63,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
       
       {/* Hero Section with Slider */}
       <Box 
-        bgImage="url('/assets/images/crane-before.jpg')"
+        bgImage="url('/assets/images/commercial-industrial.jpg')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -121,7 +121,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/photogrid_1501703573726.png"
+                src="/assets/images/commercial-industrial.jpg"
                 alt="Commercial Soda Blasting"
                 borderRadius="lg"
               />
@@ -144,7 +144,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/crane-before.jpg"
+                src="/assets/images/commercial-industrial.jpg"
                 alt="Industrial Equipment"
                 borderRadius="lg"
               />
@@ -219,7 +219,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/img_20180109_101931_723.jpg"
+                src="/assets/images/food-processing-equipment.jpg"
                 alt="Equipment Cleaning"
                 borderRadius="lg"
               />
@@ -242,7 +242,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/paint-before-after.jpg"
+                src="/assets/images/water-before-after.jpg"
                 alt="Before and After"
                 borderRadius="lg"
               />
@@ -303,7 +303,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/img_20180109_101707_481-1.jpg"
+                src="/assets/images/commercial.jpg"
                 alt="Media Blasting"
                 borderRadius="lg"
               />
