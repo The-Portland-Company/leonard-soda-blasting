@@ -7,6 +7,9 @@
     "build": "next build",
     "start": "next start -p 3575",
     "lint": "next lint",
+    "lint:fix": "next lint --fix",
+    "typecheck": "tsc --noEmit",
+    "pre-commit": "lint-staged",
     "dev-logs": "next dev -p 3575 2>&1 | tee .nextjs_output.log"
   },
   "dependencies": {
@@ -28,6 +31,14 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.3.5",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.2.11",
     "typescript": "^5"
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint:fix",
+      "npm run typecheck"
+    ]
   }
 }

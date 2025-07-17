@@ -32,3 +32,5 @@ export function validateConfig(): void {
     throw new Error(`Missing required environment variables: ${missing.join(', ')}`);
   }
 }
+
+// Runtime configuration validation can be called manually if needed
