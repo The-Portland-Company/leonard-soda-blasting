@@ -1,7 +1,11 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: ['localhost', 'leonardsodablasting.com'],
+    domains: [
+      'localhost', 
+      ...(process.env.NEXT_PUBLIC_DIRECTUS_URL ? [new URL(process.env.NEXT_PUBLIC_DIRECTUS_URL).hostname] : []),
+      ...(process.env.NEXT_PUBLIC_IMAGE_DOMAINS ? process.env.NEXT_PUBLIC_IMAGE_DOMAINS.split(',') : ['leonardsodablasting.com'])
+    ].filter(Boolean),
   },
   output: 'standalone',
   experimental: {

@@ -1,4 +1,5 @@
 import { createDirectus, rest } from '@directus/sdk';
+import { config } from './config';
 
 export interface ContentSection {
   type: string;
@@ -91,10 +92,8 @@ export interface Schema {
   testimonials: Testimonial[];
 }
 
-const directusUrl = process.env.NEXT_PUBLIC_DIRECTUS_URL || 'http://localhost:8574';
-
 // Create Directus client
-export const directus = createDirectus<Schema>(directusUrl)
+export const directus = createDirectus<Schema>(config.directusUrl)
   .with(rest());
 
 // Helper function to get file URL - Railway workaround for ephemeral storage
@@ -113,6 +112,6 @@ export const getFileUrl = (fileId: string): string => {
   };
   
   // Return static asset path if available, otherwise try assets endpoint
-  return staticAssets[fileId] || `${directusUrl}/assets/${fileId}`;
+  return staticAssets[fileId] || `${config.directusUrl}/assets/${fileId}`;
 };
 

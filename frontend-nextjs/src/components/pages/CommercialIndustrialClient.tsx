@@ -16,6 +16,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import PhoneNumber from '../PhoneNumber';
+import { config } from '@/lib/config';
 
 interface CommercialIndustrialProps {
   page?: Page | null;
@@ -62,7 +63,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
       
       {/* Hero Section with Slider */}
       <Box 
-        bgImage="url('https://leonardsodablasting.com/wp-content/uploads/2017/04/crane-before.jpg')"
+        bgImage="url('/assets/images/crane-before.jpg')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -120,7 +121,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/photogrid_1501703573726.png"
+                src="/assets/images/photogrid_1501703573726.png"
                 alt="Commercial Soda Blasting"
                 borderRadius="lg"
               />
@@ -131,7 +132,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
 
       {/* Protect Your Investment Section */}
       <Box 
-        bgImage="url('https://leonardsodablasting.com/wp-content/uploads/2017/04/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.jpg')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -143,7 +144,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/crane-before.jpg"
+                src="/assets/images/crane-before.jpg"
                 alt="Industrial Equipment"
                 borderRadius="lg"
               />
@@ -218,7 +219,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/img_20180109_101931_723.jpg"
+                src="/assets/images/img_20180109_101931_723.jpg"
                 alt="Equipment Cleaning"
                 borderRadius="lg"
               />
@@ -229,7 +230,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
 
       {/* Professional Work Section */}
       <Box 
-        bgImage="url('https://leonardsodablasting.com/wp-content/uploads/2017/04/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.jpg')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -241,7 +242,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/paint-before-after.jpg"
+                src="/assets/images/paint-before-after.jpg"
                 alt="Before and After"
                 borderRadius="lg"
               />
@@ -302,7 +303,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/img_20180109_101707_481-1.jpg"
+                src="/assets/images/img_20180109_101707_481-1.jpg"
                 alt="Media Blasting"
                 borderRadius="lg"
               />

@@ -1,5 +1,6 @@
 import { Box, Container, VStack, Text, Link, Button } from '@chakra-ui/react';
 import { GlobalSettings } from '@/lib/directus';
+import { config } from '@/lib/config';
 
 interface FooterProps {
   settings: GlobalSettings | null;
@@ -11,7 +12,7 @@ export default function Footer({ settings }: FooterProps) {
   const ccbNumber = settings?.ccb_number || '97926';
   const serviceAreas = settings?.service_areas || 'Serving Oregon & Washington';
   const phoneNumber = settings?.phone_number || '(503) 850-2784';
-  const email = settings?.email || 'greg@leonardsodablasting.com';
+  const email = settings?.email || config.adminEmail;
   const compliance = settings?.compliance_certifications || 'FDA, OSHA, EPA, USDA COMPLIANT';
 
   return (

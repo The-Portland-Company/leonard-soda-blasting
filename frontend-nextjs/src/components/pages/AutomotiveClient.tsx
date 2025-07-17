@@ -16,6 +16,7 @@ import {
   Textarea,
 } from '@chakra-ui/react';
 import PhoneNumber from '../PhoneNumber';
+import { config } from '@/lib/config';
 
 interface AutomotiveProps {
   page?: Page | null;
@@ -29,7 +30,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
     project: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const adminEmail = config.adminEmail;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -61,7 +62,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('https://leonardsodablasting.com/wp-content/uploads/2017/04/bronco-primed.jpg')"
+        bgImage="url('/assets/images/bronco-primed.jpg')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -118,7 +119,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/auto-pg-img-2.jpg"
+                src="/assets/images/auto-pg-img-2.jpg"
                 alt="Automotive Soda Blasting"
                 borderRadius="lg"
               />
@@ -133,7 +134,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/chalk-marks.jpg"
+                src="/assets/images/chalk-marks.jpg"
                 alt="Safe and Effective"
                 borderRadius="lg"
               />
@@ -180,7 +181,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/auto-pg-img-2.jpg"
+                src="/assets/images/auto-pg-img-2.jpg"
                 alt="Completely Professional"
                 borderRadius="lg"
               />
@@ -195,7 +196,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/chalk-marks.jpg"
+                src="/assets/images/chalk-marks.jpg"
                 alt="Safe and Effective"
                 borderRadius="lg"
               />
@@ -242,7 +243,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="https://leonardsodablasting.com/wp-content/uploads/2017/04/auto-pg-img-2.jpg"
+                src="/assets/images/auto-pg-img-2.jpg"
                 alt="Completely Professional"
                 borderRadius="lg"
               />

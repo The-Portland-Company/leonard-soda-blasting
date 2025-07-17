@@ -12,6 +12,7 @@ import {
   Button,
 } from '@chakra-ui/react'
 import PhoneNumber from '@/components/PhoneNumber'
+import { config } from '@/lib/config'
 
 interface GalleryItem {
   id: string
@@ -397,7 +398,7 @@ const GalleryClient: React.FC<GalleryClientProps> = ({ page }) => {
                 📞 (503) 894-5973
               </Text>
               <Text fontSize="lg" color="#228b22">
-                greg@leonardsodablasting.com
+                {config.adminEmail}
               </Text>
             </VStack>
           </VStack>

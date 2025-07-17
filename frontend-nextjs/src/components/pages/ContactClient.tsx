@@ -13,6 +13,7 @@ import {
   Textarea,
 } from '@chakra-ui/react'
 import PhoneNumber from '@/components/PhoneNumber'
+import { config } from '@/lib/config'
 
 interface FormData {
   name: string
@@ -49,10 +50,7 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
   
-  // Use different email for local development vs production
-  const adminEmail = process.env.NODE_ENV === 'development' 
-    ? 'agency@theportlandcompany.com' 
-    : 'greg@leonardsodablasting.com'
+  const adminEmail = config.adminEmail
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -76,18 +74,15 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
       }
 
       // Check if Supabase is configured for production
-      const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
-      const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
-      
-      if (supabaseUrl && supabaseUrl !== 'http://127.0.0.1:54321' && supabaseAnonKey) {
+      if (config.supabaseUrl && !config.isDevelopment && config.supabaseAnonKey) {
         // Production Supabase setup
-        const functionUrl = `${supabaseUrl}/functions/v1/send-contact-email`
+        const functionUrl = `${config.supabaseUrl}/functions/v1/send-contact-email`
         
         const response = await fetch(functionUrl, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${supabaseAnonKey}`
+            'Authorization': `Bearer ${config.supabaseAnonKey}`
           },
           body: JSON.stringify(emailData)
         })
@@ -117,9 +112,15 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
         location: '',
         timeline: ''
       })
-    } catch (error) {
-      console.error('Email submission failed:', error)
-      alert(`Failed to send message: ${error.message}. Please try again or contact us directly.`)
+    } catch (error: unknown) {
+      console.error('Email submission failed:', error);
+      let errorMessage = 'An unknown error occurred.';
+      if (error instanceof Error) {
+        errorMessage = error.message;
+      } else if (typeof error === 'string') {
+        errorMessage = error;
+      }
+      alert(`Failed to send message: ${errorMessage}. Please try again or contact us directly.`);
     } finally {
       setIsSubmitting(false)
     }
