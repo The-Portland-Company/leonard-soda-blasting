@@ -22,8 +22,8 @@ export interface AppConfig {
 export const config: AppConfig = {
   frontendUrl: getOptionalEnvVar('NEXT_PUBLIC_FRONTEND_URL', 'http://localhost:3000'),
   directusUrl: getOptionalEnvVar('NEXT_PUBLIC_DIRECTUS_URL', 'http://localhost:8574'),
-  supabaseUrl: getRequiredEnvVar('NEXT_PUBLIC_SUPABASE_URL'),
-  supabaseAnonKey: getRequiredEnvVar('NEXT_PUBLIC_SUPABASE_ANON_KEY'),
+  supabaseUrl: getOptionalEnvVar('NEXT_PUBLIC_SUPABASE_URL', 'https://wqqouhawtmibmvcdkypw.supabase.co'),
+  supabaseAnonKey: getOptionalEnvVar('NEXT_PUBLIC_SUPABASE_ANON_KEY', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndxcW91aGF3dG1pYm12Y2RreXB3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTIyNjcyNzYsImV4cCI6MjA2Nzg0MzI3Nn0._aP2Jbt-gtUclisdeM1oNkXoEiJr2MHFh8R4sMA4o48'),
   adminEmail: getOptionalEnvVar('NEXT_PUBLIC_ADMIN_EMAIL', 'info@leonardsodablasting.com'),
   isDevelopment: process.env.NODE_ENV === 'development',
 };
