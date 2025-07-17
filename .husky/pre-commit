@@ -1,0 +1,23 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🔍 Running pre-commit checks..."
+
+# Change to frontend-nextjs directory and run checks
+cd frontend-nextjs
+
+# Run ESLint
+echo "📝 Running ESLint..."
+if ! npm run lint; then
+    echo "❌ ESLint failed! Please fix the linting errors before committing."
+    exit 1
+fi
+
+# Run TypeScript type checking
+echo "🔧 Running TypeScript type checking..."
+if ! npm run typecheck; then
+    echo "❌ TypeScript type checking failed! Please fix the type errors before committing."
+    exit 1
+fi
+
+echo "✅ All pre-commit checks passed!"
