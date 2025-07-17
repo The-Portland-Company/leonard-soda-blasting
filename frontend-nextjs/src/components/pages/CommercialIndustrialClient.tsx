@@ -30,7 +30,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
     project: ''
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const adminEmail = process.env.NEXT_PUBLIC_ADMIN_EMAIL;
+  const adminEmail = config.adminEmail;
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
