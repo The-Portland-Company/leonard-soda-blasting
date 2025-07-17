@@ -1,8 +1,9 @@
 const axios = require('axios');
+const config = require('./config');
 
-const DIRECTUS_URL = 'http://localhost:8055';
-const ADMIN_EMAIL = 'agency@theportlandcompany.com';
-const ADMIN_PASSWORD = 'J9u76asecdst!';
+const DIRECTUS_URL = config.directusAdminUrl;
+const ADMIN_EMAIL = config.adminEmail;
+const ADMIN_PASSWORD = config.adminPassword;
 
 async function quickPermissionsFix() {
   try {

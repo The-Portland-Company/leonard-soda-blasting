@@ -50,15 +50,10 @@ Deno.serve(async (req) => {
 
     // Determine recipient email based on environment
     const isDevelopment = Deno.env.get('ENVIRONMENT') === 'development'
+    const adminEmail = Deno.env.get('ADMIN_EMAIL') || 'info@leonardsodablasting.com'
     
-    // For Resend testing without verified domain, send to verified email
-    // Change this to the actual recipient email once domain is verified
-    const recipientEmail = 'leonardsodablasting@theportlandcompany.com' // Resend verified email
-    
-    // Will use these once domain is verified:
-    // const recipientEmail = isDevelopment 
-    //   ? 'agency@theportlandcompany.com' 
-    //   : 'greg@leonardsodablasting.com'
+    // Use environment variable for recipient email
+    const recipientEmail = adminEmail
 
     // Create email content
     const emailSubject = `New Contact Form Submission from ${formData.name}`
@@ -97,14 +92,15 @@ Deno.serve(async (req) => {
     `
 
     // Send email via Resend
-    const resendResponse = await fetch('https://api.resend.com/emails', {
+    const resendApiUrl = Deno.env.get('RESEND_API_URL') || 'https://api.resend.com/emails'
+    const resendResponse = await fetch(resendApiUrl, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${RESEND_API_KEY}`,
       },
       body: JSON.stringify({
-        from: 'onboarding@resend.dev', // Using Resend's default domain until leonardsodablasting.com is verified
+        from: Deno.env.get('RESEND_FROM_EMAIL') || 'onboarding@resend.dev',
         to: recipientEmail,
         subject: emailSubject,
         html: emailHtml,
@@ -170,7 +166,7 @@ Deno.serve(async (req) => {
   
   3. Make an HTTP request:
 
-  curl -i --location --request POST 'http://127.0.0.1:54321/functions/v1/send-contact-email' \
+  curl -i --location --request POST '${Deno.env.get('SUPABASE_URL') || 'http://127.0.0.1:54321'}/functions/v1/send-contact-email' \
     --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZS1kZW1vIiwicm9sZSI6ImFub24iLCJleHAiOjE5ODM4MTI5OTZ9.CRXP1A7WOeoJeXxjNni43kdQwgnWNReilDMblYTn_I0' \
     --header 'Content-Type: application/json' \
     --data '{
