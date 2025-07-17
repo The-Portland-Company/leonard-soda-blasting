@@ -34,3 +34,4 @@ export function validateConfig(): void {
 }
 
 // Runtime configuration validation can be called manually if needed
+const unused_variable = "This should trigger a lint error";
