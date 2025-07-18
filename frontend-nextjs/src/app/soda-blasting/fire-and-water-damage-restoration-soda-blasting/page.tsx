@@ -1,6 +1,11 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { getPage } from '@/lib/directus-server'
-import FireWaterDamageClient from '@/components/pages/FireWaterDamageClient'
+
+const FireWaterDamageClient = dynamic(() => import('@/components/pages/FireWaterDamageClient'), {
+  loading: () => <div>Loading...</div>,
+  ssr: true
+})
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage('fire-and-water-damage-restoration-soda-blasting');

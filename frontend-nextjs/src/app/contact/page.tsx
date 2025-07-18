@@ -1,6 +1,11 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { getPage, getGlobalSettings } from '@/lib/directus-server'
-import ContactClient from '@/components/pages/ContactClient'
+
+const ContactClient = dynamic(() => import('@/components/pages/ContactClient'), {
+  loading: () => <div>Loading contact form...</div>,
+  ssr: true
+})
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage('contact');

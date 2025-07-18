@@ -1,6 +1,11 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { getPage } from '@/lib/directus-server'
-import FoodProcessingClient from '@/components/pages/FoodProcessingClient'
+
+const FoodProcessingClient = dynamic(() => import('@/components/pages/FoodProcessingClient'), {
+  loading: () => <div>Loading...</div>,
+  ssr: true
+})
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage('food-processing-equipment');

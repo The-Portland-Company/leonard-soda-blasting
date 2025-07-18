@@ -54,14 +54,12 @@ export default function Footer({ settings }: FooterProps) {
             © {new Date().getFullYear()} {businessName}. All rights reserved.
           </Text>
           
-          {/* Admin Login - Only show in development */}
-          {process.env.NODE_ENV === 'development' && (
-            <Link href={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/admin`} target="_blank" rel="noopener noreferrer">
-              <Button size="sm" colorScheme="green" mt={2}>
-                Admin Login
-              </Button>
-            </Link>
-          )}
+          {/* Admin Login */}
+          <Link href={`${process.env.NEXT_PUBLIC_DIRECTUS_URL}/admin`} target="_blank" rel="noopener noreferrer">
+            <Button size="sm" colorScheme="green" mt={2}>
+              Admin Login
+            </Button>
+          </Link>
         </VStack>
       </Container>
     </Box>

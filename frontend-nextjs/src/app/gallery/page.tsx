@@ -1,7 +1,12 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { getPage, getGlobalSettings } from '@/lib/directus-server'
-import GalleryClient from '@/components/pages/GalleryClient'
 import Script from 'next/script'
+
+const GalleryClient = dynamic(() => import('@/components/pages/GalleryClient'), {
+  loading: () => <div>Loading gallery...</div>,
+  ssr: true
+})
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage('gallery');

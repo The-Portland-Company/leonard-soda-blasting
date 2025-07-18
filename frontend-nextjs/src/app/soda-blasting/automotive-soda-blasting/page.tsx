@@ -1,6 +1,11 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import { getPage } from '@/lib/directus-server'
-import AutomotiveClient from '@/components/pages/AutomotiveClient'
+
+const AutomotiveClient = dynamic(() => import('@/components/pages/AutomotiveClient'), {
+  loading: () => <div>Loading...</div>,
+  ssr: true
+})
 
 export async function generateMetadata(): Promise<Metadata> {
   const page = await getPage('automotive-soda-blasting');
