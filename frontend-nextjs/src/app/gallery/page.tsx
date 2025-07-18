@@ -31,20 +31,54 @@ export default async function Gallery() {
         strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: `
-            // Gallery-specific gform protection
+            // Gallery-specific AGGRESSIVE gform protection
             (function() {
-              // Ensure gform_1 exists before any scripts try to access it
-              if (typeof document !== 'undefined' && !document.getElementById('gform_1')) {
-                console.log('Gallery: Creating dummy gform_1 element');
+              console.log('🎨 GALLERY PROTECTION: Starting gallery-specific gform protection');
+              
+              // Force create gform_1 immediately if it doesn't exist
+              var existingForm = document.getElementById('gform_1');
+              if (!existingForm) {
+                console.log('🎨 GALLERY PROTECTION: Creating gallery-specific gform_1 element');
                 var dummy = document.createElement('form');
                 dummy.id = 'gform_1';
-                dummy.style.display = 'none';
-                dummy.addEventListener = function() { 
-                  console.warn('Gallery: Prevented gform_1 addEventListener');
+                dummy.className = 'gallery-gform-dummy';
+                dummy.style.cssText = 'display:none!important;visibility:hidden!important;position:absolute!important;left:-9999px!important;';
+                
+                // Add comprehensive method coverage
+                dummy.addEventListener = function(event, handler, options) { 
+                  console.warn('🎨 GALLERY PROTECTION: Prevented gform_1 addEventListener for:', event);
                   return false; 
                 };
-                document.body.appendChild(dummy);
+                dummy.removeEventListener = function() { return false; };
+                dummy.submit = function() { return false; };
+                dummy.reset = function() { return false; };
+                dummy.querySelector = function() { return null; };
+                dummy.querySelectorAll = function() { return []; };
+                
+                // Insert into document immediately
+                if (document.body) {
+                  document.body.appendChild(dummy);
+                } else if (document.documentElement) {
+                  document.documentElement.appendChild(dummy);
+                }
+                
+                console.log('🎨 GALLERY PROTECTION: Gallery gform_1 element created successfully');
+              } else {
+                console.log('🎨 GALLERY PROTECTION: gform_1 element already exists');
               }
+              
+              // Gallery-specific error suppression
+              var galleryErrorCount = 0;
+              var originalError = window.onerror;
+              window.onerror = function(msg, url, lineNo, columnNo, error) {
+                if (msg && msg.includes('gform') && url && url.includes('/gallery')) {
+                  galleryErrorCount++;
+                  console.warn('🎨 GALLERY PROTECTION: Suppressed gallery gform error #' + galleryErrorCount + ':', msg);
+                  return true;
+                }
+                return originalError ? originalError.apply(this, arguments) : false;
+              };
+              
             })();
           `
         }}

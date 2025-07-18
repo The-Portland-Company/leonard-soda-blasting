@@ -126,6 +126,8 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
                   height={400}
                   style={{ objectFit: 'cover' }}
                   priority
+                  fetchPriority="high"
+                  loading="eager"
                 />
               </Box>
             </Box>

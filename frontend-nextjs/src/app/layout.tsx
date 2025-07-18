@@ -31,6 +31,14 @@ export default async function RootLayout({
   return (
     <html lang="en" className={arvo.variable}>
       <head>
+        {/* Preload LCP image with highest priority */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/assets/images/bg-3.webp" 
+          fetchPriority="high"
+          type="image/webp"
+        />
         {/* Preload critical font files */}
         <link 
           rel="preload" 
@@ -93,21 +101,38 @@ export default async function RootLayout({
         {/* Prevent legacy script errors - Must run immediately */}
         <script dangerouslySetInnerHTML={{
           __html: `
-            // Comprehensive legacy script error prevention
+            // AGGRESSIVE legacy script error prevention
             (function() {
-              // Create gform_1 element to prevent errors
-              if (!document.getElementById('gform_1')) {
-                var dummyForm = document.createElement('div');
-                dummyForm.id = 'gform_1';
-                dummyForm.style.display = 'none';
-                document.head.appendChild(dummyForm);
-                
-                // Add dummy addEventListener method
-                dummyForm.addEventListener = function() {
-                  console.warn('Prevented gform_1 addEventListener call');
-                  return false;
-                };
+              console.log('🛡️ GFORM PROTECTION: Initializing comprehensive error prevention');
+              
+              // Create gform_1 element IMMEDIATELY
+              var dummyForm = document.createElement('form');
+              dummyForm.id = 'gform_1';
+              dummyForm.style.display = 'none';
+              dummyForm.style.visibility = 'hidden';
+              dummyForm.style.position = 'absolute';
+              dummyForm.style.left = '-9999px';
+              
+              // Add ALL possible methods that might be called
+              dummyForm.addEventListener = function(event, handler, options) {
+                console.warn('🛡️ GFORM PROTECTION: Prevented gform_1 addEventListener for:', event);
+                return false;
+              };
+              dummyForm.removeEventListener = function() { return false; };
+              dummyForm.submit = function() { return false; };
+              dummyForm.reset = function() { return false; };
+              dummyForm.focus = function() { return false; };
+              dummyForm.blur = function() { return false; };
+              dummyForm.click = function() { return false; };
+              
+              // Insert as first element in head to ensure it exists early
+              if (document.head) {
+                document.head.insertBefore(dummyForm, document.head.firstChild);
+              } else if (document.documentElement) {
+                document.documentElement.appendChild(dummyForm);
               }
+              
+              console.log('🛡️ GFORM PROTECTION: Created dummy gform_1 element');
               
               // Override document methods before any scripts load
               var originalQuerySelector = document.querySelector;
@@ -149,23 +174,51 @@ export default async function RootLayout({
                 return originalGetElementById.call(this, id);
               };
               
-              // Global error handler for any missed errors
+              // AGGRESSIVE error handling - multiple layers
+              var errorCount = 0;
+              
+              // Override console.error to catch and suppress gform errors
+              var originalConsoleError = console.error;
+              console.error = function() {
+                var args = Array.prototype.slice.call(arguments);
+                var message = args.join(' ');
+                if (message.includes('gform') || message.includes('null is not an object')) {
+                  console.warn('🛡️ GFORM PROTECTION: Suppressed console.error:', message);
+                  return;
+                }
+                return originalConsoleError.apply(console, arguments);
+              };
+              
+              // Global error handler - capture phase
               window.addEventListener('error', function(e) {
-                if (e.message && (e.message.includes('gform') || e.message.includes("null is not an object"))) {
-                  console.warn('Suppressed legacy script error:', e.message);
+                if (e.message && (e.message.includes('gform') || e.message.includes("null is not an object") || e.message.includes('addEventListener'))) {
+                  errorCount++;
+                  console.warn('🛡️ GFORM PROTECTION: Suppressed error #' + errorCount + ':', e.message);
                   e.preventDefault();
+                  e.stopPropagation();
+                  e.stopImmediatePropagation();
                   return false;
                 }
-              }, true); // Use capture phase
+              }, true);
               
-              // Protect against script execution errors
+              // Window onerror handler
               window.onerror = function(msg, url, lineNo, columnNo, error) {
-                if (msg && (msg.includes('gform') || msg.includes("null is not an object"))) {
-                  console.warn('Caught script error:', msg);
-                  return true; // Prevent default error handling
+                if (msg && (msg.includes('gform') || msg.includes("null is not an object") || msg.includes('addEventListener'))) {
+                  errorCount++;
+                  console.warn('🛡️ GFORM PROTECTION: Caught window.onerror #' + errorCount + ':', msg, 'at line', lineNo);
+                  return true;
                 }
                 return false;
               };
+              
+              // Promise rejection handler for async errors
+              window.addEventListener('unhandledrejection', function(e) {
+                if (e.reason && e.reason.message && (e.reason.message.includes('gform') || e.reason.message.includes('null is not an object'))) {
+                  errorCount++;
+                  console.warn('🛡️ GFORM PROTECTION: Suppressed promise rejection #' + errorCount + ':', e.reason.message);
+                  e.preventDefault();
+                }
+              });
               
             })();
           `

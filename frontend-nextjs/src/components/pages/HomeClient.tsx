@@ -183,6 +183,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
           quality={85}
           priority
           loading="eager"
+          fetchPriority="high"
           sizes="100vw"
         />
         <Box id="main-content-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.300" zIndex={0} />
@@ -245,6 +246,8 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                             aspectRatio: '1/1'
                           }}
                           priority={index < 3}
+                          fetchPriority={index === 0 ? "high" : index < 3 ? "auto" : "low"}
+                          loading={index < 3 ? "eager" : "lazy"}
                           />
                       )}
                       <Link href={getServiceUrl(service.service_page || getServiceIdByTitle(service.title))}>
@@ -287,6 +290,8 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                   height={400}
                   style={{ objectFit: 'cover', borderRadius: '8px', width: '100%' }}
                   className="image-slide-left"
+                  loading="lazy"
+                  fetchPriority="low"
                 />
               </Box>
               <VStack id="about-content" gap={6} align="flex-start">
