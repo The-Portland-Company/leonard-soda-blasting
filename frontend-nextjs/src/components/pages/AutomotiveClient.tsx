@@ -62,7 +62,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/bronco-primed.jpg')"
+        bgImage="url('/assets/images/bronco-primed.webp')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -120,7 +120,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
             <Box textAlign="center">
               <Box borderRadius="lg" overflow="hidden">
                 <Image 
-                  src="/assets/images/auto-pg-img-2.jpg"
+                  src="/assets/images/auto-pg-img-2.webp"
                   alt="Automotive Soda Blasting"
                   width={600}
                   height={400}

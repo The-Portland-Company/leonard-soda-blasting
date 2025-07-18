@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Page } from '@/lib/directus';
 import {
   Box,
@@ -10,7 +11,6 @@ import {
   VStack,
   HStack,
   SimpleGrid,
-  Image,
   Button,
   Input,
   Textarea,
@@ -63,7 +63,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
       
       {/* Hero Section with Slider */}
       <Box 
-        bgImage="url('/assets/images/commercial-industrial.jpg')"
+        bgImage="url('/assets/images/commercial-industrial.webp')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -120,11 +120,15 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
               </Text>
             </VStack>
             <Box textAlign="center">
-              <Image 
-                src="/assets/images/commercial-industrial.jpg"
-                alt="Commercial Soda Blasting"
-                borderRadius="lg"
-              />
+              <Box borderRadius="lg" overflow="hidden">
+                <Image 
+                  src="/assets/images/commercial-industrial.webp"
+                  alt="Commercial Soda Blasting"
+                  width={600}
+                  height={400}
+                  style={{ objectFit: 'cover' }}
+                />
+              </Box>
             </Box>
           </SimpleGrid>
         </Container>
@@ -132,7 +136,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
 
       {/* Protect Your Investment Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -144,9 +148,8 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/commercial-industrial.jpg"
+                src="/assets/images/commercial-industrial.webp"
                 alt="Industrial Equipment"
-                borderRadius="lg"
               />
             </Box>
             <VStack gap={6} align="flex-start">
@@ -219,9 +222,8 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/food-processing-equipment.jpg"
+                src="/assets/images/food-processing-equipment.webp"
                 alt="Equipment Cleaning"
-                borderRadius="lg"
               />
             </Box>
           </SimpleGrid>
@@ -230,7 +232,7 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
 
       {/* Professional Work Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -242,9 +244,8 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/water-before-after.jpg"
+                src="/assets/images/water-before-after.webp"
                 alt="Before and After"
-                borderRadius="lg"
               />
             </Box>
             <VStack gap={6} align="flex-start">
@@ -303,9 +304,8 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/commercial.jpg"
+                src="/assets/images/commercial.webp"
                 alt="Media Blasting"
-                borderRadius="lg"
               />
             </Box>
           </SimpleGrid>
