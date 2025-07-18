@@ -180,9 +180,10 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
             zIndex: -1,
             backgroundAttachment: 'fixed',
           }}
-          quality={100}
+          quality={85}
           priority
-          fetchPriority="high"
+          loading="eager"
+          sizes="100vw"
         />
         <Box id="main-content-overlay" position="absolute" top={0} left={0} w="100%" h="100%" bg="blackAlpha.300" zIndex={0} />
         <Container id="main-content-container" maxW="container.xl" position="relative" zIndex={1}>
@@ -215,7 +216,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                 >
                 {displayServices.map((service, index) => {
                   const imageSrc = service.image 
-                    ? getFileUrl(service.image) 
+                    ? getFileUrl(service.image, 'mobile') 
                     : null;
                   
                   return (
@@ -232,9 +233,18 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                         <NextImage 
                           src={imageSrc}
                           alt={service.title}
-                          width={400}
-                          height={300}
-                          style={{ objectFit: 'cover', borderRadius: '6px', width: '100%', height: 'auto' }}
+                          width={354}
+                          height={354}
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 354px"
+                          quality={75}
+                          style={{ 
+                            objectFit: 'cover', 
+                            borderRadius: '6px', 
+                            width: '100%', 
+                            height: 'auto',
+                            aspectRatio: '1/1'
+                          }}
+                          priority={index < 3}
                           />
                       )}
                       <Link href={getServiceUrl(service.service_page || getServiceIdByTitle(service.title))}>
