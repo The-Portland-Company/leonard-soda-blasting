@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Page } from '@/lib/directus';
 import {
   Box,
@@ -10,7 +11,6 @@ import {
   VStack,
   HStack,
   SimpleGrid,
-  Image,
   Button,
   Input,
   Textarea,
@@ -61,7 +61,7 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/boat-1.jpg')"
+        bgImage="url('/assets/images/boat-1.webp')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -118,9 +118,11 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/boat-after.jpg"
+                src="/assets/images/boat-after.webp"
                 alt="Boat and Marine Restoration"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
           </SimpleGrid>
@@ -129,7 +131,7 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
 
       {/* Benefits Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -250,9 +252,11 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/boat-before.jpg"
+                src="/assets/images/boat-before.webp"
                 alt="Marine Services"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
           </SimpleGrid>
@@ -261,7 +265,7 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
 
       {/* Process Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -273,9 +277,11 @@ const BoatMarineClient: React.FC<BoatMarineProps> = ({ page }) => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/boat-1.jpg"
+                src="/assets/images/boat-1.webp"
                 alt="Marine Restoration Process"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
             <VStack gap={6} align="flex-start">

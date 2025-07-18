@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import Image from 'next/image'
 import {
   Box,
   Container,
@@ -7,7 +8,6 @@ import {
   Text,
   VStack,
   SimpleGrid,
-  Image,
   HStack,
   Button,
 } from '@chakra-ui/react'
@@ -124,7 +124,7 @@ const GalleryClient: React.FC<GalleryClientProps> = ({ page }) => {
     <Box>
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/about.jpg')"
+        bgImage="url('/assets/images/about.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -229,10 +229,9 @@ const GalleryClient: React.FC<GalleryClientProps> = ({ page }) => {
                     <Image 
                       src={item.src} 
                       alt={item.alt}
-                      w="100%"
-                      h="auto"
-                      aspectRatio={4/3}
-                      objectFit="cover"
+                      width={400}
+                      height={300}
+                      style={{ objectFit: 'cover', width: '100%', height: 'auto' }}
                     />
                     <Box
                       position="absolute"
@@ -325,9 +324,9 @@ const GalleryClient: React.FC<GalleryClientProps> = ({ page }) => {
             <Image 
               src={selectedImage.src} 
               alt={selectedImage.alt}
-              w="100%"
-              maxH="500px"
-              objectFit="cover"
+              width={800}
+              height={500}
+              style={{ objectFit: 'cover', width: '100%', maxHeight: '500px' }}
             />
             <Box p={6}>
               <VStack gap={4} align="flex-start">

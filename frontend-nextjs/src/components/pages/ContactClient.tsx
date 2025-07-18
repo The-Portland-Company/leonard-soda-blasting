@@ -134,7 +134,7 @@ const ContactClient: React.FC<ContactClientProps> = ({ page }) => {
     <Box>
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/about.jpg')"
+        bgImage="url('/assets/images/about.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"

@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Page } from '@/lib/directus';
 import {
   Box,
@@ -10,7 +11,6 @@ import {
   VStack,
   HStack,
   SimpleGrid,
-  Image,
   Button,
   Input,
   Textarea,
@@ -61,7 +61,7 @@ const FoodProcessingClient: React.FC<FoodProcessingProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/food-processing-equipment.jpg')"
+        bgImage="url('/assets/images/food-processing-equipment.webp')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -118,9 +118,11 @@ const FoodProcessingClient: React.FC<FoodProcessingProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/food-processing-equipment.jpg"
+                src="/assets/images/food-processing-equipment.webp"
                 alt="Food Processing Equipment Cleaning"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
           </SimpleGrid>
@@ -129,7 +131,7 @@ const FoodProcessingClient: React.FC<FoodProcessingProps> = ({ page }) => {
 
       {/* Benefits Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -250,9 +252,11 @@ const FoodProcessingClient: React.FC<FoodProcessingProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/food-processing-before-1024x760.jpg"
+                src="/assets/images/food-processing-before-1024x760.webp"
                 alt="Food Equipment Applications"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
           </SimpleGrid>

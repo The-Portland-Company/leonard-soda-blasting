@@ -11,7 +11,6 @@ import {
   Text,
   Button,
   SimpleGrid,
-  Image,
   VStack,
   AspectRatio,
 } from '@chakra-ui/react';
@@ -168,7 +167,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
         position="relative"
       >
         <NextImage
-          src="/assets/images/bg-3.jpg"
+          src="/assets/images/bg-3.webp"
           alt="Background"
           fill
           style={{
@@ -230,14 +229,12 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
                       textAlign="center"
                     >
                       {imageSrc && (
-                        <Image 
+                        <NextImage 
                           src={imageSrc}
                           alt={service.title}
-                          borderRadius="md"
-                          w="100%"
-                          h="auto"
-                          aspectRatio={4/3}
-                          objectFit="cover"
+                          width={400}
+                          height={300}
+                          style={{ objectFit: 'cover', borderRadius: '6px', width: '100%', height: 'auto' }}
                           />
                       )}
                       <Link href={getServiceUrl(service.service_page || getServiceIdByTitle(service.title))}>
@@ -273,11 +270,12 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
           <Container id="about-container" maxW="container.xl">
             <SimpleGrid id="about-grid" columns={{ base: 1, md: 2 }} gap={12} alignItems="center">
               <Box id="about-image-container">
-                <Image 
-                  src="/assets/images/about.jpg" 
+                <NextImage 
+                  src="/assets/images/about.webp" 
                   alt="Soda blasting process"
-                  borderRadius="lg"
-                  w="100%"
+                  width={600}
+                  height={400}
+                  style={{ objectFit: 'cover', borderRadius: '8px', width: '100%' }}
                   className="image-slide-left"
                 />
               </Box>
@@ -352,7 +350,7 @@ const HomeClient: React.FC<HomeClientProps> = ({ page, settings, testimonials })
       {(featuredTestimonial || testimonialSection) && (
         <Box 
           id="testimonial-section"
-          bgImage="url('/assets/images/quotebg.jpg')"
+          bgImage="url('/assets/images/quotebg.webp')"
           backgroundAttachment={{ base: "scroll", md: "fixed" }}
           backgroundPosition="center"
           backgroundRepeat="no-repeat"

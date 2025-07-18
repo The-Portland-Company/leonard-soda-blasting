@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Page } from '@/lib/directus';
 import {
   Box,
@@ -10,7 +11,6 @@ import {
   VStack,
   HStack,
   SimpleGrid,
-  Image,
   Button,
   Input,
   Textarea,
@@ -61,7 +61,7 @@ const AircraftClient: React.FC<AircraftProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/aircraft.jpg')"
+        bgImage="url('/assets/images/aircraft.webp')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -118,9 +118,11 @@ const AircraftClient: React.FC<AircraftProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/dc-10.jpg"
+                src="/assets/images/dc-10.webp"
                 alt="Aircraft Soda Blasting"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
           </SimpleGrid>
@@ -129,7 +131,7 @@ const AircraftClient: React.FC<AircraftProps> = ({ page }) => {
 
       {/* Benefits Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -250,9 +252,11 @@ const AircraftClient: React.FC<AircraftProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/airplane-detail.jpg"
+                src="/assets/images/airplane-detail.webp"
                 alt="Aircraft Restoration Services"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
           </SimpleGrid>

@@ -139,7 +139,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/chalk-marks.jpg"
+                src="/assets/images/chalk-marks.webp"
                 alt="Safe and Effective"
               />
             </Box>
@@ -185,7 +185,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/auto-pg-img-2.jpg"
+                src="/assets/images/auto-pg-img-2.webp"
                 alt="Completely Professional"
               />
             </Box>
@@ -199,7 +199,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/chalk-marks.jpg"
+                src="/assets/images/chalk-marks.webp"
                 alt="Safe and Effective"
               />
             </Box>
@@ -245,7 +245,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/auto-pg-img-2.jpg"
+                src="/assets/images/auto-pg-img-2.webp"
                 alt="Completely Professional"
               />
             </Box>
@@ -255,7 +255,7 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
 
       {/* Services Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"

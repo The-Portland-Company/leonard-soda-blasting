@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Page } from '@/lib/directus';
 import {
   Box,
@@ -10,7 +11,6 @@ import {
   VStack,
   HStack,
   SimpleGrid,
-  Image,
   Button,
   Input,
   Textarea,
@@ -61,7 +61,7 @@ const LogHomeClient: React.FC<LogHomeProps> = ({ page }) => {
       
       {/* Hero Section */}
       <Box 
-        bgImage="url('/assets/images/log-home-header.jpg')"
+        bgImage="url('/assets/images/log-home-header.webp')"
         backgroundPosition="top"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -118,9 +118,11 @@ const LogHomeClient: React.FC<LogHomeProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/log-homes.jpg"
+                src="/assets/images/log-homes.webp"
                 alt="Log Home Restoration"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
           </SimpleGrid>
@@ -129,7 +131,7 @@ const LogHomeClient: React.FC<LogHomeProps> = ({ page }) => {
 
       {/* Benefits Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -250,9 +252,11 @@ const LogHomeClient: React.FC<LogHomeProps> = ({ page }) => {
             </VStack>
             <Box textAlign="center">
               <Image 
-                src="/assets/images/log-homes.jpg"
+                src="/assets/images/log-homes.webp"
                 alt="Log Home Services"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
           </SimpleGrid>
@@ -261,7 +265,7 @@ const LogHomeClient: React.FC<LogHomeProps> = ({ page }) => {
 
       {/* Process Section */}
       <Box 
-        bgImage="url('/assets/images/bg-3.jpg')"
+        bgImage="url('/assets/images/bg-3.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
@@ -273,9 +277,11 @@ const LogHomeClient: React.FC<LogHomeProps> = ({ page }) => {
           <SimpleGrid columns={{ base: 1, md: 2 }} gap={8} alignItems="center">
             <Box textAlign="center">
               <Image 
-                src="/assets/images/log-homes.jpg"
+                src="/assets/images/log-homes.webp"
                 alt="Log Home Restoration Process"
-                borderRadius="lg"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover', borderRadius: '8px' }}
               />
             </Box>
             <VStack gap={6} align="flex-start">

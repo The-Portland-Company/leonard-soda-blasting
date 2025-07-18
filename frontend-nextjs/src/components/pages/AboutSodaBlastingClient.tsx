@@ -86,7 +86,7 @@ const AboutSodaBlasting: React.FC<AboutSodaBlastingProps> = ({ page }) => {
       {/* Hero Section */}
       <Box 
         id="hero-section"
-        bgImage="url('/assets/images/about.jpg')"
+        bgImage="url('/assets/images/about.webp')"
         backgroundPosition="center"
         backgroundRepeat="no-repeat"
         backgroundSize="cover"
