@@ -16,6 +16,13 @@ const nextConfig = {
     minimumCacheTTL: 31536000,
   },
   output: 'standalone',
+  // Target modern browsers to reduce polyfills
+  target: 'server',
+  swcMinify: true,
+  compiler: {
+    // Remove console logs in production
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
   experimental: {
     optimizePackageImports: [
       '@chakra-ui/react',
@@ -23,7 +30,8 @@ const nextConfig = {
       '@emotion/styled',
       '@directus/sdk'
     ],
-    optimizeCss: true,
+    // Use modern compilation target
+    esmExternals: 'loose',
   },
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
