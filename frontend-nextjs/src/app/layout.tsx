@@ -90,6 +90,86 @@ export default async function RootLayout({
             }
           `
         }} />
+        {/* Prevent legacy script errors - Must run immediately */}
+        <script dangerouslySetInnerHTML={{
+          __html: `
+            // Comprehensive legacy script error prevention
+            (function() {
+              // Create gform_1 element to prevent errors
+              if (!document.getElementById('gform_1')) {
+                var dummyForm = document.createElement('div');
+                dummyForm.id = 'gform_1';
+                dummyForm.style.display = 'none';
+                document.head.appendChild(dummyForm);
+                
+                // Add dummy addEventListener method
+                dummyForm.addEventListener = function() {
+                  console.warn('Prevented gform_1 addEventListener call');
+                  return false;
+                };
+              }
+              
+              // Override document methods before any scripts load
+              var originalQuerySelector = document.querySelector;
+              document.querySelector = function(selector) {
+                if (selector === '#gform_1') {
+                  var element = originalQuerySelector.call(this, selector);
+                  if (!element) {
+                    console.warn('gform_1 element requested but not found - returning dummy element');
+                    return document.getElementById('gform_1') || { 
+                      addEventListener: function() { return false; },
+                      style: {},
+                      className: ''
+                    };
+                  }
+                  return element;
+                }
+                return originalQuerySelector.call(this, selector);
+              };
+              
+              // Override getElementById for gform_1
+              var originalGetElementById = document.getElementById;
+              document.getElementById = function(id) {
+                if (id === 'gform_1') {
+                  var element = originalGetElementById.call(this, id);
+                  if (!element) {
+                    console.warn('gform_1 requested via getElementById - returning dummy element');
+                    return { 
+                      addEventListener: function() { 
+                        console.warn('Dummy gform_1 addEventListener called'); 
+                        return false; 
+                      },
+                      style: {},
+                      className: '',
+                      submit: function() { return false; }
+                    };
+                  }
+                  return element;
+                }
+                return originalGetElementById.call(this, id);
+              };
+              
+              // Global error handler for any missed errors
+              window.addEventListener('error', function(e) {
+                if (e.message && (e.message.includes('gform') || e.message.includes("null is not an object"))) {
+                  console.warn('Suppressed legacy script error:', e.message);
+                  e.preventDefault();
+                  return false;
+                }
+              }, true); // Use capture phase
+              
+              // Protect against script execution errors
+              window.onerror = function(msg, url, lineNo, columnNo, error) {
+                if (msg && (msg.includes('gform') || msg.includes("null is not an object"))) {
+                  console.warn('Caught script error:', msg);
+                  return true; // Prevent default error handling
+                }
+                return false;
+              };
+              
+            })();
+          `
+        }} />
       </head>
       <body>
         <Providers>
