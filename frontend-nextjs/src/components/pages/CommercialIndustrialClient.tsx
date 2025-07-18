@@ -150,6 +150,9 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
               <Image 
                 src="/assets/images/commercial-industrial.webp"
                 alt="Industrial Equipment"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover' }}
               />
             </Box>
             <VStack gap={6} align="flex-start">
@@ -224,6 +227,9 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
               <Image 
                 src="/assets/images/food-processing-equipment.webp"
                 alt="Equipment Cleaning"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover' }}
               />
             </Box>
           </SimpleGrid>
@@ -246,6 +252,9 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
               <Image 
                 src="/assets/images/water-before-after.webp"
                 alt="Before and After"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover' }}
               />
             </Box>
             <VStack gap={6} align="flex-start">
@@ -306,6 +315,9 @@ const CommercialIndustrial: React.FC<CommercialIndustrialProps> = () => {
               <Image 
                 src="/assets/images/commercial.webp"
                 alt="Media Blasting"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover' }}
               />
             </Box>
           </SimpleGrid>

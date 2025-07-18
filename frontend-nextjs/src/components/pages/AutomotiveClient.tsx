@@ -141,6 +141,9 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               <Image 
                 src="/assets/images/chalk-marks.webp"
                 alt="Safe and Effective"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover' }}
               />
             </Box>
             <VStack gap={6} align="flex-start">
@@ -187,6 +190,9 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               <Image 
                 src="/assets/images/auto-pg-img-2.webp"
                 alt="Completely Professional"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover' }}
               />
             </Box>
           </SimpleGrid>
@@ -201,6 +207,9 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               <Image 
                 src="/assets/images/chalk-marks.webp"
                 alt="Safe and Effective"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover' }}
               />
             </Box>
             <VStack gap={6} align="flex-start">
@@ -247,6 +256,9 @@ const AutomotiveClient: React.FC<AutomotiveProps> = ({ page }) => {
               <Image 
                 src="/assets/images/auto-pg-img-2.webp"
                 alt="Completely Professional"
+                width={600}
+                height={400}
+                style={{ objectFit: 'cover' }}
               />
             </Box>
           </SimpleGrid>
