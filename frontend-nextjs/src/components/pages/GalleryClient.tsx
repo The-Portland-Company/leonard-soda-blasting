@@ -37,7 +37,7 @@ interface GalleryClientProps {
 const galleryItems: GalleryItem[] = [
   {
     id: '1',
-    src: '/assets/images/automotive-1.jpg',
+    src: '/assets/images/automotive-1.webp',
     alt: 'Automotive restoration project',
     category: 'automotive',
     title: 'Classic Car Restoration',
@@ -45,7 +45,7 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: '2',
-    src: '/assets/images/aircraft.jpg',
+    src: '/assets/images/aircraft.webp',
     alt: 'Aircraft cleaning project',
     category: 'aircraft',
     title: 'Aircraft Maintenance',
@@ -53,7 +53,7 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: '3',
-    src: '/assets/images/boat-1.jpg',
+    src: '/assets/images/boat-1.webp',
     alt: 'Marine vessel cleaning',
     category: 'marine',
     title: 'Boat Hull Cleaning',
@@ -61,7 +61,7 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: '4',
-    src: '/assets/images/commercial.jpg',
+    src: '/assets/images/commercial.webp',
     alt: 'Commercial building cleaning',
     category: 'commercial',
     title: 'Commercial Building',
@@ -69,7 +69,7 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: '5',
-    src: '/assets/images/fire-damage.jpg',
+    src: '/assets/images/fire-damage.webp',
     alt: 'Fire damage restoration',
     category: 'restoration',
     title: 'Fire Damage Restoration',
@@ -77,7 +77,7 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: '6',
-    src: '/assets/images/food-processing-equipment.jpg',
+    src: '/assets/images/food-processing-equipment.webp',
     alt: 'Food processing equipment cleaning',
     category: 'industrial',
     title: 'Food Processing Equipment',
@@ -85,7 +85,7 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: '7',
-    src: '/assets/images/log-homes.jpg',
+    src: '/assets/images/log-homes.webp',
     alt: 'Log home restoration',
     category: 'residential',
     title: 'Log Home Restoration',
@@ -93,7 +93,7 @@ const galleryItems: GalleryItem[] = [
   },
   {
     id: '8',
-    src: '/assets/images/commercial-industrial.jpg',
+    src: '/assets/images/commercial-industrial.webp',
     alt: 'Industrial equipment cleaning',
     category: 'industrial',
     title: 'Industrial Equipment',
